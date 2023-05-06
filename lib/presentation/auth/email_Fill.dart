@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/sign_Up/sign_up_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
+import 'package:tap_cash/helper/MyColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
-import 'package:tap_cash/helper/widgets/null_Button.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/auth/code_Fill.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -12,6 +12,10 @@ class phoneFill extends StatelessWidget {
   final title;
   bool reset;
   phoneFill({Key? key, required this.title, required this.reset}) : super(key: key);
+
+
+
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +39,37 @@ class phoneFill extends StatelessWidget {
                       SizedBox(
                         height: myApplication.hightClc(170, context),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/Icons/Egypt_Flag.png",height: 30,width: 30,),
-                            SizedBox(width: 10,),
-                            Text("+20 |",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                            SizedBox(width: 10,),
-                            Expanded(
-                              child: TextField(
-                                keyboardType: TextInputType.phone,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                                onChanged: (num){
-                                  SignUpCubit.phoneNumber = "+2"+num;
-                                  BlocProvider.of<SignUpCubit>(context).checkNumber();
-                                  print(SignUpCubit.phoneNumber);
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  labelStyle: TextStyle(),
-                                  hintStyle: TextStyle(fontSize: 18),
-                                  hintText: "000 000 0000",
+                      Form(
+                        key: formkey,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter your Email';
+                            } else if ( !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+                              return 'Enter Valid Email';
+                            } else {
+                              return null;
+                            }
+                          },
+                          keyboardType: TextInputType.visiblePassword,
+                          style: Theme.of(context).textTheme.bodySmall,
+                          onChanged: (val){
+                            SignUpCubit.email = val;
+                          },
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(75),
+                                borderSide: BorderSide(
+                                  color: myColors.blu.withOpacity(0.3),
+                                  width: 2,
                                 ),
                               ),
-                            )
-                          ],
+                              contentPadding: EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(75)
+                              ),
+                              labelText: "Email",
+                          ),
                         ),
                       ),
                       BlocBuilder<SignUpCubit, SignUpState>(
@@ -70,16 +78,13 @@ class phoneFill extends StatelessWidget {
                             child: Column(
                               children: [
                                 Spacer(),
-                                SignUpCubit.phoneIsVaild
-                                    ? confirmButton(
+                                    confirmButton(
                                     ontap: () {
-                                      if(true){
+                                      if(formkey.currentState!.validate()){
                                         showTopSnackBar(
                                           Overlay.of(context),
                                           mySnackBar.success(
-                                              message: "code has been send to " +
-                                                  SignUpCubit.phoneNumber.substring(0,7)+"****"+SignUpCubit.phoneNumber.substring(11,13)),
-                                        );
+                                              message: "sent" ,));
                                         BlocProvider.of<SignUpCubit>(context).sentVerfication();
                                         myApplication.navigateTo(codeFill(title:
                                         reset
@@ -89,29 +94,17 @@ class phoneFill extends StatelessWidget {
                                               fontSize: myApplication.widthClc(24, context),
                                               fontWeight: FontWeight.bold),
                                         )
-                                            : Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                            Text(
-                                              "Please Verify Your Phone ",
+                                            : Text(
+                                              "Please Verify Your Email ",
                                               style: TextStyle(
                                                   fontSize: myApplication.widthClc(24, context),
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            Text(
-                                              "Number",
-                                              style: TextStyle(
-                                                  fontSize: myApplication.widthClc(24, context),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
                                           reset: reset,
                                         ), context);
                                       }
                                     },
-                                    text: reset ? "send" : "Continue",)
-                                    : nullButton(text: reset ? "send" : "Continue",),
+                                    text: reset ? "send" : "Continue",),
                                 SizedBox(
                                   height: myApplication.hightClc(25, context),
                                 ),

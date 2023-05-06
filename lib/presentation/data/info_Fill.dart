@@ -3,10 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/MyColors.dart';
-import 'package:tap_cash/helper/widgets/small_Button.dart';
+import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 
 class infoFill extends StatelessWidget {
-  const infoFill({Key? key}) : super(key: key);
+   infoFill({Key? key}) : super(key: key);
+
+
+  final formkey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -95,27 +99,85 @@ class infoFill extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: myApplication.hightClc(30, context),
+                  height: myApplication.hightClc(83, context),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    smallButton(
-                      ontap: () {},
-                      text: "Skip",
-                      color: myColors.softblu,
-                      textcolor: myColors.blu,
-                    ),
-                    smallButton(
-                      ontap: () {},
-                      text: "Next",
-                      color: myColors.blu,
-                      textcolor: Theme.of(context).textTheme.labelSmall!.color,
-                    ),
-                  ],
+                Form(
+                  key: formkey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Full Name';
+                          } else if (value.length < 10) {
+                            return 'Enter a valid Name';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.phone,
+                        style: Theme.of(context).textTheme.bodySmall,
+                        onChanged: (val) {},
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(75),
+                            borderSide: BorderSide(
+                              color: myColors.blu.withOpacity(0.3),
+                              width: 2,
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 15),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(75)),
+                          labelText: "Full Name",
+                        ),
+                      ),
+                      SizedBox(
+                        height: myApplication.hightClc(25, context),
+                      ),
+                      TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Nickname';
+                          } else if (value.length < 10) {
+                            return 'Enter a valid Nickname';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.phone,
+                        style: Theme.of(context).textTheme.bodySmall,
+                        onChanged: (val) {},
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(75),
+                            borderSide: BorderSide(
+                              color: myColors.blu.withOpacity(0.3),
+                              width: 2,
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 15),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(75)),
+                          labelText: "Nickname",
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ),
+                Spacer(),
+                confirmButton(
+                    ontap: (){
+                      if(formkey.currentState!.validate()){
+                        
+                      }
+                    },
+                    text: "Continue"),
                 SizedBox(
-                  height: myApplication.hightClc(30, context),
+                  height: myApplication.hightClc(63, context),
                 ),
               ],
             ),
