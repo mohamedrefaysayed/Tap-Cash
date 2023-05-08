@@ -24,7 +24,7 @@ class codeFill extends StatelessWidget {
           appBar: AppBar(
               leading: myApplication.backIcon(context, () {
             SignUpCubit.code = "";
-            SignUpCubit.phoneNumber = "";
+            SignUpCubit.email = "";
           })),
           body: Container(
               margin: EdgeInsets.all(20),
@@ -38,9 +38,9 @@ class codeFill extends StatelessWidget {
                   Center(
                       child: Text(
                     "Code Has Been Sent To " +
-                        SignUpCubit.phoneNumber.substring(0, 7) +
+                        SignUpCubit.email.substring(0, 7) +
                         "****" +
-                        SignUpCubit.phoneNumber.substring(11, 13),
+                        SignUpCubit.email.substring(11, 13),
                     style: TextStyle(fontSize: 14),
                   )),
                   SizedBox(
@@ -50,8 +50,8 @@ class codeFill extends StatelessWidget {
                     child: VerificationCode(
                         underlineColor: myColors.blu,
                         textStyle: Theme.of(context).textTheme.bodyLarge!,
-                        underlineUnfocusedColor: myColors.blu.withOpacity(0.3),
-                        fillColor: Colors.grey.withOpacity(0.4),
+                        underlineUnfocusedColor: Colors.transparent,
+                        fillColor: Colors.grey.withOpacity(0.2),
                         margin: EdgeInsets.symmetric(horizontal: 5),
                         itemSize: 70,
                         fullBorder: true,
@@ -108,8 +108,7 @@ class codeFill extends StatelessWidget {
                         child: Column(
                           children: [
                             Spacer(),
-                            SignUpCubit.phoneIsVaild
-                                ? BlocBuilder<SignUpCubit, SignUpState>(
+                            BlocBuilder<SignUpCubit, SignUpState>(
                                     builder: (context, state) {
                                       if (state is SignUpCodeFillLoading) {
                                         return Container(
@@ -129,7 +128,6 @@ class codeFill extends StatelessWidget {
                                       }
                                     },
                                   )
-                                : nullButton(text: "Verify"),
                           ],
                         ),
                       );

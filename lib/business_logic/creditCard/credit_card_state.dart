@@ -4,3 +4,5 @@ part of 'credit_card_cubit.dart';
 abstract class CreditCardState {}
 
 class CreditCardInitial extends CreditCardState {}
+class CreditCardUpdate extends CreditCardState {}
+

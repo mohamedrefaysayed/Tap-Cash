@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:eg_nid/eg_nid.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
+import 'package:tap_cash/data/web_services/sign_Up_services.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/auth/password_Fill.dart';
@@ -10,16 +13,27 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  static String phoneNumber="";
+  static String Id="30105141900138";
+  static String email="";
   static String code="";
-  static bool phoneIsVaild = false;
   static bool verify = false;
   static bool cansend = false;
   static bool scure = true;
   static bool remember = false;
   static String pass = "";
   static String passConfirm = "";
+  String? age;
+  String? birthDate;
+  String? city;
+  String? gender;
+
+
   SignUpCubit() : super(SignUpInitial());
+
+
+
+  final signUpSersevices = signUpWebServices();
+
 
 
 
@@ -38,20 +52,23 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   signUpStart(){
     emit(SignUpLoading());
-    try{
-      Timer(Duration(seconds: 1), () { emit(SignUpSuccess()); });
-    } catch(e){
-      emit(SignUpFailure(errormessage: e.toString()));
-    }
+    Timer(Duration(seconds: 1), () {
+      emit(SignUpSuccess());
+    });
   }
 
-  checkNumber(){
-    if(phoneNumber.length==13){
-      phoneIsVaild = true;
-    }else{
-      phoneIsVaild = false;
-    }
-    emit(SignUpPhoneFill());
+  getDataFromId(){
+    var idData = NIDInfo(nid: Id);
+    birthDate = idData.birthDay.toString();
+    age = (DateTime.now().year - idData.birthDay.year).toString();
+    gender = idData.sex;
+    city = idData.city;
+    print(birthDate);
+    print(age);
+    print(gender);
+    print(city);
+
+
   }
 
   sentVerfication()async{

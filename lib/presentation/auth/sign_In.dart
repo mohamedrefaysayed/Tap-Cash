@@ -5,10 +5,10 @@ import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/MyColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
-import 'package:tap_cash/presentation/auth/phone_Fill.dart';
+import 'package:tap_cash/presentation/auth/email_Fill.dart';
+import 'package:tap_cash/presentation/data/intrest_Screen.dart';
+import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-
-import '../main_Screen/intrest_Screen.dart';
 
 class signIn extends StatelessWidget {
   signIn({Key? key}) : super(key: key);
@@ -50,16 +50,18 @@ class signIn extends StatelessWidget {
                         TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Enter Your Phone Number';
-                            } else if (value.length < 11) {
-                              return 'Phone Number is not correct';
+                              return 'Enter Your Email';
+                            } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+                              return 'Enter Valid Email';
                             } else {
                               return null;
                             }
                           },
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.emailAddress,
                           style: Theme.of(context).textTheme.bodySmall,
-                          onChanged: (val) {},
+                          onChanged: (val) {
+                            SignInCubit.email = val;
+                          },
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(75),
@@ -72,7 +74,7 @@ class signIn extends StatelessWidget {
                                 horizontal: 30, vertical: 15),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(75)),
-                            labelText: "Phone Number",
+                            labelText: "Email",
                           ),
                         ),
                         SizedBox(
@@ -187,7 +189,10 @@ class signIn extends StatelessWidget {
                       if (state is SignInSuccess) {
                         showTopSnackBar(Overlay.of(context),
                             mySnackBar.success(message: "Sign In Success"));
-                        myApplication.navigateTo(interstScreen(), context);                    }
+                        myApplication.navigateTo(mainScreen(), context);
+                      }else if(state is SignInFailure){
+                        mySnackBar.error(message: state.errormessage);
+                      }
                     },
                     builder: (context, state) {
                       return BlocBuilder<SignInCubit, SignInState>(
@@ -217,7 +222,7 @@ class signIn extends StatelessWidget {
                   Center(
                     child: TextButton(
                         onPressed: () => myApplication.navigateTo(
-                            phoneFill(
+                            emailFill(
                               title: Text(
                                 "Forget Password",
                                 style: TextStyle(

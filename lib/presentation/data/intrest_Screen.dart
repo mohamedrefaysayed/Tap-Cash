@@ -4,7 +4,7 @@ import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/myColors.dart';
 import 'package:tap_cash/helper/widgets/intrest_Box.dart';
 import 'package:tap_cash/helper/widgets/small_Button.dart';
-import 'package:tap_cash/presentation/main_Screen/info_Fill.dart';
+import 'package:tap_cash/presentation/data/info_Fill.dart';
 
 class interstScreen extends StatelessWidget {
   const interstScreen({Key? key}) : super(key: key);
@@ -64,7 +64,7 @@ class interstScreen extends StatelessWidget {
                       ontap: () {myApplication.navigateTo(infoFill(), context);},
                       text: "Next",
                       color: myColors.blu,
-                      textcolor: Theme.of(context).textTheme.labelSmall!.color,
+                      textcolor: Colors.white,
                     ),
                   ],
                 ),

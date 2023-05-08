@@ -11,13 +11,18 @@ class smallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-        width: myApplication.widthClc(170, context),
-        height: myApplication.hightClc(56, context),
-        child:  ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: color),
-          onPressed: ontap,
-          child: Center(child: Text(text,style: TextStyle(color: textcolor,fontSize: myApplication.widthClc(14, context),fontWeight: FontWeight.bold  ),)),)
+    return  GestureDetector(
+      onTap: ontap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(75),
+        ),
+          width: myApplication.widthClc(120, context),
+          height: myApplication.hightClc(56, context),
+          child:  Center(child: Text(text,style: TextStyle(color: textcolor,fontSize: myApplication.widthClc(14, context),fontWeight: FontWeight.bold  ),)
+          )
+      ),
     );
   }
 }

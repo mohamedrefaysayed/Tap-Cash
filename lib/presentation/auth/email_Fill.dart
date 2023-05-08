@@ -8,10 +8,10 @@ import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/auth/code_Fill.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class phoneFill extends StatelessWidget {
+class emailFill extends StatelessWidget {
   final title;
   bool reset;
-  phoneFill({Key? key, required this.title, required this.reset}) : super(key: key);
+  emailFill({Key? key, required this.title, required this.reset}) : super(key: key);
 
 
 
@@ -23,12 +23,11 @@ class phoneFill extends StatelessWidget {
       onTap: () => myApplication.keyboardFocus(context),
       child: WillPopScope(
         onWillPop: (){
-          SignUpCubit.phoneIsVaild = false;
           return Future.value(true);
         },
         child: Scaffold(
           appBar: AppBar(
-            leading: myApplication.backIcon(context,(){SignUpCubit.phoneIsVaild = false;})
+            leading: myApplication.backIcon(context,(){})
           ),
                 body: Container(
                   margin: EdgeInsets.all(20),

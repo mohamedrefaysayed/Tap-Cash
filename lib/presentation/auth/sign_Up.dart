@@ -5,7 +5,7 @@ import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/MyColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
-import 'package:tap_cash/presentation/auth/phone_Fill.dart';
+import 'package:tap_cash/presentation/auth/id_Fill.dart';
 import 'package:tap_cash/presentation/auth/sign_In.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -34,7 +34,7 @@ class signUp extends StatelessWidget {
                 height: myApplication.hightClc(165, context),
               ),
               Text(
-                "Transform your financial",
+                "Change your financial",
                 style: TextStyle(
                     fontSize: myApplication.widthClc(28, context),
                     fontWeight: FontWeight.bold),
@@ -61,7 +61,7 @@ class signUp extends StatelessWidget {
                 height: myApplication.hightClc(27, context),
               ),
               Text(
-                "Take control of your finances with our secure and ",
+                "Control of your finances with our secure and ",
                 style: TextStyle(fontSize: myApplication.widthClc(12, context)),
               ),
               SizedBox(
@@ -77,13 +77,7 @@ class signUp extends StatelessWidget {
               BlocConsumer<SignUpCubit, SignUpState>(
                 listener: (context, state) {
                   if(state is SignUpSuccess){
-                    myApplication.navigateTo(
-                        phoneFill(title:
-                        Text("Sign Up With Your Number",
-                          style: TextStyle(
-                  fontSize: myApplication.widthClc(24, context),
-                  fontWeight: FontWeight.bold),), reset: false,),
-                        context);
+                   myApplication.navigateTo(idFill(), context);
                   }else if(state is SignUpFailure){
                     showTopSnackBar(Overlay.of(context),
                         mySnackBar.error(message: state.errormessage)

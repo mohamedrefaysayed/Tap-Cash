@@ -20,7 +20,7 @@ class Mythems{
         bodyLarge: TextStyle(color:Colors.black,fontSize: 25),
         bodyMedium: TextStyle(color: Colors.black,fontSize: 18),
         bodySmall: TextStyle(color: Colors.black,fontSize: 16),
-          labelSmall: TextStyle(fontSize: 14,color: Colors.white)
+          labelSmall: TextStyle(fontSize: 14,color: Colors.black)
 
       ),
       iconTheme: IconThemeData(color: Colors.white),
@@ -38,12 +38,14 @@ class Mythems{
         )
       ),
       scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.fromSeed(seedColor: myColors.blu)
+    colorScheme: ColorScheme.fromSeed(seedColor: myColors.blu), bottomAppBarTheme: BottomAppBarTheme(color: Colors.white)
   );
 
 
   static final darktheme = ThemeData(
-      dialogBackgroundColor: myColors.blk,
+    dialogBackgroundColor: myColors.blk,
+
+    bottomAppBarTheme: BottomAppBarTheme(color: myColors.blk,),
       fontFamily: "PlusJakartaSans",
       hintColor: Colors.grey,
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -60,7 +62,7 @@ class Mythems{
       bodyLarge: TextStyle(color:Colors.white,fontSize: 25),
       bodyMedium: TextStyle(color: Colors.white,fontSize: 18),
       bodySmall: TextStyle(color: Colors.white,fontSize: 16),
-      labelSmall: TextStyle(fontSize: 14,color: Colors.black)
+      labelSmall: TextStyle(fontSize: 14,color: Colors.white)
 
     ),
       iconTheme: IconThemeData(color: Colors.black),
@@ -78,7 +80,7 @@ class Mythems{
           )
       ),
       scaffoldBackgroundColor: myColors.blk,
-      colorScheme: ColorScheme.fromSeed(seedColor: myColors.blu)
+      colorScheme: ColorScheme.fromSeed(seedColor: myColors.blu),
 
   );
 }
