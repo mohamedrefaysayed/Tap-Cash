@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 
 class confirmButton extends StatelessWidget {
 

@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
-import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 

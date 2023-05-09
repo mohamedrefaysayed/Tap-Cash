@@ -7,7 +7,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/presentation/data/creat_PIN.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 part 'info_state.dart';

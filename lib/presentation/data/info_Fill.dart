@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 
 class infoFill extends StatelessWidget {

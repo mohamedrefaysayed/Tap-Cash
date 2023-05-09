@@ -4,9 +4,8 @@ import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:tap_cash/business_logic/sign_Up/sign_up_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
-import 'package:tap_cash/helper/widgets/null_Button.dart';
 
 class codeFill extends StatelessWidget {
   final title;

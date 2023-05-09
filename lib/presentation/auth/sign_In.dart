@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/sign_In/sign_in_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/auth/email_Fill.dart';
-import 'package:tap_cash/presentation/data/intrest_Screen.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 

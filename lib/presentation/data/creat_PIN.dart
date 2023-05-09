@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 
 class creatPIN extends StatelessWidget {

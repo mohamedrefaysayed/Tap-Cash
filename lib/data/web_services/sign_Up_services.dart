@@ -1,16 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:tap_cash/data/models/putPasswordsSignUpModel.dart';
 import 'package:tap_cash/data/models/signUpModel.dart';
-import 'package:tap_cash/data/models/sign_In_Model.dart';
 import 'package:tap_cash/data/models/verfiySignUpModel.dart';
-import 'package:tap_cash/helper/constrains.dart';
+import 'package:tap_cash/helper/constants/url.dart';
 
 class signUpWebServices {
   late Dio dio;
 
   signUpWebServices() {
     BaseOptions option = BaseOptions(
-      baseUrl: baseUrl,
+      baseUrl: URL,
       receiveDataWhenStatusError: true,
       connectTimeout: Duration(seconds: 20),
       receiveTimeout: Duration(seconds: 20),
@@ -18,6 +17,8 @@ class signUpWebServices {
 
     dio = Dio(option);
   }
+
+
 
   Future<signUpModel?> signUpRequest(
       {required String email}) async {

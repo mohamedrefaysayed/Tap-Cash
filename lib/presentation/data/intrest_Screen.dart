@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/myColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/intrest_Box.dart';
 import 'package:tap_cash/helper/widgets/small_Button.dart';
 import 'package:tap_cash/presentation/data/info_Fill.dart';

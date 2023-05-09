@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/bottomNav_NotchClip.dart';
 import 'package:tap_cash/presentation/auth/sign_Up.dart';
-import 'package:tap_cash/presentation/credit_Card/creditCard_Fill.dart';
+import 'package:tap_cash/presentation/dashBoard/dashBoardMain.dart';
 import 'package:tap_cash/presentation/e_Wallet/walletMain.dart';
 import 'package:tap_cash/presentation/home/home.dart';
+import 'package:tap_cash/presentation/more/moreMain.dart';
 import 'package:tap_cash/presentation/qrCode/scanQR.dart';
 
 
@@ -35,11 +36,10 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
           controller: _tabController,
           children: [
             home(),
-            signUp(),
+            dashBoardMain(),
             SizedBox(),
             walletMain(),
-            creditCardFill(),
-          ],
+            moreMain(),          ],
         ),
         extendBody: true,
 

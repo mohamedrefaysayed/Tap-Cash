@@ -5,7 +5,7 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/business_logic/wallet/wallet_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/criditCard.dart';
 import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
@@ -140,7 +140,9 @@ credit(index,bool scure){
                                                 fontWeight: FontWeight.w600,
                                               ),),
                                               SizedBox(height: myApplication.hightClc(16, context),),
-                                              credit(index, false),
+                                              Hero(tag: index,
+                                                  child: credit(index, false),
+                                              ),
                                               SizedBox(height: myApplication.hightClc(34, context),),
                                               GestureDetector(
                                                 onTap: () => myApplication.confirmDialog(context,
@@ -210,9 +212,12 @@ credit(index,bool scure){
                                         );
                                       });
                                 },
-                                child: Container(
-                                  child: credit(index,true),
-                                  height: myApplication.hightClc(200, context),
+                                child: Hero(
+                                  tag: index,
+                                  child: Container(
+                                    child: credit(index,true),
+                                    height: myApplication.hightClc(200, context),
+                                  ),
                                 ),
                               );
                             }),

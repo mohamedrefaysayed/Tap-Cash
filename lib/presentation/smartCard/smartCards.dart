@@ -5,7 +5,7 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/business_logic/smartCards/smart_cards_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/smartCard.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';

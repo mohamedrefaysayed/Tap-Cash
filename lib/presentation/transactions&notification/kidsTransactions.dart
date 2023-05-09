@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/transaction_Map.dart';
 import 'package:tap_cash/helper/widgets/transaction_widget.dart';
-import 'package:tap_cash/presentation/transactionsAnddnotification/kidsTransactions.dart';
+import 'package:tap_cash/presentation/transactions&notification/transactions.dart';
 
-class transactionsScreen extends StatelessWidget {
-  transactionsScreen({Key? key}) : super(key: key);
+class kidsTransactionsScreen extends StatelessWidget {
+  kidsTransactionsScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -39,12 +39,12 @@ class transactionsScreen extends StatelessWidget {
                     Spacer(),
                     GestureDetector(
                       onTap: (){
-                        myApplication.navigateToReplace(context,kidsTransactionsScreen());
+                        myApplication.navigateToReplace(context,transactionsScreen());
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                          "Kids",
+                          "Me",
                           style: TextStyle(
                               fontSize: myApplication.widthClc(24, context),
                               fontWeight: FontWeight.bold,color: myColors.blu),
@@ -65,14 +65,14 @@ class transactionsScreen extends StatelessWidget {
                       itemCount: Transactions.transaction.length,
                       itemBuilder: (context,index){
                         return Center(
-                          child:transactionWidget(
-                        color: Transactions.transaction[index]["color"],
-                          name: Transactions.transaction[index]["name"],
-                          inWallet: Transactions.transaction[index]["inWallet"],
-                          icon: Transactions.transaction[index]["icon"],
-                          date: Transactions.transaction[index]["date"],
-                          amount: Transactions.transaction[index]["amount"],
-                        )
+                            child:transactionWidget(
+                              color: Transactions.transaction[index]["color"],
+                              name: Transactions.transaction[index]["name"],
+                              inWallet: Transactions.transaction[index]["inWallet"],
+                              icon: Transactions.transaction[index]["icon"],
+                              date: Transactions.transaction[index]["date"],
+                              amount: Transactions.transaction[index]["amount"],
+                            )
                         );
                       }
                   ),

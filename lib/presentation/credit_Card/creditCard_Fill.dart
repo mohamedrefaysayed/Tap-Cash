@@ -8,7 +8,7 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:tap_cash/business_logic/creditCard/credit_card_cubit.dart';
 import 'package:tap_cash/business_logic/wallet/wallet_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/criditCard.dart';
 import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
@@ -61,18 +61,11 @@ class _creditCardFillState extends State<creditCardFill> {
   }
 
   Future<void> scanCard() async {
-    final CardDetails? cardDetails =
-        await CardScanner.scanCard(scanOptions: scanOptions);
-    if (!mounted || cardDetails == null) return;
-      _cardDetails = cardDetails;
-      creditCardModel!.cardNumber = _cardDetails!.cardNumber;
-      mycardNumberController.text = _cardDetails!.cardNumber;
-      creditCardModel!.expiryDate = _cardDetails!.expiryDate;
-      myexpiryDateController.text = _cardDetails!.expiryDate;
-    BlocProvider.of<CreditCardCubit>(context).emit(CreditCardUpdate());
-
-    onCreditCardModelChange(CreditCardModel(
-        _cardDetails!.cardNumber, _cardDetails!.expiryDate, "", "", false));
+    var cardDetails = await CardScanner.scanCard(scanOptions: scanOptions);
+    if (!mounted) return;
+    setState(() {
+      _cardDetails = cardDetails!;
+    });
   }
 
 

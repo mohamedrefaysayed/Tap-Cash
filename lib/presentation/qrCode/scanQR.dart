@@ -6,7 +6,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:tap_cash/business_logic/QR/qr_cubit.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/small_Button.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';

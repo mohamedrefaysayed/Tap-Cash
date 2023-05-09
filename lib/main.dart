@@ -5,16 +5,19 @@ import 'package:tap_cash/business_logic/QR/qr_cubit.dart';
 import 'package:tap_cash/business_logic/add&send/add_send_cubit.dart';
 import 'package:tap_cash/business_logic/addMonyAmount/add_mony_amount_cubit.dart';
 import 'package:tap_cash/business_logic/creditCard/credit_card_cubit.dart';
+import 'package:tap_cash/business_logic/dashboard/dashboard_cubit.dart';
+import 'package:tap_cash/business_logic/donations/donations_cubit.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
+import 'package:tap_cash/business_logic/onlinePayment/online_payment_cubit.dart';
 import 'package:tap_cash/business_logic/selctor/selector_cubit.dart';
 import 'package:tap_cash/business_logic/sign_In/sign_in_cubit.dart';
 import 'package:tap_cash/business_logic/sign_Up/sign_up_cubit.dart';
 import 'package:tap_cash/business_logic/smartCards/smart_cards_cubit.dart';
 import 'package:tap_cash/business_logic/wallet/wallet_cubit.dart';
-import 'package:tap_cash/helper/MyColors.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/my_thems.dart';
-import 'package:tap_cash/presentation/auth/sign_In.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
+import 'package:tap_cash/test.dart';
 
 void main() {
   runApp(const Tap_Cash());
@@ -37,6 +40,9 @@ class Tap_Cash extends StatelessWidget {
         BlocProvider(create: (context) => SmartCardsCubit()),
         BlocProvider(create: (context) => AddMonyAmountCubit()),
         BlocProvider(create: (context) => QrCubit()),
+        BlocProvider(create: (context) => DonationsCubit()),
+        BlocProvider(create: (context) => OnlinePaymentCubit()),
+        BlocProvider(create: (context) => DashboardCubit()),
 
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
