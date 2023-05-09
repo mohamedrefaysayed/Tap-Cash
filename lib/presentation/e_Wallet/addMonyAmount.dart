@@ -13,7 +13,7 @@ import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 
 class addMonyAmount extends StatefulWidget {
   final int index;
-  addMonyAmount({Key? key, required this.index}) : super(key: key);
+  const addMonyAmount({Key? key, required this.index}) : super(key: key);
 
   @override
   State<addMonyAmount> createState() => _addMonyAmountState();
@@ -27,11 +27,11 @@ class _addMonyAmountState extends State<addMonyAmount> {
   bool useBackgroundImage = false;
 
   UnderlineInputBorder? border =
-      UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
+      const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
 
   credit(index, bool scure) {
     return myCreditCardWidget(
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         color: Colors.white,
         fontFamily: 'halter',
         fontSize: 12,
@@ -80,7 +80,7 @@ class _addMonyAmountState extends State<addMonyAmount> {
             resizeToAvoidBottomInset: false,
             appBar: AppBar(leading: myApplication.backIcon(context, () {})),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -109,11 +109,12 @@ class _addMonyAmountState extends State<addMonyAmount> {
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.1),
                                 blurRadius: 10,
-                                offset: Offset(1, 1.5),
+                                offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
                             ],
                           ),
+                          height: myApplication.hightClc(48, context),
                           child: Center(
                             child: Text(
                               "EGP: ${AddMonyAmountCubit.amount.toInt().toString()}",
@@ -123,7 +124,6 @@ class _addMonyAmountState extends State<addMonyAmount> {
                                   overflow: TextOverflow.ellipsis),
                             ),
                           ),
-                          height: myApplication.hightClc(48, context),
                         ),
                         SizedBox(
                           height: myApplication.hightClc(30, context),
@@ -146,7 +146,7 @@ class _addMonyAmountState extends State<addMonyAmount> {
                 Expanded(
                   child: Column(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       confirmButton(
                           ontap: () async {
                             await LocalAuthCubit.authenticate(context);
@@ -155,7 +155,7 @@ class _addMonyAmountState extends State<addMonyAmount> {
                                   context,
                                   "Added successfully",
                                   (_) => myApplication.navigateTo(
-                                      mainScreen(), context));
+                                      const mainScreen(), context));
                             }
                           },
                           text: "Add"),

@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
@@ -19,14 +18,14 @@ class myApplication {
         onPressed: () {
           myApplication.keyboardFocus(context);
           Timer(
-            Duration(milliseconds: 150),
+            const Duration(milliseconds: 150),
             () {
               Navigator.pop(context);
               fun;
             },
           );
         },
-        icon: Icon(Icons.arrow_back_ios_new_sharp));
+        icon: const Icon(Icons.arrow_back_ios_new_sharp));
   }
 
   static double hightClc(int myHeight, BuildContext context) {
@@ -98,21 +97,21 @@ class myApplication {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.wifi_off,
               size: 150,
               color: myColors.blu,
             ),
-            Text(
+            const Text(
               "لا يوجد اتصال بالانترنت",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   "اعادة المحاولة",
                   style: TextStyle(color: Colors.white, fontSize: 22),
                 )),
@@ -136,9 +135,9 @@ class myApplication {
 
   static congratulationsDialog(context) {
     AwesomeDialog(
-      transitionAnimationDuration: Duration(seconds: 1),
+      transitionAnimationDuration: const Duration(seconds: 1),
       animType: AnimType.bottomSlide,
-      autoHide: Duration(seconds: 3),
+      autoHide: const Duration(seconds: 3),
       dialogType: DialogType.noHeader,
       dialogBackgroundColor: Theme.of(context).dialogBackgroundColor,
       body: Container(
@@ -151,17 +150,17 @@ class myApplication {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset("assets/images/congratulations.png"),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               "your account is ready to use you will be redirected to the homepage",
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
               color: myColors.blu,
             ),
           ],
@@ -175,13 +174,13 @@ class myApplication {
     AwesomeDialog(
       onDismissCallback: onDone,
       width: 300,
-      transitionAnimationDuration: Duration(seconds: 1),
+      transitionAnimationDuration: const Duration(seconds: 1),
       animType: AnimType.bottomSlide,
-      autoHide: Duration(seconds: 2),
+      autoHide: const Duration(seconds: 2),
       dialogType: DialogType.noHeader,
       dialogBackgroundColor: Theme.of(context).dialogBackgroundColor,
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         height: myApplication.hightClc(250, context),
         width: myApplication.widthClc(200, context),
         child: Column(
@@ -199,7 +198,7 @@ class myApplication {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: Offset(1, 1.5),
+                    offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
@@ -210,7 +209,7 @@ class myApplication {
                 size: myApplication.widthClc(60, context),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Align(
@@ -253,7 +252,7 @@ class myApplication {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: const [
                   Text(
                     'Gallery',
                     style: TextStyle(color: Colors.black),
@@ -277,7 +276,7 @@ class myApplication {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: const [
                   Text(
                     'Camera',
                     style: TextStyle(color: Colors.black),
@@ -299,7 +298,7 @@ class myApplication {
   static confirmDialog(context, title, buttonText, textColor, ontap) {
     AwesomeDialog(
       dialogBorderRadius: BorderRadius.circular(20),
-      autoHide: Duration(seconds: 5),
+      autoHide: const Duration(seconds: 5),
       animType: AnimType.bottomSlide,
       dialogType: DialogType.noHeader,
       dialogBackgroundColor: Theme.of(context).dialogBackgroundColor,
@@ -327,7 +326,7 @@ class myApplication {
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.1),
                       blurRadius: 10,
-                      offset: Offset(1, 1.5),
+                      offset: const Offset(1, 1.5),
                       spreadRadius: 10,
                     )
                   ],
@@ -355,7 +354,7 @@ class myApplication {
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.1),
                       blurRadius: 10,
-                      offset: Offset(1, 1.5),
+                      offset: const Offset(1, 1.5),
                       spreadRadius: 10,
                     )
                   ],

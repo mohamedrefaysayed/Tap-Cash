@@ -1,8 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.tap_cash">
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"
-        tools:ignore="SystemPermissionTypo" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -13,14 +10,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.NFC_PREFERRED_PAYMENT_INFO" />
-    <uses-permission android:name="android.permission.NFC_TRANSACTION_EVENT" />
-
-    <application
-        android:label="Tap_Cash"
+   <application
+        android:label="Tap Cash"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

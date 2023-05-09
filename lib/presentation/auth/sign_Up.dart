@@ -17,14 +17,14 @@ class signUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: myApplication.hightClc(130, context),
               ),
-              Text(
+              const Text(
                 "Logo",
                 style: TextStyle(
                     fontSize: 30,
@@ -86,12 +86,12 @@ class signUp extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if(state is SignUpLoading){
-                    return Container(
+                    return const SizedBox(
                       height: 48,
                       child: Center(child: CircularProgressIndicator()),
                     );
                   }else{
-                    return confirmButton(ontap: () => BlocProvider.of<SignUpCubit>(context).signUpStart(), text: "Sign Up");
+                    return confirmButton(ontap: () => BlocProvider.of<SignUpCubit>(context).signUpContinue(), text: "Sign Up");
                   }
                 },
               ),

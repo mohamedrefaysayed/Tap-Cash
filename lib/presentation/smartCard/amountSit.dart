@@ -43,7 +43,7 @@ class amountSit extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -89,11 +89,12 @@ class amountSit extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.1),
                                 blurRadius: 10,
-                                offset: Offset(1, 1.5),
+                                offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
                             ],
                           ),
+                          height: myApplication.hightClc(48, context),
                           child: Center(
                             child: Text(
                               "EGP: ${amount.toInt().toString()}",
@@ -102,7 +103,6 @@ class amountSit extends StatelessWidget {
                                   fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis),
                             ),
                           ),
-                          height: myApplication.hightClc(48, context),
                         ),
                         SizedBox(height: myApplication.hightClc(30, context),),
                         Slider(
@@ -123,7 +123,7 @@ class amountSit extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       confirmButton(
                           ontap: () async{
                                 showModalBottomSheet(
@@ -169,7 +169,7 @@ class amountSit extends StatelessWidget {
                                               onTap: (){
                                                 AwesomeDialog(
                                                   width: 400,
-                                                  transitionAnimationDuration: Duration(seconds: 1),
+                                                  transitionAnimationDuration: const Duration(seconds: 1),
                                                   animType: AnimType.bottomSlide,
                                                    dialogType: DialogType.noHeader,
                                                   dialogBackgroundColor: Theme.of(context).dialogBackgroundColor,
@@ -192,7 +192,7 @@ class amountSit extends StatelessWidget {
                                                               BoxShadow(
                                                                 color: Colors.grey.withOpacity(0.1),
                                                                 blurRadius: 10,
-                                                                offset: Offset(1, 1.5),
+                                                                offset: const Offset(1, 1.5),
                                                                 spreadRadius: 10,
                                                               )
                                                             ],
@@ -203,7 +203,7 @@ class amountSit extends StatelessWidget {
                                                             size: myApplication.widthClc(60, context),
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 20,
                                                         ),
                                                         Container(
@@ -215,11 +215,12 @@ class amountSit extends StatelessWidget {
                                                               BoxShadow(
                                                                 color: Colors.grey.withOpacity(0.1),
                                                                 blurRadius: 10,
-                                                                offset: Offset(1, 1.5),
+                                                                offset: const Offset(1, 1.5),
                                                                 spreadRadius: 10,
                                                               )
                                                             ],
                                                           ),
+                                                          height: myApplication.hightClc(48, context),
                                                           child: Center(
                                                             child: Text(
                                                               "2561-2145-8875-4862",
@@ -228,9 +229,8 @@ class amountSit extends StatelessWidget {
                                                                   fontWeight: FontWeight.w600,overflow: TextOverflow.ellipsis),
                                                             ),
                                                           ),
-                                                          height: myApplication.hightClc(48, context),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 20,
                                                         ),
                                                         Text("this card valid for 24 hours",
@@ -238,18 +238,18 @@ class amountSit extends StatelessWidget {
                                                             fontSize: myApplication.widthClc(14, context),
                                                             fontWeight: FontWeight.w400,
                                                           ),),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 20,
                                                         ),
                                                         GestureDetector(
                                                           onTap: ()async{
                                                             saveCreditCard();
-                                                            await Clipboard.setData(ClipboardData(text: "2561-2145-8875-4862"));
+                                                            await Clipboard.setData(const ClipboardData(text: "2561-2145-8875-4862"));
                                                             showTopSnackBar(Overlay.of(context),
-                                                            mySnackBar.success(message: "Copied"),
+                                                            const mySnackBar.success(message: "Copied"),
                                                             );
                                                             BlocProvider.of<SmartCardsCubit>(context).emit(SmartCardsShow());
-                                                            myApplication.navigateTo(mainScreen(), context);
+                                                            myApplication.navigateTo(const mainScreen(), context);
                                                           },
                                                           child: Container(
                                                             decoration: BoxDecoration(
@@ -265,7 +265,7 @@ class amountSit extends StatelessWidget {
                                                             ),
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 10,
                                                         ),
 
@@ -288,7 +288,7 @@ class amountSit extends StatelessWidget {
                                                     BoxShadow(
                                                       color: Colors.grey.withOpacity(0.1),
                                                       blurRadius: 10,
-                                                      offset: Offset(1, 1.5),
+                                                      offset: const Offset(1, 1.5),
                                                       spreadRadius: 10,
                                                     )
                                                   ],

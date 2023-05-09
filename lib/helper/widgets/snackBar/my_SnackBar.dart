@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// Popup widget that you can use by default to show some information
 class mySnackBar extends StatefulWidget {
-    mySnackBar.success({
+    const mySnackBar.success({
     Key? key,
     required this.message,
     this.messagePadding = const EdgeInsets.symmetric(horizontal: 24),

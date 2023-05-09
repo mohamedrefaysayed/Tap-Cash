@@ -1,10 +1,12 @@
-import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-import 'package:tap_cash/data/web_services/sign_in_services.dart';
+import 'package:tap_cash/data/chach_helper.dart';
+import 'package:tap_cash/data/dio_helper.dart';
+import 'package:tap_cash/data/models/sign_In_Model.dart';
+import 'package:tap_cash/helper/constants/url.dart';
 
 part 'sign_in_state.dart';
 
@@ -16,18 +18,40 @@ class SignInCubit extends Cubit<SignInState> {
   static bool scure = true;
   static bool remember = false;
 
-  final sigInService = signInWebServices();
+  signInModel? signinmodel;
 
 
-  signIn(){
+
+
+  signIn() async{
     emit(SignInLoading());
-      sigInService.logInRequest(email: email, pass: pass).then((value) {
-        if(value != null && value.status == "success"){
-          emit(SignInSuccess());
-        }else{
-          emit(SignInFailure(errormessage: "error"));
-        }
-      });
+
+   try{
+     Map<String,String> json = {
+       "emailOrNationalId":email,
+       "password":pass
+     };
+
+     print("email: $email \n pass: $pass");
+     final response = await DioHelper.postData(url: "$URL/login", data: json);
+     signinmodel = signInModel.fromJson(response.data);
+     updateData();
+     emit(SignInSuccess());
+
+   }on DioError catch (error){
+
+     emit(SignInFailure(errormessage: error.response!.data["message"]));
+
+   };
+  }
+
+
+  updateData(){
+    CahchHelper.saveData(key: "token", value: signinmodel!.token);
+    CahchHelper.saveData(key: "photo", value: signinmodel!.data!.user!.photo);
+    CahchHelper.saveData(key: "id", value: signinmodel!.data!.user!.sId);
+    CahchHelper.saveData(key: "role", value: signinmodel!.data!.user!.role);
+    CahchHelper.saveData(key: "email", value: signinmodel!.data!.user!.email);
   }
 
 

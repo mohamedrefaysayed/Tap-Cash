@@ -26,7 +26,7 @@ class sendAmount extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -73,7 +73,7 @@ class sendAmount extends StatelessWidget {
                         ),
                       ),
                       contentPadding:
-                      EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(75)),
                       labelText: "Friend ID",
@@ -96,11 +96,12 @@ class sendAmount extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.1),
                                 blurRadius: 10,
-                                offset: Offset(1, 1.5),
+                                offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
                             ],
                           ),
+                          height: myApplication.hightClc(48, context),
                           child: Center(
                             child: Text(
                               "EGP: ${AddSendCubit.sendAmount.toInt().toString()}",
@@ -109,7 +110,6 @@ class sendAmount extends StatelessWidget {
                                   fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis),
                             ),
                           ),
-                          height: myApplication.hightClc(48, context),
                         ),
                         SizedBox(height: myApplication.hightClc(30, context),),
                         Slider(
@@ -130,13 +130,13 @@ class sendAmount extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       confirmButton(
                           ontap: () async{
                             if (formkey.currentState!.validate()){
                               await LocalAuthCubit.authenticate(context);
                               if(LocalAuthCubit.authenticated){
-                                myApplication.doneDialog(context,"Amount Sent successfully",(_) => myApplication.navigateTo(mainScreen(), context));
+                                myApplication.doneDialog(context,"Amount Sent successfully",(_) => myApplication.navigateTo(const mainScreen(), context));
                               }
                             }
                           },

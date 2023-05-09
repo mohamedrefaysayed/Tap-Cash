@@ -28,12 +28,12 @@ class home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 40),
+        margin: const EdgeInsets.symmetric(vertical: 40),
         child: ListView(
           children: [
             //photo and hi
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   ClipOval(
@@ -54,7 +54,7 @@ class home extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Welcome Back",
                             style: TextStyle(fontSize: 18),
                           ),
@@ -68,7 +68,7 @@ class home extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
+                      const Text(
                         "Mohamed Refay",
                         style: TextStyle(
                             fontSize: 18,
@@ -77,10 +77,10 @@ class home extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                     onTap: (){
-                      myApplication.navigateTo(notifications(), context);
+                      myApplication.navigateTo(const notifications(), context);
                     },
                     child: true ? Image.asset(
                       "assets/Icons/Bell_Icon.png",
@@ -101,13 +101,13 @@ class home extends StatelessWidget {
 
             //balance and cash back
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: Offset(1, 1.5),
+                    offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
@@ -121,7 +121,7 @@ class home extends StatelessWidget {
                     height: 132,
                     width: 396,
                   ),
-                  Positioned(
+                  const Positioned(
                       left: 48,
                       top: 18,
                       child: Text(
@@ -131,7 +131,7 @@ class home extends StatelessWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.w400),
                       )),
-                  Positioned(
+                  const Positioned(
                       left: 48,
                       top: 49,
                       child: Text(
@@ -159,7 +159,7 @@ class home extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   "Cash Back EGP: 100",
                                   style: TextStyle(
                                       fontSize: 12,
@@ -167,7 +167,7 @@ class home extends StatelessWidget {
                                       fontWeight: FontWeight.w500),
                                 ),
                                 SizedBox(width: myApplication.widthClc(10, context),),
-                                Icon(Icons.arrow_right_alt_outlined,color: myColors.blu,),
+                                const Icon(Icons.arrow_right_alt_outlined,color: myColors.blu,),
                               ],
                             ),
                           ),
@@ -182,7 +182,7 @@ class home extends StatelessWidget {
 
             //add & send & smart card
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               height: 121,
               width: 396,
               decoration: BoxDecoration(
@@ -192,7 +192,7 @@ class home extends StatelessWidget {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: Offset(1, 1.5),
+                    offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
@@ -213,7 +213,7 @@ class home extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(20),
                                     topLeft: Radius.circular(20)),
                               ),
@@ -222,13 +222,13 @@ class home extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                      margin: EdgeInsets.only(
+                                      margin: const EdgeInsets.only(
                                         left: 40,
                                         right: 40,
                                         top: 30,
                                         bottom: 10,
                                       ),
-                                      child: Text(
+                                      child: const Text(
                                         "Select how to add money to your tap cash acount",
                                         style: TextStyle(
                                             fontSize: 18,
@@ -238,9 +238,9 @@ class home extends StatelessWidget {
                                     onTap: () {
                                       Navigator.pop(context);
                                       myApplication.navigateTo(
-                                          creditCardFill(), context);
+                                          const creditCardFill(), context);
                                     },
-                                    child: bottomSheetWidget(
+                                    child: const bottomSheetWidget(
                                         icon: Icon(
                                           FontAwesomeIcons.creditCard,
                                           color: myColors.blu,
@@ -253,7 +253,7 @@ class home extends StatelessWidget {
                                       myApplication.push_up(
                                           context, requestAmount());
                                     },
-                                    child: bottomSheetWidget(
+                                    child: const bottomSheetWidget(
                                         icon: Icon(
                                           Icons.people,
                                           color: myColors.blu,
@@ -296,11 +296,11 @@ class home extends StatelessWidget {
                         Container(
                           height: 63,
                           width: 63,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: myColors.softblu,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.add,
                             size: 35,
                             color: myColors.blu,
@@ -309,7 +309,7 @@ class home extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(10, context),
                         ),
-                        Text(
+                        const Text(
                           "Add",
                           style: TextStyle(
                               color: myColors.blu,
@@ -333,7 +333,7 @@ class home extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(20),
                                     topLeft: Radius.circular(20)),
                               ),
@@ -342,13 +342,13 @@ class home extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                      margin: EdgeInsets.only(
+                                      margin: const EdgeInsets.only(
                                         left: 40,
                                         right: 40,
                                         top: 30,
                                         bottom: 10,
                                       ),
-                                      child: Text(
+                                      child: const Text(
                                         "Select how to send money from your tap cash acount",
                                         style: TextStyle(
                                             fontSize: 18,
@@ -360,7 +360,7 @@ class home extends StatelessWidget {
                                       myApplication.navigateTo(
                                           sendAmount(), context);
                                     },
-                                    child: bottomSheetWidget(
+                                    child: const bottomSheetWidget(
                                         icon: Icon(
                                           Icons.people,
                                           color: myColors.blu,
@@ -409,13 +409,13 @@ class home extends StatelessWidget {
                         Container(
                           height: 63,
                           width: 63,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: myColors.softblu,
                           ),
                           child: Transform.rotate(
                               angle: -30 * math.pi / 180,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.send_rounded,
                                 size: 30,
                                 color: myColors.blu,
@@ -424,7 +424,7 @@ class home extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(10, context),
                         ),
-                        Text(
+                        const Text(
                           "Send",
                           style: TextStyle(
                               color: myColors.blu,
@@ -446,11 +446,11 @@ class home extends StatelessWidget {
                         Container(
                           height: 63,
                           width: 63,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: myColors.softblu,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.credit_card,
                             size: 35,
                             color: myColors.blu,
@@ -459,7 +459,7 @@ class home extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(10, context),
                         ),
-                        Text(
+                        const Text(
                           "Smart Card",
                           style: TextStyle(
                               color: myColors.blu,
@@ -482,7 +482,7 @@ class home extends StatelessWidget {
                 myApplication.navigateTo(cashBack(), context);
               },
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 height: 101,
                 width: 396,
                 decoration: BoxDecoration(
@@ -492,7 +492,7 @@ class home extends StatelessWidget {
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.1),
                       blurRadius: 10,
-                      offset: Offset(1, 1.5),
+                      offset: const Offset(1, 1.5),
                       spreadRadius: 10,
                     )
                   ],
@@ -507,7 +507,7 @@ class home extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Colors.green.shade200,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.card_giftcard_rounded,
                         size: 40,
                         color: Colors.white,
@@ -516,7 +516,7 @@ class home extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "You Get Cash Back!",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
@@ -524,7 +524,7 @@ class home extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(14, context),
                         ),
-                        Text(
+                        const Text(
                           "You Get 50 EGP Cash Back From Payment",
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.w400),
@@ -541,7 +541,7 @@ class home extends StatelessWidget {
 
             //services
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               height: 153,
               width: 396,
               decoration: BoxDecoration(
@@ -551,7 +551,7 @@ class home extends StatelessWidget {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: Offset(1, 1.5),
+                    offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
@@ -563,14 +563,14 @@ class home extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Services",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         TextButton(
                             onPressed: () {},
-                            child: Text(
+                            child: const Text(
                               "See All",
                               style: TextStyle(
                                   color: myColors.blu,
@@ -588,7 +588,7 @@ class home extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          myApplication.navigateTo(InternetProvider(), context);
+                          myApplication.navigateTo(const InternetProvider(), context);
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -622,7 +622,7 @@ class home extends StatelessWidget {
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
-                            Text(
+                            const Text(
                               "Internet",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
@@ -642,7 +642,7 @@ class home extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: Colors.green.shade100,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.shopping_bag_outlined,
                                 size: 30,
                                 color: Colors.green,
@@ -651,7 +651,7 @@ class home extends StatelessWidget {
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
-                            Text(
+                            const Text(
                               "Shopping",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
@@ -671,7 +671,7 @@ class home extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: Colors.orange.shade100,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.electric_bolt,
                                 size: 30,
                                 color: Colors.orange,
@@ -680,7 +680,7 @@ class home extends StatelessWidget {
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
-                            Text(
+                            const Text(
                               "Electricity",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
@@ -700,7 +700,7 @@ class home extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: Colors.blue.shade100,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.water_drop,
                                 size: 30,
                                 color: Colors.blue,
@@ -709,7 +709,7 @@ class home extends StatelessWidget {
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
-                            Text(
+                            const Text(
                               "Water",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
@@ -728,7 +728,7 @@ class home extends StatelessWidget {
 
             //transactions
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               height: 346,
               width: 396,
               decoration: BoxDecoration(
@@ -738,7 +738,7 @@ class home extends StatelessWidget {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: Offset(1, 1.5),
+                    offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
@@ -750,16 +750,16 @@ class home extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Transactions",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         TextButton(
                             onPressed: () {
-                              myApplication.navigateTo(transactionsScreen(), context);
+                              myApplication.navigateTo(const transactionsScreen(), context);
                             },
-                            child: Text(
+                            child: const Text(
                               "See All",
                               style: TextStyle(
                                   color: myColors.blu,
@@ -773,7 +773,7 @@ class home extends StatelessWidget {
                     height: myApplication.hightClc(10, context),
                   ),
                   ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 5,
                       itemBuilder: (context, index) {
@@ -795,12 +795,12 @@ class home extends StatelessWidget {
 
             //donation & purchase
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   GestureDetector(
                     onTap: () {
-                      myApplication.navigateTo(donations(), context);
+                      myApplication.navigateTo(const donations(), context);
                     },
                     child: Column(
                       children: [
@@ -814,7 +814,7 @@ class home extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.1),
                                 blurRadius: 10,
-                                offset: Offset(1, 1.5),
+                                offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
                             ],
@@ -830,7 +830,7 @@ class home extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(16, context),
                         ),
-                        Text(
+                        const Text(
                           "Donations",
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w400),
@@ -857,15 +857,15 @@ class home extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.1),
                                 blurRadius: 10,
-                                offset: Offset(1, 1.5),
+                                offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
                             ],
                           ),
-                          child: Hero(
+                          child: const Hero(
                             tag: "shopping",
                             child: Padding(
-                              padding: const EdgeInsets.all(15),
+                              padding: EdgeInsets.all(15),
                               child: Icon(
                                 Icons.monetization_on_outlined,
                                 color: myColors.blu,
@@ -877,7 +877,7 @@ class home extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(16, context),
                         ),
-                        Text(
+                        const Text(
                           "Online Payment",
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w400),
@@ -894,7 +894,7 @@ class home extends StatelessWidget {
 
             //Online Shops
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   GestureDetector(
@@ -911,7 +911,7 @@ class home extends StatelessWidget {
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
                             blurRadius: 10,
-                            offset: Offset(1, 1.5),
+                            offset: const Offset(1, 1.5),
                             spreadRadius: 10,
                           )
                         ],
@@ -939,7 +939,7 @@ class home extends StatelessWidget {
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
                             blurRadius: 10,
-                            offset: Offset(1, 1.5),
+                            offset: const Offset(1, 1.5),
                             spreadRadius: 10,
                           )
                         ],
@@ -967,7 +967,7 @@ class home extends StatelessWidget {
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
                             blurRadius: 10,
-                            offset: Offset(1, 1.5),
+                            offset: const Offset(1, 1.5),
                             spreadRadius: 10,
                           )
                         ],

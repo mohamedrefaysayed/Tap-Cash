@@ -23,7 +23,7 @@ class payInternetBill extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
               body: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -55,7 +55,7 @@ class payInternetBill extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(30, context),
                     ),
-                    Text(
+                    const Text(
                       "Pay internet easily.",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
@@ -63,7 +63,7 @@ class payInternetBill extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(16, context),
                     ),
-                    Text(
+                    const Text(
                       "You can pay anytime and anywhere!",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
@@ -96,7 +96,7 @@ class payInternetBill extends StatelessWidget {
                               width: 2,
                             ),
                           ),
-                          contentPadding: EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                               horizontal: 30, vertical: 15),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(75)),
@@ -107,7 +107,7 @@ class payInternetBill extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           confirmButton(
                               ontap: () async {
                                 await LocalAuthCubit.authenticate(context);
@@ -116,7 +116,7 @@ class payInternetBill extends StatelessWidget {
                                       context,
                                       "Recharged Successfully",
                                       (_) => myApplication.navigateTo(
-                                          mainScreen(), context));
+                                          const mainScreen(), context));
                                 }
                               },
                               text: "Recharge Now"),

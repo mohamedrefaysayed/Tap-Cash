@@ -14,12 +14,17 @@ import 'package:tap_cash/business_logic/sign_In/sign_in_cubit.dart';
 import 'package:tap_cash/business_logic/sign_Up/sign_up_cubit.dart';
 import 'package:tap_cash/business_logic/smartCards/smart_cards_cubit.dart';
 import 'package:tap_cash/business_logic/wallet/wallet_cubit.dart';
+import 'package:tap_cash/data/chach_helper.dart';
+import 'package:tap_cash/data/dio_helper.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/my_thems.dart';
-import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
-import 'package:tap_cash/test.dart';
+import 'package:tap_cash/presentation/splash/splash.dart';
+import 'package:tap_cash/presentation/splash/splashLogo.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
+  CahchHelper.init();
   runApp(const Tap_Cash());
 }
 
@@ -43,10 +48,9 @@ class Tap_Cash extends StatelessWidget {
         BlocProvider(create: (context) => DonationsCubit()),
         BlocProvider(create: (context) => OnlinePaymentCubit()),
         BlocProvider(create: (context) => DashboardCubit()),
-
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
+        value:  SystemUiOverlayStyle(
           statusBarColor: Colors.transparent, //top status bar
           systemNavigationBarColor: myColors.blk, // navigation bar color, the one Im looking for
           statusBarIconBrightness: Brightness.dark, // status bar icons' color
@@ -59,7 +63,7 @@ class Tap_Cash extends StatelessWidget {
           darkTheme: Mythems.darktheme,
           debugShowCheckedModeBanner: false,
           title: 'Tap Cash',
-          home:  mainScreen(),
+          home:   splashLogo(),
         ),
       ),
     );

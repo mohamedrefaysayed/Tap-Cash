@@ -1,18 +1,22 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:eg_nid/eg_nid.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:meta/meta.dart';
-import 'package:tap_cash/data/web_services/sign_Up_services.dart';
+import 'package:tap_cash/data/chach_helper.dart';
+import 'package:tap_cash/data/dio_helper.dart';
+import 'package:tap_cash/data/models/signUpModel.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
+import 'package:tap_cash/helper/constants/url.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/auth/password_Fill.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
+  SignUpCubit() : super(SignUpInitial());
+
   static String Id="30105141900138";
   static String email="";
   static String code="";
@@ -28,36 +32,55 @@ class SignUpCubit extends Cubit<SignUpState> {
   String? gender;
 
 
-  SignUpCubit() : super(SignUpInitial());
-
-
-
-  final signUpSersevices = signUpWebServices();
-
-
+  signUpModel?  signupmodel;
 
 
   signUp(){
     emit(SignUpLoading());
     if(pass == passConfirm && pass.isNotEmpty){
       try{
-        Timer(Duration(seconds: 2), () { emit(SignUpSuccess()); });
       } catch(e){
         emit(SignUpFailure(errormessage: e.toString()));
       }
     }else{
-      emit(SignUpFailure(errormessage: "The password does not match"));
     }
   }
 
-  signUpStart(){
+  signUpStart()async{
     emit(SignUpLoading());
-    Timer(Duration(seconds: 1), () {
-      emit(SignUpSuccess());
-    });
+    try{
+      Map<String,String> json = {
+        "email":email,
+      };
+
+      print("email: $email");
+      final response = await DioHelper.postData(url:"$URL/signup", data: json);
+      signupmodel = signUpModel.fromJson(response.data);
+
+      CahchHelper.saveData(key: "token", value: signupmodel!.token);
+
+      emit(SignUpSuccess(successmessage: signupmodel!.message!));
+
+
+    }on DioError catch (error){
+
+      emit(SignUpFailure(errormessage: error.response!.data["message"]));
+
+    };
   }
 
+
+
+  signUpContinue()async {
+    emit(SignUpLoading());
+    CahchHelper.saveData(key: "nid", value: "$Id");
+    Timer(const Duration(seconds: 1), () { emit(SignUpSuccess(successmessage: "")); });
+  }
+
+
+
   getDataFromId(){
+
     var idData = NIDInfo(nid: Id);
     birthDate = idData.birthDay.toString();
     age = (DateTime.now().year - idData.birthDay.year).toString();
@@ -74,13 +97,14 @@ class SignUpCubit extends Cubit<SignUpState> {
   sentVerfication()async{
     emit(SignUpCodeFill());
   }
+
   verifyCode(BuildContext context,reset){
     if (SignUpCubit.code.isNotEmpty) {
       emit(SignUpCodeFillLoading());
-      Timer(Duration(seconds: 2), () {
+      Timer(const Duration(seconds: 2), () {
         showTopSnackBar(
           Overlay.of(context) ,
-          mySnackBar.success(
+          const mySnackBar.success(
               message: "confirmed !"),
         );
         myApplication.navigateTo(passwordFill(
@@ -104,7 +128,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     } else {
       showTopSnackBar(
         Overlay.of(context) ,
-        mySnackBar.error(
+        const mySnackBar.error(
             message: "Write the code"),
       );
       emit(SignUpCodeFill());

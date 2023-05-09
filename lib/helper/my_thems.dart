@@ -16,15 +16,15 @@ class Mythems{
             )
         ),
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         bodyLarge: TextStyle(color:Colors.black,fontSize: 25),
         bodyMedium: TextStyle(color: Colors.black,fontSize: 18),
         bodySmall: TextStyle(color: Colors.black,fontSize: 16),
           labelSmall: TextStyle(fontSize: 14,color: Colors.black)
 
       ),
-      iconTheme: IconThemeData(color: Colors.white),
-      appBarTheme: AppBarTheme(
+      iconTheme: const IconThemeData(color: Colors.white),
+      appBarTheme: const AppBarTheme(
         titleTextStyle: TextStyle(fontFamily: "PlusJakartaSans",color: Colors.black,fontSize: 22),
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.dark,
@@ -38,14 +38,14 @@ class Mythems{
         )
       ),
       scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.fromSeed(seedColor: myColors.blu), bottomAppBarTheme: BottomAppBarTheme(color: Colors.white)
+    colorScheme: ColorScheme.fromSeed(seedColor: myColors.blu), bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white)
   );
 
 
   static final darktheme = ThemeData(
     dialogBackgroundColor: myColors.blk,
 
-    bottomAppBarTheme: BottomAppBarTheme(color: myColors.blk,),
+    bottomAppBarTheme: const BottomAppBarTheme(color: myColors.blk,),
       fontFamily: "PlusJakartaSans",
       hintColor: Colors.grey,
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -57,7 +57,7 @@ class Mythems{
           )
       ),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
 
       bodyLarge: TextStyle(color:Colors.white,fontSize: 25),
       bodyMedium: TextStyle(color: Colors.white,fontSize: 18),
@@ -65,8 +65,8 @@ class Mythems{
       labelSmall: TextStyle(fontSize: 14,color: Colors.white)
 
     ),
-      iconTheme: IconThemeData(color: Colors.black),
-      appBarTheme: AppBarTheme(
+      iconTheme: const IconThemeData(color: Colors.black),
+      appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(fontFamily: "PlusJakartaSans",color: Colors.white,fontSize: 22),
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.light,

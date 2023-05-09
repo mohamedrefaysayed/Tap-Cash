@@ -9,18 +9,18 @@ class notificationsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       startActionPane: ActionPane(
-        motion: ScrollMotion(),
+        motion: const ScrollMotion(),
         children: [
           SlidableAction(
             onPressed: (_){},
-            backgroundColor: Color(0xFFFE4A49),
+            backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',
           ),        ],
       ),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
         height: myApplication.hightClc(58, context),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
@@ -28,7 +28,7 @@ class notificationsWidget extends StatelessWidget {
             BoxShadow(
               color: Colors.grey.withOpacity(0.1),
               blurRadius: 10,
-              offset: Offset(1, 1.5),
+              offset: const Offset(1, 1.5),
               spreadRadius: 10,
             )
           ],
@@ -56,7 +56,7 @@ class notificationsWidget extends StatelessWidget {
               ],
             ),
             SizedBox(width: myApplication.widthClc(14, context),),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text("EGP 500",style: TextStyle(fontWeight: FontWeight.w600,fontSize: myApplication.widthClc(14, context)),),

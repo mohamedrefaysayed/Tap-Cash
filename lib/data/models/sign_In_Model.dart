@@ -9,18 +9,9 @@ class signInModel {
   signInModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     token = json['token'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['token'] = this.token;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
 }
 
 class Data {
@@ -29,15 +20,7 @@ class Data {
   Data({this.user});
 
   Data.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    return data;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 }
 
@@ -88,20 +71,20 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['photo'] = this.photo;
-    data['role'] = this.role;
-    data['_id'] = this.sId;
-    data['email'] = this.email;
-    data['passwordChangedAt'] = this.passwordChangedAt;
-    data['age'] = this.age;
-    data['birthDate'] = this.birthDate;
-    data['city'] = this.city;
-    data['fullName'] = this.fullName;
-    data['gender'] = this.gender;
-    data['nationalId'] = this.nationalId;
-    data['nickName'] = this.nickName;
-    data['phoneNumber'] = this.phoneNumber;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['photo'] = photo;
+    data['role'] = role;
+    data['_id'] = sId;
+    data['email'] = email;
+    data['passwordChangedAt'] = passwordChangedAt;
+    data['age'] = age;
+    data['birthDate'] = birthDate;
+    data['city'] = city;
+    data['fullName'] = fullName;
+    data['gender'] = gender;
+    data['nationalId'] = nationalId;
+    data['nickName'] = nickName;
+    data['phoneNumber'] = phoneNumber;
     return data;
   }
 }

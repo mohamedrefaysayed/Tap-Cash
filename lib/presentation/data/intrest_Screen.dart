@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/intrest_Box.dart';
@@ -20,18 +19,18 @@ class interstScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Why Using Tap Cash ?",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
                 SizedBox(
                   height: myApplication.hightClc(24, context),
                 ),
-                Text(
+                const Text(
                     "we want to know what is your interests \n and to provide the best experience ",
                     style: TextStyle(fontSize: 14)),
                 SizedBox(

@@ -10,7 +10,7 @@ class counterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       height: myApplication.hightClc(60, context),
       width: myApplication.widthClc(250, context),
       decoration: BoxDecoration(
@@ -19,7 +19,7 @@ class counterWidget extends StatelessWidget {
           BoxShadow(
             color: Colors.grey.withOpacity(0.1),
             blurRadius: 10,
-            offset: Offset(1, 1.5),
+            offset: const Offset(1, 1.5),
             spreadRadius: 10,
           )
         ],
@@ -33,7 +33,7 @@ class counterWidget extends StatelessWidget {
               OnlinePaymentCubit.counter--;
               BlocProvider.of<OnlinePaymentCubit>(context).emit(OnlinePaymentInitial());
             },            child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -44,7 +44,7 @@ class counterWidget extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               OnlinePaymentCubit.counter.toString(),
               style: TextStyle(
@@ -58,7 +58,7 @@ class counterWidget extends StatelessWidget {
               BlocProvider.of<OnlinePaymentCubit>(context).emit(OnlinePaymentInitial());
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
               child: Icon(

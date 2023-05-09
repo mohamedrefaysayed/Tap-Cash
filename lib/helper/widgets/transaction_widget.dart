@@ -23,7 +23,7 @@ class transactionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -47,24 +47,24 @@ class transactionWidget extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 20,
-                    child: Container(
+                    child: SizedBox(
                       width: 70,
                       child: Text(
                         name,
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis),
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis),
                       ),
                     ),
                   ),
                   SizedBox(
                     height: myApplication.hightClc(10, context),
                   ),
-                  Container(
+                  SizedBox(
                     width: 70,
                     child: Text(
                       date,
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis),
+                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis),
                     ),
                   ),
                 ],
@@ -73,11 +73,11 @@ class transactionWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
+              SizedBox(
                 width: 70,
                 child: Text(
                   "EGP $amount",overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ),
               ),
               SizedBox(
@@ -86,14 +86,14 @@ class transactionWidget extends StatelessWidget {
               inWallet
                   ? Transform.rotate(
                       angle: 135 * math.pi / 180,
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_right_alt,
                         size: 35,
                         color: Colors.green,
                       ))
                   : Transform.rotate(
                       angle: -45 * math.pi / 180,
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_right_alt,
                         size: 35,
                         color: Colors.red,

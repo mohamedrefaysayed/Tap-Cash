@@ -26,11 +26,11 @@ class onlinePayment extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
               body: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       child: Row(
                         children: [
@@ -46,7 +46,7 @@ class onlinePayment extends StatelessWidget {
                               SizedBox(
                                 height: myApplication.hightClc(20, context),
                               ),
-                              Text(
+                              const Text(
                                 "Shopping easily.",
                                 style:
                                 TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
@@ -54,18 +54,18 @@ class onlinePayment extends StatelessWidget {
                               SizedBox(
                                 height: myApplication.hightClc(10, context),
                               ),
-                              Text(
+                              const Text(
                                 "You can pay anytime and anywhere!",
                                 style:
                                 TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),
-                          Spacer(),
-                          Hero(
+                          const Spacer(),
+                          const Hero(
                             tag: "shopping",
                             child: Padding(
-                              padding: const EdgeInsets.all(15),
+                              padding: EdgeInsets.all(15),
                               child: Icon(
                                 Icons.monetization_on_outlined,
                                 color: myColors.blu,
@@ -104,7 +104,7 @@ class onlinePayment extends StatelessWidget {
                                   width: 2,
                                 ),
                               ),
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(75)),
@@ -133,7 +133,7 @@ class onlinePayment extends StatelessWidget {
                                   width: 2,
                                 ),
                               ),
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(75)),
@@ -145,7 +145,7 @@ class onlinePayment extends StatelessWidget {
                             builder: (context, state) {
                               return Column(
                                 children: [
-                                  counterWidget(),
+                                  const counterWidget(),
                                   SizedBox(height: myApplication.hightClc(50, context),),
                                   Container(
                                     decoration: BoxDecoration(
@@ -155,11 +155,12 @@ class onlinePayment extends StatelessWidget {
                                         BoxShadow(
                                           color: Colors.grey.withOpacity(0.1),
                                           blurRadius: 10,
-                                          offset: Offset(1, 1.5),
+                                          offset: const Offset(1, 1.5),
                                           spreadRadius: 10,
                                         )
                                       ],
                                     ),
+                                    height: myApplication.hightClc(48, context),
                                     child: Center(
                                       child: Text(
                                         "EGP: ${OnlinePaymentCubit.amount.toInt().toString()}",
@@ -169,7 +170,6 @@ class onlinePayment extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis),
                                       ),
                                     ),
-                                    height: myApplication.hightClc(48, context),
                                   ),
                                   SizedBox(
                                     height: myApplication.hightClc(30, context),
@@ -196,7 +196,7 @@ class onlinePayment extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           confirmButton(
                               ontap: () async {
                                 await LocalAuthCubit.authenticate(context);
@@ -205,7 +205,7 @@ class onlinePayment extends StatelessWidget {
                                       context,
                                       "Recharged Successfully",
                                           (_) => myApplication.navigateTo(
-                                          mainScreen(), context));
+                                          const mainScreen(), context));
                                 }
                               },
                               text: "Pay"),

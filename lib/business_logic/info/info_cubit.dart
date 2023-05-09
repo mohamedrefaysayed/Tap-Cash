@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/presentation/data/creat_PIN.dart';
@@ -24,8 +23,8 @@ class InfoCubit extends Cubit<InfoState> {
   savePin(context){
     emit(InfoLoading());
     try{
-      Timer(Duration(seconds: 1), () {
-        myApplication.navigateTo(mainScreen(), context);
+      Timer(const Duration(seconds: 1), () {
+        myApplication.navigateTo(const mainScreen(), context);
         emit(InfoSuccess());
 
       });
@@ -38,7 +37,7 @@ class InfoCubit extends Cubit<InfoState> {
   saveInfo(context){
     emit(InfoLoading());
     try{
-      Timer(Duration(seconds: 1), () {
+      Timer(const Duration(seconds: 1), () {
         myApplication.navigateTo(creatPIN(), context);
         emit(InfoSuccess());
 

@@ -23,7 +23,7 @@ class signIn extends StatelessWidget {
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -69,7 +69,7 @@ class signIn extends StatelessWidget {
                                 width: 2,
                               ),
                             ),
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 15),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(75)),
@@ -105,18 +105,18 @@ class signIn extends StatelessWidget {
                                       width: 2,
                                     ),
                                   ),
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 15),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(75)),
                                   labelText: "Password",
                                   suffixIcon: IconButton(
                                     icon: SignInCubit.scure
-                                        ? Icon(
+                                        ? const Icon(
                                             Icons.visibility_off,
                                             color: Colors.grey,
                                           )
-                                        : Icon(
+                                        : const Icon(
                                             Icons.visibility,
                                             color: myColors.blu,
                                           ),
@@ -157,12 +157,12 @@ class signIn extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: SignInCubit.remember
-                                    ? Icon(
+                                    ? const Icon(
                                         Icons.check,
                                         size: 15.0,
                                         color: Colors.white,
                                       )
-                                    : Icon(
+                                    : const Icon(
                                         Icons.check,
                                         size: 15.0,
                                         color: myColors.blu,
@@ -172,7 +172,7 @@ class signIn extends StatelessWidget {
                             SizedBox(
                               width: myApplication.widthClc(10, context),
                             ),
-                            Text("Remember Me",
+                            const Text("Remember Me",
                                 style:
                                     TextStyle(fontSize: 12, color: myColors.blu)),
                           ],
@@ -187,17 +187,17 @@ class signIn extends StatelessWidget {
                     listener: (context, state) {
                       if (state is SignInSuccess) {
                         showTopSnackBar(Overlay.of(context),
-                            mySnackBar.success(message: "Sign In Success"));
-                        myApplication.navigateTo(mainScreen(), context);
+                            const mySnackBar.success(message: "Sign In Success"));
+                        myApplication.navigateTo(const mainScreen(), context);
                       }else if(state is SignInFailure){
-                        mySnackBar.error(message: state.errormessage);
-                      }
+                        showTopSnackBar(Overlay.of(context),
+                             mySnackBar.error(message: state.errormessage));                    }
                     },
                     builder: (context, state) {
                       return BlocBuilder<SignInCubit, SignInState>(
                         builder: (context, state) {
                           if (state is SignInLoading) {
-                            return Container(
+                            return const SizedBox(
                               height: 48,
                               child: Center(child: CircularProgressIndicator()),
                             );

@@ -16,7 +16,7 @@ import 'package:tap_cash/presentation/e_Wallet/withdrawCarAmount.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class walletMain extends StatefulWidget {
-   walletMain({Key? key}) : super(key: key);
+   const walletMain({Key? key}) : super(key: key);
 
   @override
   State<walletMain> createState() => _walletMainState();
@@ -31,13 +31,13 @@ class _walletMainState extends State<walletMain> with TickerProviderStateMixin{
 
   bool useBackgroundImage = false;
 
-  UnderlineInputBorder? border = UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
+  UnderlineInputBorder? border = const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
 
 
 
 credit(index,bool scure){
     return myCreditCardWidget(
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         color: Colors.white,
         fontFamily: 'halter',
         fontSize: 12,
@@ -90,9 +90,9 @@ credit(index,bool scure){
         children: [
           SizedBox(height: myApplication.hightClc(30, context),),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 40),
+            margin: const EdgeInsets.symmetric(horizontal: 40),
             child: Row(
-              children: [
+              children: const [
                 Text("Balance",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
                 Spacer(),
                 Text("EGP : 500",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
@@ -113,10 +113,11 @@ credit(index,bool scure){
             builder: (context, state) {
               if(state is WalletShowCards ){
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25),
+                  margin: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
+                        height: myApplication.hightClc(200, context),
                         child: ListView.builder(
                           shrinkWrap: true,
                             itemCount: creditCardMap.creditCard.length,
@@ -133,7 +134,7 @@ credit(index,bool scure){
                                         return Container(
                                           height: 380,
                                           width: double.infinity,
-                                          margin: EdgeInsets.symmetric(horizontal: 42,vertical: 10),
+                                          margin: const EdgeInsets.symmetric(horizontal: 42,vertical: 10),
                                           child: Column(
                                             children: [
                                               Text("Card",style: TextStyle(fontSize: myApplication.widthClc(18, context),
@@ -162,7 +163,7 @@ credit(index,bool scure){
                                                         BlocProvider.of<WalletCubit>(context).emit((WalletShowCards()));
                                                       }
                                                       showTopSnackBar(Overlay.of(context),
-                                                          mySnackBar.success(message: "Deleted Successfully")
+                                                          const mySnackBar.success(message: "Deleted Successfully")
                                                       );
                                                     }),
                                                 child: Align(
@@ -176,7 +177,7 @@ credit(index,bool scure){
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
-                                                        Icon(Icons.delete_outline_rounded,color: Colors.orange,),
+                                                        const Icon(Icons.delete_outline_rounded,color: Colors.orange,),
                                                         SizedBox(width: myApplication.widthClc(10, context),),
                                                         Text("Delete",style: TextStyle(color: Colors.orange,
                                                             fontSize: myApplication.widthClc(14, context),
@@ -197,7 +198,7 @@ credit(index,bool scure){
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
-                                                    Icon(Icons.warning_amber,size: 20,color: myColors.blu,),
+                                                    const Icon(Icons.warning_amber,size: 20,color: myColors.blu,),
                                                     SizedBox(width: myApplication.widthClc(10, context),),
                                                     Text("Please don’t share this with any one",
                                                       style: TextStyle(fontSize: myApplication.widthClc(12, context),
@@ -214,21 +215,20 @@ credit(index,bool scure){
                                 },
                                 child: Hero(
                                   tag: index,
-                                  child: Container(
+                                  child: SizedBox(
                                     child: credit(index,true),
                                     height: myApplication.hightClc(200, context),
                                   ),
                                 ),
                               );
                             }),
-                        height: myApplication.hightClc(200, context),
                       ),
                     ],
                   ),
                 );
               }
                else{
-                return Container(
+                return SizedBox(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -269,7 +269,7 @@ credit(index,bool scure){
                                     Text("choose card",style: TextStyle(fontSize: myApplication.widthClc(18, context),
                                     fontWeight: FontWeight.w600),),
                                     SizedBox(height: myApplication.hightClc(10, context),),
-                                    Container(
+                                    SizedBox(
                                       height: myApplication.hightClc(250, context),
                                       child: creditCardMap.creditCard.isEmpty
                                           ? Center(
@@ -297,7 +297,7 @@ credit(index,bool scure){
                                                     BoxShadow(
                                                       color: Colors.grey.withOpacity(0.1),
                                                       blurRadius: 10,
-                                                      offset: Offset(1, 1.5),
+                                                      offset: const Offset(1, 1.5),
                                                       spreadRadius: 10,
                                                     )
                                                   ],
@@ -313,7 +313,7 @@ credit(index,bool scure){
                                                       ),
                                                     ),
                                                     Text(
-                                                      creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4) +" **** **** "+creditCardMap.creditCard[index]["cardNumber"]!.substring(14,19),
+                                                      "${creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4)} **** **** ${creditCardMap.creditCard[index]["cardNumber"]!.substring(14,19)}",
                                                       style: TextStyle(
                                                         fontSize: myApplication.widthClc(16, context),
                                                         fontWeight: FontWeight.w600,
@@ -341,13 +341,13 @@ credit(index,bool scure){
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.1),
                               blurRadius: 10,
-                              offset: Offset(1, 1.5),
+                              offset: const Offset(1, 1.5),
                               spreadRadius: 10,
                             )
                           ],
                           color: Theme.of(context).scaffoldBackgroundColor,
                         ),
-                        child: Center(child: Text("Add Money",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color: myColors.blu),)),
+                        child: const Center(child: Text("Add Money",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color: myColors.blu),)),
 
                       ),
                     ),
@@ -368,7 +368,7 @@ credit(index,bool scure){
                                     Text("choose card",style: TextStyle(fontSize: myApplication.widthClc(18, context),
                                         fontWeight: FontWeight.w600),),
                                     SizedBox(height: myApplication.hightClc(10, context),),
-                                    Container(
+                                    SizedBox(
                                       height: myApplication.hightClc(250, context),
                                       child: creditCardMap.creditCard.isEmpty
                                           ? Center(
@@ -396,7 +396,7 @@ credit(index,bool scure){
                                                     BoxShadow(
                                                       color: Colors.grey.withOpacity(0.1),
                                                       blurRadius: 10,
-                                                      offset: Offset(1, 1.5),
+                                                      offset: const Offset(1, 1.5),
                                                       spreadRadius: 10,
                                                     )
                                                   ],
@@ -412,7 +412,7 @@ credit(index,bool scure){
                                                       ),
                                                     ),
                                                     Text(
-                                                      creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4) +" **** **** "+creditCardMap.creditCard[index]["cardNumber"]!.substring(14,19),
+                                                      "${creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4)} **** **** ${creditCardMap.creditCard[index]["cardNumber"]!.substring(14,19)}",
                                                       style: TextStyle(
                                                         fontSize: myApplication.widthClc(16, context),
                                                         fontWeight: FontWeight.w600,
@@ -440,13 +440,13 @@ credit(index,bool scure){
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.1),
                               blurRadius: 10,
-                              offset: Offset(1, 1.5),
+                              offset: const Offset(1, 1.5),
                               spreadRadius: 10,
                             )
                           ],
                           color: Theme.of(context).scaffoldBackgroundColor,
                         ),
-                        child: Center(child: Text("Withdraw",
+                        child: const Center(child: Text("Withdraw",
                           style: TextStyle(fontWeight: FontWeight.w600,
                               fontSize: 14,color: myColors.blu),)),
 
@@ -463,7 +463,7 @@ credit(index,bool scure){
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.1),
                         blurRadius: 10,
-                        offset: Offset(1, 1.5),
+                        offset: const Offset(1, 1.5),
                         spreadRadius: 10,
                       )
                     ],
@@ -472,7 +472,7 @@ credit(index,bool scure){
                   ),
 
                   child: Container(
-                    margin: EdgeInsets.all(34),
+                    margin: const EdgeInsets.all(34),
                     child: Column(
                       children: [
                         Row(
@@ -481,12 +481,12 @@ credit(index,bool scure){
                               style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                   fontWeight: FontWeight.w600,
                                   color: myColors.blu),),
-                            Spacer(),
+                            const Spacer(),
                             GestureDetector(
                               onTap: ()async{
                                 await LocalAuthCubit.authenticate(context);
                                 if(LocalAuthCubit.authenticated){
-                                  myApplication.navigateTo(changeLimit(), context);
+                                  myApplication.navigateTo(const changeLimit(), context);
                                 }
                               },
                               child: Container(
@@ -519,7 +519,7 @@ credit(index,bool scure){
                             Text("Limit per transaction",style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w400,color: Colors.grey
                             ),),
-                            Spacer(),
+                            const Spacer(),
                             Text("EGP :1000",style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w600
                             )),
@@ -532,7 +532,7 @@ credit(index,bool scure){
                             Text("Cash withdrawal limit",style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w400,color: Colors.grey
                             ),),
-                            Spacer(),
+                            const Spacer(),
                             Text("EGP : 500",style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w600
                             )),
@@ -544,23 +544,23 @@ credit(index,bool scure){
                   ),
                 ),
                 SizedBox(height: myApplication.widthClc(18, context),),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       GestureDetector(
                         onTap:(){
-                          myApplication.navigateTo(creditCardFill(), context);
+                          myApplication.navigateTo(const creditCardFill(), context);
                         },
-                        child: Container(
+                        child: SizedBox(
                           height: myApplication.hightClc(58, context),
                           width: myApplication.widthClc(58, context),
                           child: Stack(
                             children: [
                               Image.asset("assets/bottomNavFloat/bottomNavBg.png",  height: myApplication.hightClc(58, context),
                                 width: myApplication.widthClc(58, context),),
-                              Center(child: Icon(Icons.add))
+                              const Center(child: Icon(Icons.add))
                             ],
                           ),
                         ),

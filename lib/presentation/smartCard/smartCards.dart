@@ -24,7 +24,7 @@ class smartCards extends StatelessWidget {
 
   credit(index){
     return myCreditCardWidget(
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         color: Colors.white,
         fontFamily: 'halter',
         fontSize: 12,
@@ -89,7 +89,7 @@ class smartCards extends StatelessWidget {
             builder: (context, state) {
               if(state is SmartCardsShow){
                 return Container(
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -112,7 +112,7 @@ class smartCards extends StatelessWidget {
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.1),
                               blurRadius: 10,
-                              offset: Offset(1, 1.5),
+                              offset: const Offset(1, 1.5),
                               spreadRadius: 10,
                             )
                           ],
@@ -138,7 +138,7 @@ class smartCards extends StatelessWidget {
                   ),
                 );
               }
-              return Container(
+              return SizedBox(
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,7 +146,7 @@ class smartCards extends StatelessWidget {
                     SizedBox(height: myApplication.hightClc(200, context),),
                     Text("You don’t have Any active card",style: TextStyle(fontSize: myApplication.widthClc(22, context),fontWeight: FontWeight.w600),),
                     SizedBox(height: myApplication.hightClc(200, context),),
-                    Container(
+                    SizedBox(
                       width: 200,
                       child: confirmButton(
                         ontap: () async {

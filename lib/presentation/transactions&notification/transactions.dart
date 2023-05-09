@@ -6,7 +6,7 @@ import 'package:tap_cash/helper/widgets/transaction_widget.dart';
 import 'package:tap_cash/presentation/transactions&notification/kidsTransactions.dart';
 
 class transactionsScreen extends StatelessWidget {
-  transactionsScreen({Key? key}) : super(key: key);
+  const transactionsScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -20,7 +20,7 @@ class transactionsScreen extends StatelessWidget {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
-          body: Container(
+          body: SizedBox(
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,10 +36,10 @@ class transactionsScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: (){
-                        myApplication.navigateToReplace(context,kidsTransactionsScreen());
+                        myApplication.navigateToReplace(context,const kidsTransactionsScreen());
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -57,7 +57,7 @@ class transactionsScreen extends StatelessWidget {
                   height: myApplication.hightClc(30, context),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
                   height: myApplication.hightClc(700, context),
                   width: double.infinity,
                   child: ListView.builder(

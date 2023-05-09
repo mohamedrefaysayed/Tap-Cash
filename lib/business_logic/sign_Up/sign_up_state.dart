@@ -5,7 +5,10 @@ abstract class SignUpState {}
 
 class SignUpInitial extends SignUpState {}
 class SignUpLoading extends SignUpState {}
-class SignUpSuccess extends SignUpState {}
+class SignUpSuccess extends SignUpState {
+  String successmessage;
+  SignUpSuccess({required this.successmessage});
+}
 class SignUpFailure extends SignUpState {
   String errormessage;
   SignUpFailure({required this.errormessage});

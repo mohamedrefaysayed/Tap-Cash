@@ -24,22 +24,22 @@ class creatPIN extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: ListView(
               children: [
-                Text(
+                const Text(
                   "Create PIN",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
                 SizedBox(
                   height: myApplication.hightClc(24, context),
                 ),
-                Text("Add PIN To Make Your Account More Secure",
+                const Text("Add PIN To Make Your Account More Secure",
                     style: TextStyle(fontSize: 14)),
                 SizedBox(
                   height: myApplication.hightClc(100, context),
                 ),
-                Text("PIN"),
+                const Text("PIN"),
                 SizedBox(
                   height: myApplication.hightClc(20, context),
                 ),
@@ -50,7 +50,7 @@ class creatPIN extends StatelessWidget {
                       textStyle: Theme.of(context).textTheme.bodyLarge!,
                       underlineUnfocusedColor: Colors.transparent,
                       fillColor: Colors.grey.withOpacity(0.2),
-                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
                       itemSize: 70,
                       fullBorder: true,
                       onCompleted: (c) {
@@ -61,7 +61,7 @@ class creatPIN extends StatelessWidget {
                 SizedBox(
                   height: myApplication.hightClc(60, context),
                 ),
-                Text("Confirm PIN"),
+                const Text("Confirm PIN"),
                 SizedBox(
                   height: myApplication.hightClc(20, context),
                 ),
@@ -72,7 +72,7 @@ class creatPIN extends StatelessWidget {
                       textStyle: Theme.of(context).textTheme.bodyLarge!,
                       underlineUnfocusedColor: Colors.transparent,
                       fillColor: Colors.grey.withOpacity(0.2),
-                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
                       itemSize: 70,
                       fullBorder: true,
                       onCompleted: (c) {
@@ -84,7 +84,7 @@ class creatPIN extends StatelessWidget {
                 BlocBuilder<InfoCubit, InfoState>(
                   builder: (context, state) {
                     if(state is InfoLoading){
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(color: myColors.blu,),
                       );
                     }else{

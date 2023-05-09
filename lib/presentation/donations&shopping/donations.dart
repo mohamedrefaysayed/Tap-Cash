@@ -4,7 +4,7 @@ import 'package:tap_cash/helper/widgets/bottomSheetWidget.dart';
 import 'package:tap_cash/presentation/donations&shopping/donationAmount.dart';
 
 class donations extends StatelessWidget {
-  donations({Key? key}) : super(key: key);
+  const donations({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class donations extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           "Donations",
                           style: TextStyle(
@@ -46,7 +46,7 @@ class donations extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(30, context),
                     ),
-                    Text(
+                    const Text(
                       "Choose the donation",
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w400),
@@ -54,7 +54,7 @@ class donations extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(30, context),
                     ),
-                    Container(
+                    SizedBox(
                       height: myApplication.hightClc(450, context),
                       child: ListView(
                         shrinkWrap: true,

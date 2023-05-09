@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:tap_cash/business_logic/QR/qr_cubit.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
@@ -50,17 +49,17 @@ class scanQr extends StatelessWidget {
                           SizedBox(
                             height: myApplication.hightClc(30, context),
                           ),
-                          Center(
-                            child: QrImage(
-                              foregroundColor: Theme.of(context).textTheme.bodyMedium!.color,
-                              data: QrCubit.capture!.barcodes.first.rawValue!,
-                              size: 300,
-                              version: QrVersions.auto,
-                            ),
-                          ),
+                          // Center(
+                          //   child: QrImage(
+                          //     foregroundColor: Theme.of(context).textTheme.bodyMedium!.color,
+                          //     data: QrCubit.capture!.barcodes.first.rawValue!,
+                          //     size: 300,
+                          //     version: QrVersions.auto,
+                          //   ),
+                          // ),
                           SizedBox(height: myApplication.hightClc(50, context),),
-                          Text(QrCubit.capture!.barcodes.first.rawValue!,style: TextStyle(fontSize: myApplication.widthClc(18, context),
-                          fontWeight: FontWeight.w600),),
+                          // Text(QrCubit.capture!.barcodes.first.rawValue!,style: TextStyle(fontSize: myApplication.widthClc(18, context),
+                          // fontWeight: FontWeight.w600),),
                           SizedBox(
                             height: myApplication.hightClc(100, context),
                           ),
@@ -70,7 +69,7 @@ class scanQr extends StatelessWidget {
                               smallButton(ontap: ()async{
                                 showTopSnackBar(Overlay.of(context),
                                     mySnackBar.success(message: "Copyed"));
-                                await Clipboard.setData(ClipboardData(text: QrCubit.capture!.barcodes.first.rawValue));
+                                // await Clipboard.setData(ClipboardData(text: QrCubit.capture!.barcodes.first.rawValue));
 
                               }, text: "Copy", color: myColors.softblu, textcolor: myColors.blu),
                               smallButton(ontap: ()async{
@@ -136,16 +135,16 @@ class scanQr extends StatelessWidget {
                                       ),
                                       height: myApplication.hightClc(350, context),
                                       margin: EdgeInsets.symmetric(horizontal: 20),
-                                      child: MobileScanner(
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (context, error, child) {
-                                          return Container();
-                                        },
-                                        onDetect: (capture) {
-                                            QrCubit.capture = capture;
-                                            BlocProvider.of<QrCubit>(context).emit(QrResult());
-                                        },
-                                      ),
+                                      // child: MobileScanner(
+                                      //   fit: BoxFit.cover,
+                                      //   errorBuilder: (context, error, child) {
+                                      //     return Container();
+                                      //   },
+                                      //   onDetect: (capture) {
+                                      //       QrCubit.capture = capture;
+                                      //       BlocProvider.of<QrCubit>(context).emit(QrResult());
+                                      //   },
+                                      // ),
                                     ),
                                   ),
                                   Container(

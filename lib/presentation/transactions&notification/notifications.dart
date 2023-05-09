@@ -3,7 +3,7 @@ import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/widgets/transactionsWiget.dart';
 
 class notifications extends StatelessWidget {
-  notifications({Key? key}) : super(key: key);
+  const notifications({Key? key}) : super(key: key);
 
 
   @override
@@ -17,7 +17,7 @@ class notifications extends StatelessWidget {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
-          body: Container(
+          body: SizedBox(
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,14 +34,14 @@ class notifications extends StatelessWidget {
                 SizedBox(
                   height: myApplication.hightClc(30, context),
                 ),
-                Container(
+                SizedBox(
                   height: myApplication.hightClc(700, context),
                   width: double.infinity,
                   child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: 20,
                       itemBuilder: (context,index){
-                        return Center(
+                        return const Center(
                           child: notificationsWidget(),
                         );
                       }

@@ -3,17 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/bottomNav_NotchClip.dart';
-import 'package:tap_cash/presentation/auth/sign_Up.dart';
 import 'package:tap_cash/presentation/dashBoard/dashBoardMain.dart';
 import 'package:tap_cash/presentation/e_Wallet/walletMain.dart';
 import 'package:tap_cash/presentation/home/home.dart';
 import 'package:tap_cash/presentation/more/moreMain.dart';
-import 'package:tap_cash/presentation/qrCode/scanQR.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
+
 
 
 
 class mainScreen extends StatefulWidget  {
-   mainScreen({Key? key}) : super(key: key);
+   const mainScreen({Key? key}) : super(key: key);
 
   @override
   State<mainScreen> createState() => _mainScreenState();
@@ -37,18 +37,18 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
           children: [
             home(),
             dashBoardMain(),
-            SizedBox(),
-            walletMain(),
-            moreMain(),          ],
+             SizedBox(),
+             walletMain(),
+             moreMain(),          ],
         ),
         extendBody: true,
 
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: GestureDetector(
-          onTap: (){
-            myApplication.navigateTo(scanQr(), context);
+          onTap: ()async{
+            String? cameraScanResult = await scanner.scan();
           },
-          child: Container(
+          child: SizedBox(
             height: 70,
             width: 70,
             child: Stack(
@@ -65,7 +65,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.1),
                   blurRadius: 10,
-                  offset: Offset(1, 1.5),
+                  offset: const Offset(1, 1.5),
                   spreadRadius: 3,
                 )
               ]
@@ -74,12 +74,12 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
           child: BottomAppBar(
             height: 80,
             notchMargin: 5,
-            shape: StreamlinedNotchClipper(),
+            shape: const StreamlinedNotchClipper(),
             elevation: 10,
             child: IconTheme(
-              data: IconThemeData(color: Colors.white),
+              data: const IconThemeData(color: Colors.white),
               child: TabBar(
-                labelPadding: EdgeInsets.symmetric(horizontal: 17),
+                labelPadding: const EdgeInsets.symmetric(horizontal: 17),
                 isScrollable: true,
                 indicatorColor: Colors.transparent,
                 labelColor: myColors.blu,
@@ -88,7 +88,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                 tabs: [
                   Tab(
                   icon: Stack(
-                    children: [
+                    children: const [
                       Align(
                           alignment: Alignment.topCenter,
                           child: Icon(Icons.home_outlined,size: 36)),
@@ -99,10 +99,10 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                   ),
                   ),
                   Tab(
-                    icon: Container(
+                    icon: SizedBox(
                       width: 80,
                       child: Stack(
-                        children: [
+                        children: const [
                           Align(
                               alignment: Alignment.topCenter,
                               child: Icon(Icons.stacked_bar_chart_outlined,size: 33)),
@@ -116,7 +116,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                   SizedBox(width: myApplication.widthClc(20, context),),
                   Tab(
                     icon: Stack(
-                      children: [
+                      children: const [
                         Align(
                             alignment: Alignment.topCenter,
                             child: Icon(FontAwesomeIcons.wallet,size: 30)),
@@ -128,7 +128,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                   ),
                   Tab(
                     icon: Stack(
-                      children: [
+                      children: const [
                         Align(
                             alignment: Alignment.topCenter,
                             child: Icon(Icons.more_horiz,size: 36)),

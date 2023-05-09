@@ -309,7 +309,7 @@ class _myCreditCardFormState extends State<myCreditCardForm> {
                           if (myexpiryDateController.text
                               .startsWith(RegExp('[2-9]'))) {
                             myexpiryDateController.text =
-                                '0' + myexpiryDateController.text;
+                                '0${myexpiryDateController.text}';
                           }
                           setState(() {
                             expiryDate = myexpiryDateController.text;
@@ -372,9 +372,9 @@ class _myCreditCardFormState extends State<myCreditCardForm> {
                         controller: _cvvCodeController,
                         cursorColor: widget.cursorColor ?? themeColor,
                         onEditingComplete: () {
-                          if (widget.isHolderNameVisible)
+                          if (widget.isHolderNameVisible) {
                             FocusScope.of(context).requestFocus(cardHolderNode);
-                          else {
+                          } else {
                             FocusScope.of(context).unfocus();
                             onCreditCardModelChange(creditCardModel!);
                             widget.onFormComplete?.call();

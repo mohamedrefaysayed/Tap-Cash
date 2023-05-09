@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:meta/meta.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -27,7 +26,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
         ),
       );
     } catch (e) {
-      showTopSnackBar(Overlay.of(context),mySnackBar.error(message: "You Must Be Verified To Continue"));
+      showTopSnackBar(Overlay.of(context),const mySnackBar.error(message: "You Must Be Verified To Continue"));
       print(e);
     }
   }

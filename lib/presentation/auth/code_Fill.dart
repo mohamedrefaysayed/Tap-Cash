@@ -26,7 +26,7 @@ class codeFill extends StatelessWidget {
             SignUpCubit.email = "";
           })),
           body: Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -36,11 +36,8 @@ class codeFill extends StatelessWidget {
                   ),
                   Center(
                       child: Text(
-                    "Code Has Been Sent To " +
-                        SignUpCubit.email.substring(0, 7) +
-                        "****" +
-                        SignUpCubit.email.substring(11, 13),
-                    style: TextStyle(fontSize: 14),
+                    "Code Has Been Sent To ${SignUpCubit.email.substring(0, 7)}****${SignUpCubit.email.substring(11, 13)}",
+                    style: const TextStyle(fontSize: 14),
                   )),
                   SizedBox(
                     height: myApplication.hightClc(50, context),
@@ -51,7 +48,7 @@ class codeFill extends StatelessWidget {
                         textStyle: Theme.of(context).textTheme.bodyLarge!,
                         underlineUnfocusedColor: Colors.transparent,
                         fillColor: Colors.grey.withOpacity(0.2),
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
                         itemSize: 70,
                         fullBorder: true,
                         onCompleted: (c) {
@@ -67,7 +64,7 @@ class codeFill extends StatelessWidget {
                       return SignUpCubit.cansend
                           ? Center(
                               child: InkWell(
-                                child: Container(
+                                child: const SizedBox(
                                     height: 50,
                                     width: 50,
                                     child: Text(
@@ -83,20 +80,20 @@ class codeFill extends StatelessWidget {
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("resend code in",
+                                const Text("resend code in",
                                     style: TextStyle(fontSize: 14)),
                                 Flexible(
                                   child: SlideCountdown(
                                     onDone: () =>
                                         BlocProvider.of<SignUpCubit>(context)
                                             .allowSend(),
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 14, color: myColors.blu),
                                     duration: const Duration(seconds: 10),
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                   ),
                                 ),
-                                Text("second", style: TextStyle(fontSize: 14)),
+                                const Text("second", style: TextStyle(fontSize: 14)),
                               ],
                             );
                     },
@@ -106,11 +103,11 @@ class codeFill extends StatelessWidget {
                       return Expanded(
                         child: Column(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             BlocBuilder<SignUpCubit, SignUpState>(
                                     builder: (context, state) {
                                       if (state is SignUpCodeFillLoading) {
-                                        return Container(
+                                        return const SizedBox(
                                           height: 48,
                                           child: Center(
                                               child:

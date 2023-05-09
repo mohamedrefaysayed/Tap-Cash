@@ -5,7 +5,6 @@ import 'package:flutter_credit_card/constants.dart';
 import 'package:flutter_credit_card/credit_card_animation.dart';
 import 'package:flutter_credit_card/credit_card_background.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/custom_card_type_icon.dart';
 import 'package:flutter_credit_card/extension.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -231,9 +230,7 @@ class _myCreditCardWidgetState extends State<myCreditCardWidget>
       isGestureUpdate = false;
     }
 
-    final CardType? mycardType = widget.cardType != null
-        ? widget.cardType
-        : detectCCType(widget.cardNumber);
+    final CardType mycardType = widget.cardType ?? detectCCType(widget.cardNumber);
     widget.onCreditCardWidgetChange(CreditCardBrand(mycardType));
 
     return Stack(
@@ -337,17 +334,13 @@ class _myCreditCardWidgetState extends State<myCreditCardWidget>
             .substring(0, number.length - 5)
             .trim()
             .replaceAll(RegExp(r'\d'), '*');
-        number = start + ' ' + stripped.substring(stripped.length - 4);
+        number = '$start ${stripped.substring(stripped.length - 4)}';
       } else if (stripped.length > 8) {
         final String middle = number
             .substring(4, number.length - 5)
             .trim()
             .replaceAll(RegExp(r'\d'), '*');
-        number = stripped.substring(0, 4) +
-            ' ' +
-            middle +
-            ' ' +
-            stripped.substring(stripped.length - 4);
+        number = '${stripped.substring(0, 4)} $middle ${stripped.substring(stripped.length - 4)}';
       }
     }
     return CardBackground(
@@ -371,7 +364,7 @@ class _myCreditCardWidgetState extends State<myCreditCardWidget>
                   widget.bankName!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.white,
+                  style: const TextStyle(color: Colors.white,
                     fontFamily: 'halter',fontSize: 18,
                     package: 'flutter_credit_card',),
                 ),
@@ -520,7 +513,7 @@ class _myCreditCardWidgetState extends State<myCreditCardWidget>
                               : 'XXX'
                               : cvv,
                           maxLines: 1,
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ),
                     ),
@@ -738,7 +731,7 @@ class _myCreditCardWidgetState extends State<myCreditCardWidget>
           break;
 
         default:
-          icon = Container(
+          icon = const SizedBox(
             height: 48,
             width: 48,
           );

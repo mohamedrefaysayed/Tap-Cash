@@ -8,7 +8,7 @@ import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 
 class changeLimit extends StatelessWidget {
-  changeLimit({Key? key}) : super(key: key);
+  const changeLimit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class changeLimit extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
               body: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -52,11 +52,12 @@ class changeLimit extends StatelessWidget {
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.1),
                                     blurRadius: 10,
-                                    offset: Offset(1, 1.5),
+                                    offset: const Offset(1, 1.5),
                                     spreadRadius: 10,
                                   )
                                 ],
                               ),
+                              height: myApplication.hightClc(48, context),
                               child: Center(
                                 child: Text(
                                   "EGP: ${ AddMonyAmountCubit.limitPerTransaction.toInt().toString()}",
@@ -66,7 +67,6 @@ class changeLimit extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis),
                                 ),
                               ),
-                              height: myApplication.hightClc(48, context),
                             ),
                             SizedBox(
                               height: myApplication.hightClc(30, context),
@@ -98,11 +98,12 @@ class changeLimit extends StatelessWidget {
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.1),
                                     blurRadius: 10,
-                                    offset: Offset(1, 1.5),
+                                    offset: const Offset(1, 1.5),
                                     spreadRadius: 10,
                                   )
                                 ],
                               ),
+                              height: myApplication.hightClc(48, context),
                               child: Center(
                                 child: Text(
                                   "EGP: ${ AddMonyAmountCubit.cashWithDrawallimit.toInt().toString()}",
@@ -112,7 +113,6 @@ class changeLimit extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis),
                                 ),
                               ),
-                              height: myApplication.hightClc(48, context),
                             ),
                             SizedBox(
                               height: myApplication.hightClc(30, context),
@@ -135,7 +135,7 @@ class changeLimit extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           confirmButton(
                               ontap: () async {
                                 await LocalAuthCubit.authenticate(context);
@@ -144,7 +144,7 @@ class changeLimit extends StatelessWidget {
                                       context,
                                       "Saved successfully",
                                           (_) => myApplication.navigateTo(
-                                          mainScreen(), context));
+                                          const mainScreen(), context));
                                 }
                               },
                               text: "Save"),

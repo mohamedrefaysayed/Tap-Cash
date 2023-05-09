@@ -18,7 +18,7 @@ class customSignButton extends StatelessWidget {
         height: myApplication.hightClc(48, context),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(75),
-          color: Color(0xff4F9AFF).withOpacity(0.2),
+          color: const Color(0xff4F9AFF).withOpacity(0.2),
         ),
         child: Center(
             child: Row(

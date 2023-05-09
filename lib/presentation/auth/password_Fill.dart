@@ -28,7 +28,7 @@ class passwordFill extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(leading: myApplication.backIcon(context, () {})),
         body: Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,10 +40,10 @@ class passwordFill extends StatelessWidget {
                       listener: (context, state){
                         if(state is SignUpSuccess){
                           myApplication.congratulationsDialog(context);
-                          Timer(Duration(milliseconds: 3100), () {
+                          Timer(const Duration(milliseconds: 3100), () {
                             Navigator.pop(context);
-                            showTopSnackBar(Overlay.of(context) , mySnackBar.success(message: "Sign Up Success"));
-                            myApplication.navigateTo(mainScreen(), context);
+                            showTopSnackBar(Overlay.of(context) , const mySnackBar.success(message: "Sign Up Success"));
+                            myApplication.navigateTo(const mainScreen(), context);
                           });
                         }
                       },
@@ -78,13 +78,13 @@ class passwordFill extends StatelessWidget {
                                           width: 2,
                                         ),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(75)
                                       ),
                                       labelText: "Password",
                                       suffixIcon: IconButton(
-                                        icon: SignUpCubit.scure ? Icon(Icons.visibility_off,color: Colors.grey,) : Icon(Icons.visibility,color: myColors.blu,),
+                                        icon: SignUpCubit.scure ? const Icon(Icons.visibility_off,color: Colors.grey,) : const Icon(Icons.visibility,color: myColors.blu,),
                                         onPressed: () => BlocProvider.of<SignUpCubit>(context).changePassScure(),
                                       )
                                   ),
@@ -115,13 +115,13 @@ class passwordFill extends StatelessWidget {
                                           width: 2,
                                         ),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(75)
                                       ),
                                       labelText: "Confirm Password",
                                       suffixIcon: IconButton(
-                                        icon: SignUpCubit.scure ? Icon(Icons.visibility_off,color: Colors.grey,) : Icon(Icons.visibility,color: myColors.blu,),
+                                        icon: SignUpCubit.scure ? const Icon(Icons.visibility_off,color: Colors.grey,) : const Icon(Icons.visibility,color: myColors.blu,),
                                         onPressed: () => BlocProvider.of<SignUpCubit>(context).changePassScure(),
                                       )
                                   ),
@@ -151,12 +151,12 @@ class passwordFill extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: SignUpCubit.remember
-                                        ? Icon(
+                                        ? const Icon(
                                       Icons.check,
                                       size: 15.0,
                                       color: Colors.white,
                                     )
-                                        : Icon(
+                                        : const Icon(
                                       Icons.check,
                                       size: 15.0,
                                       color: myColors.blu,
@@ -164,7 +164,7 @@ class passwordFill extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(width: myApplication.widthClc(10, context),),
-                                Text("Remember Me",style: TextStyle(fontSize: 12,color: myColors.blu)),
+                                const Text("Remember Me",style: TextStyle(fontSize: 12,color: myColors.blu)),
                               ],
                             ),
                           ),
@@ -174,7 +174,7 @@ class passwordFill extends StatelessWidget {
                           BlocBuilder<SignUpCubit, SignUpState>(
                             builder: (context, state) {
                               if(state is SignUpLoading){
-                                return Container(
+                                return const SizedBox(
                                   height: 48,
                                   child: Center(child: CircularProgressIndicator()),
                                 );

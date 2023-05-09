@@ -28,7 +28,7 @@ class idFill extends StatelessWidget {
               leading: myApplication.backIcon(context,(){})
           ),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,7 +63,7 @@ class idFill extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(75)
                       ),
@@ -76,15 +76,10 @@ class idFill extends StatelessWidget {
                     return Expanded(
                       child: Column(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           confirmButton(
                             ontap: () {
                               if(formkey.currentState!.validate()){
-                                showTopSnackBar(
-                                    Overlay.of(context),
-                                    mySnackBar.success(
-                                      message: "sent" ,));
-                                BlocProvider.of<SignUpCubit>(context).sentVerfication();
                                 myApplication.navigateTo(
                                     emailFill(title:
                                     Text("Sign Up With Your Email",

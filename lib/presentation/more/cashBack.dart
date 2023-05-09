@@ -21,7 +21,7 @@ class cashBack extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
               body: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -37,7 +37,7 @@ class cashBack extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(49, context),
                     ),
-                    Text(
+                    const Text(
                       "You have cash back EGP : 100 ",
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w400),
@@ -54,7 +54,7 @@ class cashBack extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(21, context),
                     ),
-                    Text(
+                    const Text(
                       "you can convert up to 0 LE",
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w400),
@@ -89,13 +89,13 @@ class cashBack extends StatelessWidget {
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
                             blurRadius: 10,
-                            offset: Offset(1, 1.5),
+                            offset: const Offset(1, 1.5),
                             spreadRadius: 10,
                           )
                         ],
                       ),
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 21,vertical: 15),
+                        margin: const EdgeInsets.symmetric(horizontal: 21,vertical: 15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -134,13 +134,13 @@ class cashBack extends StatelessWidget {
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
                             blurRadius: 10,
-                            offset: Offset(1, 1.5),
+                            offset: const Offset(1, 1.5),
                             spreadRadius: 10,
                           )
                         ],
                       ),
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 21,vertical: 15),
+                        margin: const EdgeInsets.symmetric(horizontal: 21,vertical: 15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

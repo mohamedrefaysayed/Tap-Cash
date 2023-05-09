@@ -83,7 +83,7 @@ class dashBoardMain extends StatelessWidget {
         onTap: () => myApplication.keyboardFocus(context),
         child: Scaffold(
           body: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20,vertical: 40),
+            margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -112,13 +112,13 @@ class dashBoardMain extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "Dashboard Graph",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             DropdownButtonHideUnderline(
                                 child: DropdownButton2(
                               onChanged: (val) {
@@ -132,7 +132,7 @@ class dashBoardMain extends StatelessWidget {
                                         value: item,
                                         child: Text(
                                           item,
-                                          style:  TextStyle(
+                                          style:  const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                             color: myColors.blu,
@@ -189,7 +189,7 @@ class dashBoardMain extends StatelessWidget {
                         SizedBox(
                           height: myApplication.hightClc(40, context),
                         ),
-                        Container(
+                        SizedBox(
                           height: myApplication.hightClc(362, context),
                           child: PageView(
                             controller: _pageController,
@@ -210,7 +210,7 @@ class dashBoardMain extends StatelessWidget {
                                     dataSource: inMony,
                                     xValueMapper: (SalesData sales, _) => sales.year,
                                     yValueMapper: (SalesData sales, _) => sales.sales,
-                                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true),
 
 
                                   ),
@@ -227,7 +227,7 @@ class dashBoardMain extends StatelessWidget {
                                     dataSource: inMony,
                                     xValueMapper: (SalesData sales, _) => sales.year,
                                     yValueMapper: (SalesData sales, _) => sales.sales,
-                                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true),
 
 
 
@@ -240,7 +240,7 @@ class dashBoardMain extends StatelessWidget {
                                     dataSource: outMony,
                                     xValueMapper: (SalesData sales, _) => sales.year,
                                     yValueMapper: (SalesData sales, _) => sales.sales,
-                                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true),
 
 
 
@@ -258,7 +258,7 @@ class dashBoardMain extends StatelessWidget {
                                     dataSource: inMonyKid,
                                     xValueMapper: (SalesData sales, _) => sales.year,
                                     yValueMapper: (SalesData sales, _) => sales.sales,
-                                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true),
 
 
 
@@ -270,7 +270,7 @@ class dashBoardMain extends StatelessWidget {
                                     dataSource: outMonyKid,
                                     xValueMapper: (SalesData sales, _) => sales.year,
                                     yValueMapper: (SalesData sales, _) => sales.sales,
-                                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true),
 
 
 
@@ -303,7 +303,7 @@ class dashBoardMain extends StatelessWidget {
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.1),
                                     blurRadius: 10,
-                                    offset: Offset(1, 1.5),
+                                    offset: const Offset(1, 1.5),
                                     spreadRadius: 10,
                                   )
                                 ],
@@ -337,7 +337,7 @@ class dashBoardMain extends StatelessWidget {
                                         MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "EGP 5245.3",
                                         style: TextStyle(
@@ -370,7 +370,7 @@ class dashBoardMain extends StatelessWidget {
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.1),
                                     blurRadius: 10,
-                                    offset: Offset(1, 1.5),
+                                    offset: const Offset(1, 1.5),
                                     spreadRadius: 10,
                                   )
                                 ],
@@ -404,7 +404,7 @@ class dashBoardMain extends StatelessWidget {
                                         MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "EGP 8245.3",
                                         style: TextStyle(

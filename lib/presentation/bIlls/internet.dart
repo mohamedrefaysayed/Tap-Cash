@@ -4,7 +4,7 @@ import 'package:tap_cash/helper/widgets/bottomSheetWidget.dart';
 import 'package:tap_cash/presentation/bIlls/payInternetBill.dart';
 
 class InternetProvider extends StatefulWidget {
-  InternetProvider({Key? key}) : super(key: key);
+  const InternetProvider({Key? key}) : super(key: key);
 
   @override
   State<InternetProvider> createState() => _InternetProviderState();
@@ -23,7 +23,7 @@ class _InternetProviderState extends State<InternetProvider> {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
               body: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -66,7 +66,7 @@ class _InternetProviderState extends State<InternetProvider> {
                     SizedBox(
                       height: myApplication.hightClc(10, context),
                     ),
-                    Text(
+                    const Text(
                       "Pay internet easily.",
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w400),
@@ -74,7 +74,7 @@ class _InternetProviderState extends State<InternetProvider> {
                     SizedBox(
                       height: myApplication.hightClc(1, context),
                     ),
-                    Text(
+                    const Text(
                       "You can pay anytime and anywhere!",
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w400),

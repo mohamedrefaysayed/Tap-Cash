@@ -24,7 +24,7 @@ class exportsCard extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
           body: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,7 +48,7 @@ class exportsCard extends StatelessWidget {
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.1),
                         blurRadius: 10,
-                        offset: Offset(1, 1.5),
+                        offset: const Offset(1, 1.5),
                         spreadRadius: 10,
                       )
                     ],
@@ -58,10 +58,10 @@ class exportsCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                          margin: EdgeInsets.only(left: myApplication.widthClc(15, context)),
                           child: Text("Export a new tap cash  card ",
                             style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w600),),
-                        margin: EdgeInsets.only(left: myApplication.widthClc(15, context)),
                       ),
                       Center(
                         child: Stack(
@@ -70,7 +70,7 @@ class exportsCard extends StatelessWidget {
                               width: myApplication.widthClc(370, context),
                             height: myApplication.hightClc(170, context),),
                             Container(
-                                margin: EdgeInsets.symmetric(horizontal: 24,vertical: 18),
+                                margin: const EdgeInsets.symmetric(horizontal: 24,vertical: 18),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -134,19 +134,19 @@ class exportsCard extends StatelessWidget {
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.1),
                           blurRadius: 10,
-                          offset: Offset(1, 1.5),
+                          offset: const Offset(1, 1.5),
                           spreadRadius: 10,
                         )
                       ],
                     ),
                     child: Container(
-                      margin: EdgeInsets.all(29),
+                      margin: const EdgeInsets.all(29),
                       child: Row(
                         children: [
                           Text("View all active cards",style: TextStyle(fontWeight: FontWeight.w600,
                               fontSize: myApplication.widthClc(16, context)),),
-                          Spacer(),
-                          Icon(Icons.arrow_forward_ios,color: myColors.blu,size: 20,),
+                          const Spacer(),
+                          const Icon(Icons.arrow_forward_ios,color: myColors.blu,size: 20,),
                         ],
                       ),
                     ),

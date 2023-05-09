@@ -1,10 +1,12 @@
+
 import 'package:credit_card_scanner/credit_card_scanner.dart';
-import 'package:credit_card_scanner/models/card_details.dart';
-import 'package:credit_card_scanner/models/card_scan_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_credit_card/credit_card_model.dart';
+import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:flutter_credit_card/custom_card_type_icon.dart';
+import 'package:flutter_credit_card/glassmorphism_config.dart';
 import 'package:tap_cash/business_logic/creditCard/credit_card_cubit.dart';
 import 'package:tap_cash/business_logic/wallet/wallet_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
@@ -17,6 +19,8 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../helper/widgets/credit_Card/myCreditCardForm.dart';
 
 class creditCardFill extends StatefulWidget {
+  const creditCardFill({super.key});
+
   @override
   State<creditCardFill> createState() => _creditCardFillState();
 }
@@ -37,15 +41,10 @@ class _creditCardFillState extends State<creditCardFill> {
 
   bool useBackgroundImage = false;
 
-  UnderlineInputBorder? border = UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
+  UnderlineInputBorder? border = const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  CardDetails? _cardDetails;
-  CardScanOptions scanOptions = const CardScanOptions(
-    enableLuhnCheck: false,
-    validCardsToScanBeforeFinishingScan: 5,
-  );
 
   saveCreditCard(){
     Map<String,String>creditCard = {
@@ -55,16 +54,25 @@ class _creditCardFillState extends State<creditCardFill> {
       "cvvCode" : cvvCode,
     };
     creditCardMap.creditCard.add(creditCard);
-    showTopSnackBar(Overlay.of(context),
-    mySnackBar.success(message: "added")    
+    showTopSnackBar(Overlay.of(context), mySnackBar.success(message: "added")
     );
   }
+
+  CardDetails? _cardDetails;
+  CardScanOptions scanOptions = const CardScanOptions(
+    scanCardHolderName: true,
+    // enableDebugLogs: true,
+    validCardsToScanBeforeFinishingScan: 5,
+    possibleCardHolderNamePositions: [
+      CardHolderNameScanPosition.aboveCardNumber,
+    ],
+  );
 
   Future<void> scanCard() async {
     var cardDetails = await CardScanner.scanCard(scanOptions: scanOptions);
     if (!mounted) return;
     setState(() {
-      _cardDetails = cardDetails!;
+      _cardDetails = cardDetails;
     });
   }
 
@@ -89,7 +97,7 @@ class _creditCardFillState extends State<creditCardFill> {
                     height: 30,
                   ),
                   myCreditCardWidget(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'halter',
                       fontSize: 12,
@@ -252,7 +260,7 @@ class _creditCardFillState extends State<creditCardFill> {
     if (formKey.currentState!.validate()) {
       print('valid!');
       saveCreditCard();
-      myApplication.navigateTo(mainScreen(), context);
+      myApplication.navigateTo( mainScreen(), context);
       BlocProvider.of<WalletCubit>(context).emit(WalletShowCards());
     } else {
       print('invalid!');

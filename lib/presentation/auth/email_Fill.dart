@@ -11,9 +11,8 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 class emailFill extends StatelessWidget {
   final title;
   bool reset;
-  emailFill({Key? key, required this.title, required this.reset}) : super(key: key);
-
-
+  emailFill({Key? key, required this.title, required this.reset})
+      : super(key: key);
 
   final formkey = GlobalKey<FormState>();
 
@@ -22,109 +21,101 @@ class emailFill extends StatelessWidget {
     return GestureDetector(
       onTap: () => myApplication.keyboardFocus(context),
       child: WillPopScope(
-        onWillPop: (){
+        onWillPop: () {
           return Future.value(true);
         },
         child: Scaffold(
-          appBar: AppBar(
-            leading: myApplication.backIcon(context,(){})
-          ),
-                body: Container(
-                  margin: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      title,
-                      SizedBox(
-                        height: myApplication.hightClc(170, context),
-                      ),
-                      Form(
-                        key: formkey,
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Enter your Email';
-                            } else if ( !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
-                              return 'Enter Valid Email';
-                            } else {
-                              return null;
-                            }
-                          },
-                          keyboardType: TextInputType.visiblePassword,
-                          style: Theme.of(context).textTheme.bodySmall,
-                          onChanged: (val){
-                            SignUpCubit.email = val;
-                          },
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(75),
-                                borderSide: BorderSide(
-                                  color: myColors.blu.withOpacity(0.3),
-                                  width: 2,
-                                ),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 30,vertical: 15),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(75)
-                              ),
-                              labelText: "Email",
-                          ),
+          appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+          body: Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                title,
+                SizedBox(
+                  height: myApplication.hightClc(170, context),
+                ),
+                Form(
+                  key: formkey,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter your Email';
+                      } else if (!RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value)) {
+                        return 'Enter Valid Email';
+                      } else {
+                        return null;
+                      }
+                    },
+                    keyboardType: TextInputType.visiblePassword,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    onChanged: (val) {
+                      SignUpCubit.email = val;
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(75),
+                        borderSide: BorderSide(
+                          color: myColors.blu.withOpacity(0.3),
+                          width: 2,
                         ),
                       ),
-                      BlocBuilder<SignUpCubit, SignUpState>(
-                        builder: (context, state) {
-                          return Expanded(
-                            child: Column(
-                              children: [
-                                Spacer(),
-                                    confirmButton(
-                                    ontap: () {
-                                      if(formkey.currentState!.validate()){
-                                        showTopSnackBar(
-                                          Overlay.of(context),
-                                          mySnackBar.success(
-                                              message: "sent" ,));
-                                        BlocProvider.of<SignUpCubit>(context).sentVerfication();
-                                        myApplication.navigateTo(codeFill(title:
-                                        reset
-                                            ? Text(
-                                          "Forget Password",
-                                          style: TextStyle(
-                                              fontSize: myApplication.widthClc(24, context),
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                            : Text(
-                                              "Please Verify Your Email ",
-                                              style: TextStyle(
-                                                  fontSize: myApplication.widthClc(24, context),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          reset: reset,
-                                        ), context);
-                                      }
-                                    },
-                                    text: reset ? "send" : "Continue",),
-                                SizedBox(
-                                  height: myApplication.hightClc(25, context),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "terms and conditions & privacy policy",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize:
-                                        myApplication.widthClc(12, context),
-                                        decoration: TextDecoration.underline),
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(75)),
+                      labelText: "Email",
+                    ),
                   ),
+                ),
+              Expanded(
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    BlocConsumer<SignUpCubit, SignUpState>(
+                      listener: (context, state) {
+                        if(state is SignUpSuccess){
+                          showTopSnackBar(
+                              Overlay.of(context),
+                              mySnackBar.success(
+                                  message: state.successmessage ));
+                        }else if(state is SignUpFailure){
+                          showTopSnackBar(
+                              Overlay.of(context),
+                              mySnackBar.error(
+                                message: state.errormessage ,));
+                        }
+                      },
+                      builder: (context, state) {
+                        if(state is SignUpLoading){
+                          return const SizedBox(
+                            height: 48,
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }else{
+                          return confirmButton(
+                            ontap: () {
+                              if (formkey.currentState!.validate()) {
+                                BlocProvider.of<SignUpCubit>(context)
+                                    .signUpStart();
+                              }
+                            },
+                            text: reset ? "send" : "Continue",
+                          );
+                        }
+                      },
+                    ),
+
+                    SizedBox(
+                      height: myApplication.hightClc(25, context),
+                    ),
+                  ],
+                ),
+              ),
+              ],
+            ),
           ),
         ),
       ),

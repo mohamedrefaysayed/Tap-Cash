@@ -24,7 +24,7 @@ class donationAmount extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
               body: Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -51,7 +51,7 @@ class donationAmount extends StatelessWidget {
                     SizedBox(
                       height: myApplication.hightClc(30, context),
                     ),
-                    Text(
+                    const Text(
                       "Select Donation Amount",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
@@ -72,11 +72,12 @@ class donationAmount extends StatelessWidget {
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.1),
                                     blurRadius: 10,
-                                    offset: Offset(1, 1.5),
+                                    offset: const Offset(1, 1.5),
                                     spreadRadius: 10,
                                   )
                                 ],
                               ),
+                              height: myApplication.hightClc(48, context),
                               child: Center(
                                 child: Text(
                                   "EGP: ${amount.toInt().toString()}",
@@ -87,7 +88,6 @@ class donationAmount extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis),
                                 ),
                               ),
-                              height: myApplication.hightClc(48, context),
                             ),
                             SizedBox(
                               height: myApplication.hightClc(30, context),
@@ -110,7 +110,7 @@ class donationAmount extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           confirmButton(
                               ontap: () async {
                                 await LocalAuthCubit.authenticate(context);
@@ -119,7 +119,7 @@ class donationAmount extends StatelessWidget {
                                       context,
                                       "Donated Successfully",
                                       (_) => myApplication.navigateTo(
-                                          mainScreen(), context));
+                                          const mainScreen(), context));
                                 }
                               },
                               text: "Donate"),

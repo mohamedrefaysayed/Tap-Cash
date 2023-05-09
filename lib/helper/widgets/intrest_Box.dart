@@ -9,7 +9,7 @@ class intrestBox extends StatelessWidget {
   final title;
   final index ;
 
-  intrestBox({Key? key, required this.title,required this.index}) : super(key: key);
+  const intrestBox({Key? key, required this.title,required this.index}) : super(key: key);
 
 
   @override
@@ -22,14 +22,14 @@ class intrestBox extends StatelessWidget {
         Container(
           height: 60,
           width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 16),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: Theme.of(context).dialogBackgroundColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.1),
                 blurRadius: 10,
-                offset: Offset(1, 1.5),
+                offset: const Offset(1, 1.5),
                 spreadRadius: 10,
               )
             ],
@@ -39,13 +39,13 @@ class intrestBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 16),
               ),
               BlocBuilder<SelectorCubit, SelectorState>(
                 builder: (context, state) {
@@ -56,7 +56,7 @@ class intrestBox extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 16),
+                          margin: const EdgeInsets.symmetric(horizontal: 16),
                           height: 25,
                           width: 25,
                           decoration: BoxDecoration(
@@ -69,12 +69,12 @@ class intrestBox extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: SelectorCubit.check![index]
-                          ? Icon(
+                          ? const Icon(
                                     Icons.check,
                                     size: 15.0,
                                     color: Colors.white,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.check,
                                     size: 15.0,
                                     color: myColors.blu,

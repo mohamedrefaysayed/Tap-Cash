@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
@@ -18,17 +17,17 @@ class infoFill extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(leading: myApplication.backIcon(context, () {})),
         body: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              Text(
+              const Text(
                 "Fill Your Profile",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               SizedBox(
                 height: myApplication.hightClc(24, context),
               ),
-              Text("You Can Change It Later", style: TextStyle(fontSize: 14)),
+              const Text("You Can Change It Later", style: TextStyle(fontSize: 14)),
               SizedBox(
                 height: myApplication.hightClc(42, context),
               ),
@@ -46,7 +45,7 @@ class infoFill extends StatelessWidget {
                         builder: (context, state) {
                           return Container(
                             child: InfoCubit.image == null
-                                ? Icon(
+                                ? const Icon(
                                     Icons.person,
                                     color: Colors.grey,
                                     size: 100,
@@ -74,13 +73,13 @@ class infoFill extends StatelessWidget {
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.1),
                                   blurRadius: 10,
-                                  offset: Offset(1, 1.5),
+                                  offset: const Offset(1, 1.5),
                                   spreadRadius: 10,
                                 )
                               ],
                               color: Theme.of(context).dialogBackgroundColor,
                               shape: BoxShape.circle),
-                          child: Icon(
+                          child: const Icon(
                             Icons.edit,
                             color: myColors.blu,
                             size: 20,
@@ -118,7 +117,7 @@ class infoFill extends StatelessWidget {
                           ),
                         ),
                         contentPadding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                            const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(75)),
                         labelText: "Full Name",
@@ -149,7 +148,7 @@ class infoFill extends StatelessWidget {
                           ),
                         ),
                         contentPadding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                            const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(75)),
                         labelText: "Nickname",
@@ -164,7 +163,7 @@ class infoFill extends StatelessWidget {
               BlocBuilder<InfoCubit, InfoState>(
                 builder: (context, state) {
                   if(state is InfoLoading){
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(color: myColors.blu,),
                     );
                   }else{

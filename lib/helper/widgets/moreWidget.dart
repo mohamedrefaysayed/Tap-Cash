@@ -13,26 +13,26 @@ class moreWiget extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
 
         child: Container(
             height: myApplication.hightClc(81, context),
             width: double.infinity,
-            margin: EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.1),
                   blurRadius: 10,
-                  offset: Offset(1, 1.5),
+                  offset: const Offset(1, 1.5),
                   spreadRadius: 10,
                 )
               ],
               borderRadius: BorderRadius.circular(20),
             ),
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 32),
+              margin: const EdgeInsets.symmetric(horizontal: 32),
               child: Align(alignment: Alignment.centerLeft,child: Text(text,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: color),)),
             )
         ),

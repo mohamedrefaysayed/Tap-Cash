@@ -5,7 +5,7 @@ import 'package:tap_cash/helper/widgets/moreWidget.dart';
 import 'package:tap_cash/presentation/more/cashBack.dart';
 
 class moreMain extends StatelessWidget {
-  moreMain({Key? key}) : super(key: key);
+  const moreMain({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class moreMain extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Container(
 
-        margin: EdgeInsets.symmetric(vertical: 50),
+        margin: const EdgeInsets.symmetric(vertical: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -32,7 +32,7 @@ class moreMain extends StatelessWidget {
             SizedBox(
               height: myApplication.hightClc(30, context),
             ),
-            Container(
+            SizedBox(
               height: myApplication.hightClc(650, context),
               child: ListView(
                 shrinkWrap: true,
@@ -48,30 +48,30 @@ class moreMain extends StatelessWidget {
                   GestureDetector(
                 onTap: (){},
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                       height: myApplication.hightClc(81, context),
                       width: double.infinity,
-                      margin: EdgeInsets.symmetric(vertical: 10),
+                      margin: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         color: Theme.of(context).scaffoldBackgroundColor,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
                             blurRadius: 10,
-                            offset: Offset(1, 1.5),
+                            offset: const Offset(1, 1.5),
                             spreadRadius: 10,
                           )
                         ],
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 32),
+                        margin: const EdgeInsets.symmetric(horizontal: 32),
                         child: Row(
                           children: [
-                            Icon(FontAwesomeIcons.signOut,color: Colors.red,),
+                            const Icon(FontAwesomeIcons.signOut,color: Colors.red,),
                             SizedBox(width: myApplication.widthClc(37, context),),
-                            Align(alignment: Alignment.centerLeft,child: Text("Logout",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Colors.red),)),
+                            const Align(alignment: Alignment.centerLeft,child: Text("Logout",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Colors.red),)),
                           ],
                         ),
                       )
