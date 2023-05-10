@@ -15,7 +15,7 @@ class _splashLogoState extends State<splashLogo> {
 
   @override
   void initState() {
-    Timer(Duration(seconds: 5), () {myApplication.navigateTo(splash(), context);});
+    Timer(Duration(seconds: 2), () {myApplication.push_fade(context,splash());});
     super.initState();
   }
 
@@ -26,18 +26,18 @@ class _splashLogoState extends State<splashLogo> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
           child: Container(
-            height: 250,
-            width: 250,
+            height: 260,
+            width: 260,
             child: ClipOval(
                 child: Center(
                   child: Transform.scale(
                     scale: 1.6,
                     child: Column(
                       children: [
-                        SizedBox(height: myApplication.hightClc(7, context),),
+                        SizedBox(height: myApplication.hightClc(10, context),),
                         FittedBox(
                           fit: BoxFit.fill,
-                          child: Image.asset("assets/TapCahA.gif",width: 500,height: 500,),
+                          child: Image.asset("assets/TapCahA.gif",width: 250,height: 250,),
                         ),
                       ],
                     ),

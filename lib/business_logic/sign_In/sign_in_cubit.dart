@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +6,6 @@ import 'package:tap_cash/data/chach_helper.dart';
 import 'package:tap_cash/data/dio_helper.dart';
 import 'package:tap_cash/data/models/sign_In_Model.dart';
 import 'package:tap_cash/helper/constants/url.dart';
-
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -21,9 +19,8 @@ class SignInCubit extends Cubit<SignInState> {
   signInModel? signinmodel;
 
 
-
-
   signIn() async{
+    CahchHelper.updateData(key: "isLogin", value: remember);
     emit(SignInLoading());
 
    try{
@@ -32,8 +29,7 @@ class SignInCubit extends Cubit<SignInState> {
        "password":pass
      };
 
-     print("email: $email \n pass: $pass");
-     final response = await DioHelper.postData(url: "$URL/login", data: json);
+     final response = await DioHelper.postData(url:"$URL/login", data: json);
      signinmodel = signInModel.fromJson(response.data);
      updateData();
      emit(SignInSuccess());

@@ -6,12 +6,14 @@ import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
+import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
+import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class creatPIN extends StatelessWidget {
   creatPIN({Key? key}) : super(key: key);
 
-  String PIN = "";
-  String ConfirmPIN = "";
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class creatPIN extends StatelessWidget {
                       itemSize: 70,
                       fullBorder: true,
                       onCompleted: (c) {
-                        PIN = c;
+                        InfoCubit.PIN = c;
                       },
                       onEditing: (code) {}),
                 ),
@@ -76,12 +78,24 @@ class creatPIN extends StatelessWidget {
                       itemSize: 70,
                       fullBorder: true,
                       onCompleted: (c) {
-                        ConfirmPIN = c;
+                        InfoCubit.ConfirmPIN = c;
                       },
                       onEditing: (code) {}),
                 ),
                 SizedBox(height: myApplication.hightClc(150, context)),
-                BlocBuilder<InfoCubit, InfoState>(
+                BlocConsumer<InfoCubit, InfoState>(
+                  listener: (context,state){
+                    if(state is InfoSuccess){
+                      showTopSnackBar(Overlay.of(context),
+                      mySnackBar.success(message: "All Done")
+                      );
+                      myApplication.navigateToRemove(context, mainScreen());
+                    }else if(state is InfoFailure){
+                      showTopSnackBar(Overlay.of(context),
+                          mySnackBar.error(message: state.errormessage)
+                      );
+                    }
+                  },
                   builder: (context, state) {
                     if(state is InfoLoading){
                       return const Center(
@@ -89,9 +103,23 @@ class creatPIN extends StatelessWidget {
                       );
                     }else{
                       return confirmButton(
-                        ontap: (){
-                          LocalAuthCubit.authenticate(context);
-                        },
+                          ontap: ()async {
+                            if(InfoCubit.PIN == InfoCubit.ConfirmPIN){
+                              await LocalAuthCubit.authenticate(context);
+                              if(LocalAuthCubit.authenticated){
+                                BlocProvider.of<InfoCubit>(context).uploadInfo();
+                              }else{
+                                showTopSnackBar(Overlay.of(context),
+                                    mySnackBar.error(message: "Not secure")
+                                );
+                              }
+                            }else{
+                              showTopSnackBar(Overlay.of(context),
+                                  mySnackBar.error(message: "Does not match")
+                              );
+                            }
+                          },
+
                           text: "Continue");
                     }
 

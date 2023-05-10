@@ -1,13 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/sign_Up/sign_up_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
-import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/auth/id_Fill.dart';
 import 'package:tap_cash/presentation/auth/sign_In.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class signUp extends StatelessWidget {
   const signUp({Key? key}) : super(key: key);
@@ -22,16 +22,15 @@ class signUp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: myApplication.hightClc(130, context),
+                height: myApplication.hightClc(100, context),
               ),
-              const Text(
-                "Logo",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
+              Container(
+                height: myApplication.hightClc(151, context),
+                width: myApplication.widthClc(151, context),
+                child: Image.asset("assets/Tap_Cah-Icon.png"),
               ),
               SizedBox(
-                height: myApplication.hightClc(165, context),
+                height: myApplication.hightClc(110, context),
               ),
               Text(
                 "Change your financial",
@@ -78,10 +77,6 @@ class signUp extends StatelessWidget {
                 listener: (context, state) {
                   if(state is SignUpSuccess){
                    myApplication.navigateTo(idFill(), context);
-                  }else if(state is SignUpFailure){
-                    showTopSnackBar(Overlay.of(context),
-                        mySnackBar.error(message: state.errormessage)
-                    );
                   }
                 },
                 builder: (context, state) {
@@ -91,7 +86,14 @@ class signUp extends StatelessWidget {
                       child: Center(child: CircularProgressIndicator()),
                     );
                   }else{
-                    return confirmButton(ontap: () => BlocProvider.of<SignUpCubit>(context).signUpContinue(), text: "Sign Up");
+                    return confirmButton(
+                        ontap: () {
+                          BlocProvider.of<SignUpCubit>(context).emit(SignUpLoading());
+                          Timer(Duration(seconds: 1), () {
+                            BlocProvider.of<SignUpCubit>(context).emit(SignUpSuccess(successmessage: ""));
+                          });
+                        }, text: "Sign Up",
+                    );
                   }
                 },
               ),

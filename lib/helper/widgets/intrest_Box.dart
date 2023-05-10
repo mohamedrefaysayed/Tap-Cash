@@ -42,8 +42,9 @@ class intrestBox extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style:  TextStyle(
+                    fontSize: myApplication.widthClc(16, context),
+                    fontWeight: FontWeight.w600
                   ),
                 ),
               ),

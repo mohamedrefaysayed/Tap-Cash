@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:tap_cash/data/models/sign_In_Model.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
@@ -21,8 +20,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class home extends StatelessWidget {
   home({Key? key}) : super(key: key);
-
-  final signIndata = signInModel();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +79,7 @@ class home extends StatelessWidget {
                     onTap: (){
                       myApplication.navigateTo(const notifications(), context);
                     },
-                    child: true ? Image.asset(
+                    child: false ? Image.asset(
                       "assets/Icons/Bell_Icon.png",
                       height: 30,
                       width: 30,
@@ -238,7 +235,7 @@ class home extends StatelessWidget {
                                     onTap: () {
                                       Navigator.pop(context);
                                       myApplication.navigateTo(
-                                          const creditCardFill(), context);
+                                           creditCardFill(), context);
                                     },
                                     child: const bottomSheetWidget(
                                         icon: Icon(

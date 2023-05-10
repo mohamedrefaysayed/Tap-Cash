@@ -28,6 +28,17 @@ class myApplication {
         icon: const Icon(Icons.arrow_back_ios_new_sharp));
   }
 
+  static Future push_fade(BuildContext context, Widget widget, {data}) async => Navigator.push(
+    context,
+    PageRouteBuilder(
+      pageBuilder: (_, __, ___) => widget,
+      transitionDuration: const Duration(milliseconds: 250),
+      transitionsBuilder: (_, a, b, c) =>
+          FadeTransition(opacity: a, child: c),
+    ),
+  );
+
+
   static double hightClc(int myHeight, BuildContext context) {
     return MediaQuery.of(context).size.height * myHeight / 856.7272727272727;
   }

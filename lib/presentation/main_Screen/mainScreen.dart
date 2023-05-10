@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tap_cash/business_logic/QR/qr_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/bottomNav_NotchClip.dart';
@@ -8,6 +9,7 @@ import 'package:tap_cash/presentation/e_Wallet/walletMain.dart';
 import 'package:tap_cash/presentation/home/home.dart';
 import 'package:tap_cash/presentation/more/moreMain.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:tap_cash/presentation/qrCode/showQR.dart';
 
 
 
@@ -46,7 +48,10 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: GestureDetector(
           onTap: ()async{
-            String? cameraScanResult = await scanner.scan();
+                QrCubit.QrCodeData = await scanner.scan().whenComplete(() {
+                  myApplication.navigateTo(showQrCode(), context);
+                });
+
           },
           child: SizedBox(
             height: 70,

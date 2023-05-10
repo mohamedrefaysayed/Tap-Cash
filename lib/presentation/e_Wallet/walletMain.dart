@@ -551,7 +551,7 @@ credit(index,bool scure){
                     children: [
                       GestureDetector(
                         onTap:(){
-                          myApplication.navigateTo(const creditCardFill(), context);
+                          myApplication.navigateTo( creditCardFill(), context);
                         },
                         child: SizedBox(
                           height: myApplication.hightClc(58, context),

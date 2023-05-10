@@ -49,7 +49,7 @@ class emailFill extends StatelessWidget {
                         return null;
                       }
                     },
-                    keyboardType: TextInputType.visiblePassword,
+                    keyboardType: TextInputType.emailAddress,
                     style: Theme.of(context).textTheme.bodySmall,
                     onChanged: (val) {
                       SignUpCubit.email = val;
@@ -76,11 +76,12 @@ class emailFill extends StatelessWidget {
                     const Spacer(),
                     BlocConsumer<SignUpCubit, SignUpState>(
                       listener: (context, state) {
-                        if(state is SignUpSuccess){
+                        if(state is SignUpEmailFillSuccess){
                           showTopSnackBar(
                               Overlay.of(context),
                               mySnackBar.success(
                                   message: state.successmessage ));
+                          myApplication.navigateTo(codeFill(reset: reset), context);
                         }else if(state is SignUpFailure){
                           showTopSnackBar(
                               Overlay.of(context),
@@ -89,7 +90,7 @@ class emailFill extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
-                        if(state is SignUpLoading){
+                        if(state is SignUpEmailFillLoading){
                           return const SizedBox(
                             height: 48,
                             child: Center(child: CircularProgressIndicator()),
@@ -98,8 +99,7 @@ class emailFill extends StatelessWidget {
                           return confirmButton(
                             ontap: () {
                               if (formkey.currentState!.validate()) {
-                                BlocProvider.of<SignUpCubit>(context)
-                                    .signUpStart();
+                                BlocProvider.of<SignUpCubit>(context).signUpSendVerfCode();
                               }
                             },
                             text: reset ? "send" : "Continue",

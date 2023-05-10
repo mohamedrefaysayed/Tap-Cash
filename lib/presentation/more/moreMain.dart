@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tap_cash/business_logic/sign_Up/sign_up_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
+import 'package:tap_cash/helper/data_Maps/groupPaymentMap.dart';
 import 'package:tap_cash/helper/widgets/moreWidget.dart';
+import 'package:tap_cash/presentation/more/billReminder/billReminder.dart';
+import 'package:tap_cash/presentation/more/billReminder/reminders.dart';
 import 'package:tap_cash/presentation/more/cashBack.dart';
+import 'package:tap_cash/presentation/more/goupPayment/groups.dart';
+import 'package:tap_cash/presentation/more/privacyPolicy.dart';
 
 class moreMain extends StatelessWidget {
   const moreMain({Key? key}) : super(key: key);
@@ -40,13 +48,19 @@ class moreMain extends StatelessWidget {
                   moreWiget(text: "Gifts",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){},),
                   moreWiget(text: "Cash Back",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){myApplication.navigateTo(cashBack(), context);}),
                   moreWiget(text: "Requests",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){}),
-                  moreWiget(text: "Group Payment",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){}),
+                  moreWiget(text: "Group Payment",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){myApplication.navigateTo(groups(), context);}),
                   moreWiget(text: "Friends",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){}),
-                  moreWiget(text: "Bill Reminder",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){}),
-                  moreWiget(text: "Privacy Policy",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){}),
+                  moreWiget(text: "Bill Reminder",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){
+                    myApplication.navigateTo(showReminders(), context);
+                  }),
+                  moreWiget(text: "Privacy Policy",color: Theme.of(context).textTheme.bodyMedium!.color!,ontap: (){myApplication.navigateTo(privacyPolicy(), context);}),
                   SizedBox(height: myApplication.hightClc(10, context),),
                   GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  myApplication.confirmDialog(context, "Are You Sure ?", "Log Out", Colors.red, (){
+                    BlocProvider.of<SignUpCubit>(context).logout(context);
+                  });
+                },
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(

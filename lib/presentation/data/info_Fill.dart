@@ -4,6 +4,9 @@ import 'package:tap_cash/business_logic/info/info_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
+import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
+import 'package:tap_cash/presentation/data/creat_PIN.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class infoFill extends StatelessWidget {
   infoFill({Key? key}) : super(key: key);
@@ -107,7 +110,9 @@ class infoFill extends StatelessWidget {
                       },
                       keyboardType: TextInputType.name,
                       style: Theme.of(context).textTheme.bodySmall,
-                      onChanged: (val) {},
+                      onChanged: (val) {
+                        InfoCubit.fullName = val;
+                      },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(75),
@@ -138,7 +143,9 @@ class infoFill extends StatelessWidget {
                       },
                       keyboardType: TextInputType.name,
                       style: Theme.of(context).textTheme.bodySmall,
-                      onChanged: (val) {},
+                      onChanged: (val) {
+                        InfoCubit.nickName = val;
+                      },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(75),
@@ -160,7 +167,13 @@ class infoFill extends StatelessWidget {
               SizedBox(
                 height: myApplication.hightClc(150, context),
               ),
-              BlocBuilder<InfoCubit, InfoState>(
+              BlocConsumer<InfoCubit, InfoState>(
+                listener: (context,state){
+                  if(state is InfoSuccess){
+                    showTopSnackBar(Overlay.of(context), mySnackBar.success(message: "Saved Successfully"));
+                    myApplication.navigateTo(creatPIN(), context);
+                  }
+                },
                 builder: (context, state) {
                   if(state is InfoLoading){
                     return const Center(
@@ -170,8 +183,7 @@ class infoFill extends StatelessWidget {
                     return confirmButton(
                         ontap: () {
                           if (formkey.currentState!.validate()) {
-                            BlocProvider.of<InfoCubit>(context).saveInfo(context);
-                            
+                            BlocProvider.of<InfoCubit>(context).saveInfo();
                           }
                         },
                         text: "Continue");

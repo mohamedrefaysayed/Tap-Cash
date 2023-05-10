@@ -37,15 +37,27 @@ class interstScreen extends StatelessWidget {
                   height: myApplication.hightClc(100, context),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 4,
-                          itemBuilder: (context, index) {
-                            return intrestBox(
-                              title: "Flutter Developer",
-                              index: index,
-                            );
-                          })
+                  child: ListView(
+                    children: [
+                    intrestBox(
+                    title: "Spend or save  DAILY",
+                    index: 0,
+                  ),
+                      intrestBox(
+                        title: "Send and manage money",
+                        index: 1,
+                      ),
+                      intrestBox(
+                        title: "Spend while traveling ",
+                        index: 2,
+                      ),
+                      intrestBox(
+                        title: "Others",
+                        index: 3,
+                      ),
+
+                    ],
+                          )
                 ),
                 SizedBox(
                   height: myApplication.hightClc(30, context),

@@ -7,7 +7,10 @@ import 'package:tap_cash/business_logic/addMonyAmount/add_mony_amount_cubit.dart
 import 'package:tap_cash/business_logic/creditCard/credit_card_cubit.dart';
 import 'package:tap_cash/business_logic/dashboard/dashboard_cubit.dart';
 import 'package:tap_cash/business_logic/donations/donations_cubit.dart';
+import 'package:tap_cash/business_logic/getDataHome/get_data_home_cubit.dart';
+import 'package:tap_cash/business_logic/groupPayment/group_payment_cubit.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
+import 'package:tap_cash/business_logic/onBoard/on_board_cubit.dart';
 import 'package:tap_cash/business_logic/onlinePayment/online_payment_cubit.dart';
 import 'package:tap_cash/business_logic/selctor/selector_cubit.dart';
 import 'package:tap_cash/business_logic/sign_In/sign_in_cubit.dart';
@@ -18,10 +21,10 @@ import 'package:tap_cash/data/chach_helper.dart';
 import 'package:tap_cash/data/dio_helper.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/my_thems.dart';
-import 'package:tap_cash/presentation/splash/splash.dart';
+import 'package:tap_cash/presentation/home/kidHome.dart';
 import 'package:tap_cash/presentation/splash/splashLogo.dart';
 
-void main() {
+void main(context) {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   CahchHelper.init();
@@ -48,6 +51,11 @@ class Tap_Cash extends StatelessWidget {
         BlocProvider(create: (context) => DonationsCubit()),
         BlocProvider(create: (context) => OnlinePaymentCubit()),
         BlocProvider(create: (context) => DashboardCubit()),
+        BlocProvider(create: (context) => OnBoardCubit()),
+        BlocProvider(create: (context) => GetDataHomeCubit()),
+        BlocProvider(create: (context) => GroupPaymentCubit()),
+
+
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value:  SystemUiOverlayStyle(
@@ -63,7 +71,7 @@ class Tap_Cash extends StatelessWidget {
           darkTheme: Mythems.darktheme,
           debugShowCheckedModeBanner: false,
           title: 'Tap Cash',
-          home:   splashLogo(),
+          home: kidHome(),
         ),
       ),
     );

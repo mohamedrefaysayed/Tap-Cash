@@ -5,7 +5,7 @@ part 'qr_state.dart';
 
 class QrCubit extends Cubit<QrState> {
 
-  // static BarcodeCapture? capture;
+  static String? QrCodeData;
 
   QrCubit() : super(QrInitial());
 

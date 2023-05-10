@@ -9,15 +9,16 @@ import 'package:tap_cash/data/dio_helper.dart';
 import 'package:tap_cash/data/models/signUpModel.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/url.dart';
-import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
-import 'package:tap_cash/presentation/auth/password_Fill.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'package:tap_cash/presentation/auth/sign_Up.dart';
+import 'package:tap_cash/presentation/splash/splashLogo.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
 
-  static String Id="30105141900138";
+  static bool isKid = false;
+
+  static String Id="";
   static String email="";
   static String code="";
   static bool verify = false;
@@ -35,19 +36,9 @@ class SignUpCubit extends Cubit<SignUpState> {
   signUpModel?  signupmodel;
 
 
-  signUp(){
-    emit(SignUpLoading());
-    if(pass == passConfirm && pass.isNotEmpty){
-      try{
-      } catch(e){
-        emit(SignUpFailure(errormessage: e.toString()));
-      }
-    }else{
-    }
-  }
 
-  signUpStart()async{
-    emit(SignUpLoading());
+  signUpSendVerfCode()async{
+    emit(SignUpEmailFillLoading());
     try{
       Map<String,String> json = {
         "email":email,
@@ -59,86 +50,154 @@ class SignUpCubit extends Cubit<SignUpState> {
 
       CahchHelper.saveData(key: "token", value: signupmodel!.token);
 
-      emit(SignUpSuccess(successmessage: signupmodel!.message!));
+      emit(SignUpEmailFillSuccess(successmessage: signupmodel!.message!));
 
 
     }on DioError catch (error){
+      print(error.response);
+      if(error.response!.statusCode == 500){
+        emit(SignUpFailure(errormessage: "You tried to log in a while ago, try again later"));
 
-      emit(SignUpFailure(errormessage: error.response!.data["message"]));
+      }else{
+        emit(SignUpFailure(errormessage: error.response!.data["message"]));
+
+      }
+
 
     };
   }
 
-
-
-  signUpContinue()async {
-    emit(SignUpLoading());
-    CahchHelper.saveData(key: "nid", value: "$Id");
-    Timer(const Duration(seconds: 1), () { emit(SignUpSuccess(successmessage: "")); });
+  logout(context){
+    myApplication.navigateToRemove(context, splashLogo());
+    CahchHelper.updateData(key: "isLogin", value: false);
   }
 
 
+  verifyCode(BuildContext context)async{
+    emit(SignUpCodeFillLoading());
+    try{
+      final token = await CahchHelper.getData(key: "token");
 
-  getDataFromId(){
+      Map<String,String> jsonToken = {
+        'Authorization': 'Bearer $token'
+      };
+      Map<String,String> json = {
+        "code": "$code"
+      };
+
+      print("email: $code");
+      final response = await DioHelper.postDataWithHeader(url:"$URL/verfiySignUp", data: json,header: jsonToken);
+      signupmodel = signUpModel.fromJson(response.data);
+
+      print("success");
+
+      emit(SignUpCodeFillSuccess(successmessage: "Confirmed"));
+
+    }on DioError catch (error){
+      print(error.response);
+      if(error.response!.statusCode == 500){
+        emit(SignUpFailure(errormessage: "You tried to log in a while ago, try again later"));
+
+      }else{
+        emit(SignUpFailure(errormessage: error.response!.data["message"]));
+
+      }
+
+
+    };
+  }
+
+  resendCode(BuildContext context)async{
+    try{
+      final token = await CahchHelper.getData(key: "token");
+
+      Map<String,String> json = {
+        'Authorization': 'Bearer $token'
+      };
+
+      final response = await DioHelper.postDataWithHeader(url:"$URL/resendSignup",header: json);
+      signupmodel = signUpModel.fromJson(response.data);
+
+      emit(SignUpCodeResend(successmessage: signupmodel!.message!));
+
+    }on DioError catch (error){
+      print(error.response);
+      if(error.response!.statusCode == 500){
+
+        emit(SignUpFailure(errormessage: "You tried in a while ago, try again later"));
+
+      }else{
+
+        emit(SignUpFailure(errormessage: error.response!.data["message"]));
+
+      }
+
+    };
+  }
+
+  confirmPass(BuildContext context)async{
+    emit(SignUpPassFillLoading());
+    try{
+      CahchHelper.updateData(key: "isLogin", value: remember);
+      final token = await CahchHelper.getData(key: "token");
+
+      Map<String,String> jsonToken = {
+        'Authorization': 'Bearer $token'
+      };
+      Map<String,String> json = {
+        "password": "$pass",
+        "passwordConfirm": "$passConfirm"
+      };
+
+      print("email: $code");
+      final response = await DioHelper.postDataWithHeader(url:"$URL/putPasswordsSignUp", data: json,header: jsonToken);
+      signupmodel = signUpModel.fromJson(response.data);
+
+      print("success");
+
+      emit(SignUpPassFillSuccess(successmessage: "Saved"));
+
+      CahchHelper.updateData(key: "isLogin", value: true);
+
+    }on DioError catch (error){
+      print(error.response);
+      if(error.response!.statusCode == 500){
+        emit(SignUpFailure(errormessage: "You tried to log in a while ago, try again later"));
+
+      }else{
+        emit(SignUpFailure(errormessage: error.response!.data["message"]));
+
+      }
+
+
+    };
+  }
+
+  saveId()async {
+    emit(SignUpLoading());
+    await CahchHelper.saveData(key: "nid", value: Id);
+    getDataFromId();
+  }
+
+  getDataFromId()async{
 
     var idData = NIDInfo(nid: Id);
     birthDate = idData.birthDay.toString();
     age = (DateTime.now().year - idData.birthDay.year).toString();
     gender = idData.sex;
     city = idData.city;
-    print(birthDate);
-    print(age);
-    print(gender);
-    print(city);
+    await CahchHelper.saveData(key: "birthDate", value: birthDate);
+    await CahchHelper.saveData(key: "age", value: age);
+    await CahchHelper.saveData(key: "gender", value: gender);
+    await CahchHelper.saveData(key: "city", value: city);
 
-
-  }
-
-  sentVerfication()async{
-    emit(SignUpCodeFill());
-  }
-
-  verifyCode(BuildContext context,reset){
-    if (SignUpCubit.code.isNotEmpty) {
-      emit(SignUpCodeFillLoading());
-      Timer(const Duration(seconds: 2), () {
-        showTopSnackBar(
-          Overlay.of(context) ,
-          const mySnackBar.success(
-              message: "confirmed !"),
-        );
-        myApplication.navigateTo(passwordFill(
-          title: reset
-              ? Text(
-            "Create New  Password",
-            style: TextStyle(
-                fontSize: myApplication.widthClc(24, context),
-                fontWeight: FontWeight.bold),
-          )
-              : Text(
-            "Enter Password",
-            style: TextStyle(
-                fontSize: myApplication.widthClc(24, context),
-                fontWeight: FontWeight.bold),
-          ),
-          reset: reset,
-        ), context);
-        emit(SignUpCodeFill());
-      });
-    } else {
-      showTopSnackBar(
-        Overlay.of(context) ,
-        const mySnackBar.error(
-            message: "Write the code"),
-      );
-      emit(SignUpCodeFill());
-    }
   }
 
   allowSend(){
     cansend = true;
     emit(SignUpCodeFill());
   }
+
   blockSend(){
     cansend = false;
     emit(SignUpCodeFill());
