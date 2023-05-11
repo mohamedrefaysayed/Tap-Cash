@@ -21,14 +21,15 @@ import 'package:tap_cash/data/chach_helper.dart';
 import 'package:tap_cash/data/dio_helper.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/my_thems.dart';
-import 'package:tap_cash/presentation/home/kidHome.dart';
 import 'package:tap_cash/presentation/splash/splashLogo.dart';
 
-void main(context) {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   CahchHelper.init();
-  runApp(const Tap_Cash());
+
+
+  runApp( Tap_Cash());
 }
 
 class Tap_Cash extends StatelessWidget {
@@ -36,6 +37,7 @@ class Tap_Cash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    myColors.shadow = Theme.of(context).scaffoldBackgroundColor == Colors.white ? Colors.black12 : Colors.grey.withOpacity(0.1);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SignUpCubit()),

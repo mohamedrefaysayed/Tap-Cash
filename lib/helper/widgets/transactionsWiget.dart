@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 
 class notificationsWidget extends StatelessWidget {
   const notificationsWidget({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class notificationsWidget extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: myColors.shadow,
               blurRadius: 10,
               offset: const Offset(1, 1.5),
               spreadRadius: 10,

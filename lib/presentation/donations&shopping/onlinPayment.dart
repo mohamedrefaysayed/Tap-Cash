@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
@@ -19,50 +21,69 @@ class onlinePayment extends StatelessWidget {
     return GestureDetector(
         onTap: () => myApplication.keyboardFocus(context),
         child: WillPopScope(
+
             onWillPop: () {
               return Future.value(true);
             },
+
             child: Scaffold(
+
               resizeToAvoidBottomInset: false,
+
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+
               body: Container(
+
                 margin: const EdgeInsets.all(20),
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+
                     SizedBox(
                       width: double.infinity,
                       child: Row(
                         children: [
                           Column(
+
                             crossAxisAlignment: CrossAxisAlignment.start,
+
                             children: [
+
                               Text(
                                 "Online Payment",
                                 style: TextStyle(
                                     fontSize: myApplication.widthClc(24, context),
                                     fontWeight: FontWeight.bold),
                               ),
+
                               SizedBox(
                                 height: myApplication.hightClc(20, context),
                               ),
+
                               const Text(
                                 "Shopping easily.",
                                 style:
                                 TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                               ),
+
                               SizedBox(
                                 height: myApplication.hightClc(10, context),
                               ),
+
                               const Text(
                                 "You can pay anytime and anywhere!",
                                 style:
                                 TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                               ),
+
                             ],
                           ),
+
                           const Spacer(),
+
                           const Hero(
+
                             tag: "shopping",
                             child: Padding(
                               padding: EdgeInsets.all(15),
@@ -76,27 +97,38 @@ class onlinePayment extends StatelessWidget {
                         ],
                       ),
                     ),
+
                     SizedBox(
                       height: myApplication.hightClc(80, context),
                     ),
+
                     Form(
+
                       key: formkey,
+
                       child: Column(
                         children: [
                           TextFormField(
+
                             validator: (value) {
+
                               if (value!.isEmpty) {
                                 return 'Enter item Numer';
                               } else {
                                 return null;
                               }
+
                             },
+
                             keyboardType: TextInputType.text,
                             style: Theme.of(context).textTheme.bodySmall,
+
                             onChanged: (val) {
                               OnlinePaymentCubit.itemName = val;
                             },
+
                             decoration: InputDecoration(
+
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(75),
                                 borderSide: BorderSide(
@@ -104,14 +136,20 @@ class onlinePayment extends StatelessWidget {
                                   width: 2,
                                 ),
                               ),
+
                               contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15),
+
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(75)),
+                                  borderRadius: BorderRadius.circular(75)
+                              ),
+
                               labelText: "Item Name",
                             ),
                           ),
+
                           SizedBox(height: myApplication.hightClc(30, context),),
+
                           TextFormField(
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -120,18 +158,26 @@ class onlinePayment extends StatelessWidget {
                                 return null;
                               }
                             },
+
                             keyboardType: TextInputType.number,
+
                             style: Theme.of(context).textTheme.bodySmall,
+
                             onChanged: (val) {
                               OnlinePaymentCubit.itemName = val;
                             },
+
                             decoration: InputDecoration(
+
                               enabledBorder: OutlineInputBorder(
+
                                 borderRadius: BorderRadius.circular(75),
+
                                 borderSide: BorderSide(
                                   color: myColors.blu.withOpacity(0.3),
                                   width: 2,
                                 ),
+
                               ),
                               contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15),
@@ -140,20 +186,26 @@ class onlinePayment extends StatelessWidget {
                               labelText: "Item Code",
                             ),
                           ),
+
                           SizedBox(height: myApplication.hightClc(50, context),),
+
                           BlocBuilder<OnlinePaymentCubit, OnlinePaymentState>(
                             builder: (context, state) {
                               return Column(
+
                                 children: [
+
                                   const counterWidget(),
+
                                   SizedBox(height: myApplication.hightClc(50, context),),
+
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: Theme.of(context).scaffoldBackgroundColor,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey.withOpacity(0.1),
+                                          color: myColors.shadow,
                                           blurRadius: 10,
                                           offset: const Offset(1, 1.5),
                                           spreadRadius: 10,
@@ -162,6 +214,7 @@ class onlinePayment extends StatelessWidget {
                                     ),
                                     height: myApplication.hightClc(48, context),
                                     child: Center(
+
                                       child: Text(
                                         "EGP: ${OnlinePaymentCubit.amount.toInt().toString()}",
                                         style: TextStyle(
@@ -169,11 +222,14 @@ class onlinePayment extends StatelessWidget {
                                             fontWeight: FontWeight.bold,
                                             overflow: TextOverflow.ellipsis),
                                       ),
+
                                     ),
                                   ),
+
                                   SizedBox(
                                     height: myApplication.hightClc(30, context),
                                   ),
+
                                   Slider(
                                       divisions: 200,
                                       thumbColor: myColors.softblu,
@@ -194,9 +250,13 @@ class onlinePayment extends StatelessWidget {
                       ),
                     ),
                     Expanded(
+
                       child: Column(
+
                         children: [
+
                           const Spacer(),
+
                           confirmButton(
                               ontap: () async {
                                 await LocalAuthCubit.authenticate(context);
@@ -209,9 +269,11 @@ class onlinePayment extends StatelessWidget {
                                 }
                               },
                               text: "Pay"),
+
                           SizedBox(
                             height: myApplication.hightClc(25, context),
                           ),
+
                         ],
                       ),
                     ),

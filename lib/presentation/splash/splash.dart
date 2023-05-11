@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:tap_cash/business_logic/getDataHome/get_data_home_cubit.dart';
 import 'package:tap_cash/data/chach_helper.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
@@ -28,8 +27,6 @@ class _splashState extends State<splash> with TickerProviderStateMixin{
 
   @override
   void initState(){
-
-    getData.getDataInit(context);
 
     Controller = AnimationController(
         vsync: this,duration: Duration(milliseconds: 500));

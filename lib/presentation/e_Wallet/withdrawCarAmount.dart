@@ -1,121 +1,94 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, camel_case_types, use_build_context_synchronously, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:tap_cash/business_logic/addMonyAmount/add_mony_amount_cubit.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/criditCard.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
-import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 
-class withdarwCarAmount extends StatefulWidget {
+class withdarwCarAmount extends StatelessWidget {
+
   final int index;
+
   const withdarwCarAmount({Key? key, required this.index}) : super(key: key);
-
-  @override
-  State<withdarwCarAmount> createState() => _withdarwCarAmountState();
-}
-
-class _withdarwCarAmountState extends State<withdarwCarAmount> {
-  bool isCvvFocused = false;
-
-  bool useGlassMorphism = false;
-
-  bool useBackgroundImage = false;
-
-  UnderlineInputBorder? border =
-  const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
-
-  credit(index, bool scure) {
-    return myCreditCardWidget(
-      textStyle: const TextStyle(
-        color: Colors.white,
-        fontFamily: 'halter',
-        fontSize: 12,
-        package: 'flutter_credit_card',
-      ),
-      glassmorphismConfig:
-      useGlassMorphism ? Glassmorphism.defaultConfig() : null,
-      cardNumber: creditCardMap.creditCard[index]["cardNumber"]!,
-      expiryDate: creditCardMap.creditCard[index]["expiryDate"]!,
-      cardHolderName: creditCardMap.creditCard[index]["cardHolderName"]!,
-      cvvCode: creditCardMap.creditCard[index]["cvvCode"]!,
-      bankName: 'Tap Cash',
-      frontCardBorder:
-      !useGlassMorphism ? Border.all(color: Colors.grey) : null,
-      backCardBorder: !useGlassMorphism ? Border.all(color: Colors.grey) : null,
-      showBackView: isCvvFocused,
-      obscureCardNumber: scure,
-      obscureCardCvv: scure,
-      isHolderNameVisible: true,
-      cardBgColor: myColors.blu,
-      backgroundImage: "assets/card/Card_pg.png",
-      isSwipeGestureEnabled: true,
-      onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {},
-      customCardTypeIcons: <CustomCardTypeIcon>[
-        CustomCardTypeIcon(
-          cardType: CardType.mastercard,
-          cardImage: Image.asset(
-            'assets/card/mastercard.png',
-            height: 48,
-            width: 48,
-          ),
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+
         onTap: () => myApplication.keyboardFocus(context),
+
         child: WillPopScope(
+
             onWillPop: () {
               return Future.value(true);
             },
+
             child: Scaffold(
+
               resizeToAvoidBottomInset: false,
+
               appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+
               body: Container(
+
                 margin: const EdgeInsets.all(20),
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Text(
                       "Withdraw Money",
                       style: TextStyle(
                           fontSize: myApplication.widthClc(24, context),
                           fontWeight: FontWeight.bold),
                     ),
+
                     SizedBox(
                       height: myApplication.hightClc(30, context),
                     ),
-                    credit(widget.index, true),
+                    myApplication.creditCard(creditCardMap.creditCard[index]["cardNumber"]!,
+                        creditCardMap.creditCard[index]["expiryDate"]!,
+                        creditCardMap.creditCard[index]["cardHolderName"]!,
+                        creditCardMap.creditCard[index]["cvvCode"]!,
+                        true
+                    ),
+
                     SizedBox(
                       height: myApplication.hightClc(100, context),
                     ),
+
                     BlocBuilder<AddMonyAmountCubit, AddMonyAmountState>(
+
                       builder: (context, state) {
                         return Column(
                           children: [
+
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
+
                                 color: Theme.of(context).scaffoldBackgroundColor,
+
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.1),
+                                    color: myColors.shadow,
                                     blurRadius: 10,
                                     offset: const Offset(1, 1.5),
                                     spreadRadius: 10,
                                   )
                                 ],
                               ),
+
                               height: myApplication.hightClc(48, context),
+
                               child: Center(
+
                                 child: Text(
                                   "EGP: ${AddMonyAmountCubit.amount.toInt().toString()}",
                                   style: TextStyle(
@@ -123,11 +96,14 @@ class _withdarwCarAmountState extends State<withdarwCarAmount> {
                                       fontWeight: FontWeight.bold,
                                       overflow: TextOverflow.ellipsis),
                                 ),
+
                               ),
                             ),
+
                             SizedBox(
                               height: myApplication.hightClc(30, context),
                             ),
+
                             Slider(
                                 divisions: 150,
                                 thumbColor: myColors.softblu,
@@ -138,15 +114,20 @@ class _withdarwCarAmountState extends State<withdarwCarAmount> {
                                   AddMonyAmountCubit.amount = val;
                                   BlocProvider.of<AddMonyAmountCubit>(context)
                                       .emit(AddMonyAmountInitial());
-                                }),
+                                }
+                             ),
                           ],
                         );
                       },
                     ),
+
                     Expanded(
+
                       child: Column(
                         children: [
+
                           const Spacer(),
+
                           confirmButton(
                               ontap: () async {
                                 await LocalAuthCubit.authenticate(context);
@@ -159,9 +140,11 @@ class _withdarwCarAmountState extends State<withdarwCarAmount> {
                                 }
                               },
                               text: "Add"),
+
                           SizedBox(
                             height: myApplication.hightClc(25, context),
                           ),
+
                         ],
                       ),
                     ),

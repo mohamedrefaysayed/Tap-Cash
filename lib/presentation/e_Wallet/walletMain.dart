@@ -1,13 +1,12 @@
+// ignore_for_file: camel_case_types, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/business_logic/wallet/wallet_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/criditCard.dart';
-import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:tap_cash/presentation/credit_Card/creditCard_Fill.dart';
 import 'package:tap_cash/presentation/e_Wallet/addMonyAmount.dart';
@@ -24,59 +23,6 @@ class walletMain extends StatefulWidget {
 
 class _walletMainState extends State<walletMain> with TickerProviderStateMixin{
 
-
-  bool isCvvFocused = false;
-
-  bool useGlassMorphism = false;
-
-  bool useBackgroundImage = false;
-
-  UnderlineInputBorder? border = const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
-
-
-
-credit(index,bool scure){
-    return myCreditCardWidget(
-      textStyle: const TextStyle(
-        color: Colors.white,
-        fontFamily: 'halter',
-        fontSize: 12,
-        package: 'flutter_credit_card',
-      ),
-      glassmorphismConfig:
-      useGlassMorphism ? Glassmorphism.defaultConfig() : null,
-      cardNumber: creditCardMap.creditCard[index]["cardNumber"]!,
-      expiryDate: creditCardMap.creditCard[index]["expiryDate"]!,
-      cardHolderName: creditCardMap.creditCard[index]["cardHolderName"]!,
-      cvvCode: creditCardMap.creditCard[index]["cvvCode"]!,
-      bankName: 'Tap Cash',
-      frontCardBorder: !useGlassMorphism
-          ? Border.all(color: Colors.grey)
-          : null,
-      backCardBorder: !useGlassMorphism
-          ? Border.all(color: Colors.grey)
-          : null,
-      showBackView: isCvvFocused,
-      obscureCardNumber: scure,
-      obscureCardCvv: scure,
-      isHolderNameVisible: true,
-      cardBgColor: myColors.blu,
-      backgroundImage: "assets/card/Card_pg.png",
-      isSwipeGestureEnabled: true,
-      onCreditCardWidgetChange:
-          (CreditCardBrand creditCardBrand) {},
-      customCardTypeIcons: <CustomCardTypeIcon>[
-        CustomCardTypeIcon(
-          cardType: CardType.mastercard,
-          cardImage: Image.asset(
-            'assets/card/mastercard.png',
-            height: 48,
-            width: 48,
-          ),
-        ),
-      ],
-    );
-}
 
   @override
   Widget build(BuildContext context) {
@@ -123,100 +69,113 @@ credit(index,bool scure){
                             itemCount: creditCardMap.creditCard.length,
                             itemBuilder: (context,index){
                               return GestureDetector(
-                                onTap: (){
-                                  showModalBottomSheet(
-                                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      context: context,
-                                      builder: (BuildContext context){
-                                        return Container(
-                                          height: 380,
-                                          width: double.infinity,
-                                          margin: const EdgeInsets.symmetric(horizontal: 42,vertical: 10),
-                                          child: Column(
-                                            children: [
-                                              Text("Card",style: TextStyle(fontSize: myApplication.widthClc(18, context),
-                                                fontWeight: FontWeight.w600,
-                                              ),),
-                                              SizedBox(height: myApplication.hightClc(16, context),),
-                                              Hero(tag: index,
-                                                  child: credit(index, false),
-                                              ),
-                                              SizedBox(height: myApplication.hightClc(34, context),),
-                                              GestureDetector(
-                                                onTap: () => myApplication.confirmDialog(context,
-                                                    "Delete this card ?",
-                                                    "Delete",
-                                                    Colors.red,
-                                                        (){
-                                                      if(creditCardMap.creditCard.length==1){
-                                                        creditCardMap.creditCard.clear();
-                                                        Navigator.pop(context);
-                                                        Navigator.pop(context);
-                                                        BlocProvider.of<WalletCubit>(context).emit((WalletEmpty()));
-                                                      }else{
-                                                        creditCardMap.creditCard.removeAt(index);
-                                                        Navigator.pop(context);
-                                                        Navigator.pop(context);
-                                                        BlocProvider.of<WalletCubit>(context).emit((WalletShowCards()));
-                                                      }
-                                                      showTopSnackBar(Overlay.of(context),
-                                                          const mySnackBar.success(message: "Deleted Successfully")
-                                                      );
-                                                    }),
-                                                child: Align(
-                                                  alignment: Alignment.centerRight,
-                                                  child: Container(
-                                                    width: 100,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(75),
-                                                      color: Colors.red.shade100.withOpacity(0.5),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        const Icon(Icons.delete_outline_rounded,color: Colors.orange,),
-                                                        SizedBox(width: myApplication.widthClc(10, context),),
-                                                        Text("Delete",style: TextStyle(color: Colors.orange,
-                                                            fontSize: myApplication.widthClc(14, context),
-                                                            fontWeight: FontWeight.w400),)
-                                                      ],
+                                onTap: ()async{
+                                  await LocalAuthCubit.authenticate(context);
+
+                                  if(LocalAuthCubit.authenticated){
+                                    showModalBottomSheet(
+                                        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                        context: context,
+                                        builder: (BuildContext context){
+                                          return Container(
+                                            height: 380,
+                                            width: double.infinity,
+                                            margin: const EdgeInsets.symmetric(horizontal: 42,vertical: 10),
+                                            child: Column(
+                                              children: [
+                                                Text("Card",style: TextStyle(fontSize: myApplication.widthClc(18, context),
+                                                  fontWeight: FontWeight.w600,
+                                                ),),
+                                                SizedBox(height: myApplication.hightClc(16, context),),
+
+                                                myApplication.creditCard(creditCardMap.creditCard[index]["cardNumber"]!,
+                                                    creditCardMap.creditCard[index]["expiryDate"]!,
+                                                    creditCardMap.creditCard[index]["cardHolderName"]!,
+                                                    creditCardMap.creditCard[index]["cvvCode"]!,false
+                                                ),
+                                                SizedBox(height: myApplication.hightClc(34, context),),
+                                                GestureDetector(
+                                                  onTap: () => myApplication.confirmDialog(context,
+                                                      "Delete this card ?",
+                                                      "Delete",
+                                                      Colors.red,
+                                                          (){
+                                                        if(creditCardMap.creditCard.length==1){
+                                                          creditCardMap.creditCard.clear();
+                                                          Navigator.pop(context);
+                                                          Navigator.pop(context);
+                                                          BlocProvider.of<WalletCubit>(context).emit((WalletEmpty()));
+                                                        }else{
+                                                          creditCardMap.creditCard.removeAt(index);
+                                                          Navigator.pop(context);
+                                                          Navigator.pop(context);
+                                                          BlocProvider.of<WalletCubit>(context).emit((WalletShowCards()));
+                                                        }
+                                                        showTopSnackBar(Overlay.of(context),
+                                                            const mySnackBar.success(message: "Deleted Successfully")
+                                                        );
+                                                      }),
+                                                  child: Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Container(
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(75),
+                                                        color: Colors.red.shade100.withOpacity(0.5),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          const Icon(Icons.delete_outline_rounded,color: Colors.orange,),
+                                                          SizedBox(width: myApplication.widthClc(10, context),),
+                                                          Text("Delete",style: TextStyle(color: Colors.orange,
+                                                              fontSize: myApplication.widthClc(14, context),
+                                                              fontWeight: FontWeight.w400),)
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(height: myApplication.hightClc(34, context),),
-                                              Container(
-                                                height: myApplication.hightClc(33, context),
-                                                width: myApplication.widthClc(343, context),
-                                                decoration: BoxDecoration(
-                                                    color: myColors.softblu,
-                                                    borderRadius: BorderRadius.circular(75)
+                                                SizedBox(height: myApplication.hightClc(34, context),),
+                                                Container(
+                                                  height: myApplication.hightClc(33, context),
+                                                  width: myApplication.widthClc(343, context),
+                                                  decoration: BoxDecoration(
+                                                      color: myColors.softblu,
+                                                      borderRadius: BorderRadius.circular(75)
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      const Icon(Icons.warning_amber,size: 20,color: myColors.blu,),
+                                                      SizedBox(width: myApplication.widthClc(10, context),),
+                                                      Text("Please don’t share this with any one",
+                                                        style: TextStyle(fontSize: myApplication.widthClc(12, context),
+                                                            fontWeight: FontWeight.w500,
+                                                            color: myColors.blu),),
+                                                    ],
+                                                  ),
                                                 ),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(Icons.warning_amber,size: 20,color: myColors.blu,),
-                                                    SizedBox(width: myApplication.widthClc(10, context),),
-                                                    Text("Please don’t share this with any one",
-                                                      style: TextStyle(fontSize: myApplication.widthClc(12, context),
-                                                          fontWeight: FontWeight.w500,
-                                                          color: myColors.blu),),
-                                                  ],
-                                                ),
-                                              ),
 
-                                            ],
-                                          ),
-                                        );
-                                      });
+                                              ],
+                                            ),
+                                          );
+                                        });
+                                  }
+
                                 },
                                 child: Hero(
                                   tag: index,
                                   child: SizedBox(
-                                    child: credit(index,true),
+                                    child:  myApplication.creditCard(creditCardMap.creditCard[index]["cardNumber"]!,
+                                        creditCardMap.creditCard[index]["expiryDate"]!,
+                                        creditCardMap.creditCard[index]["cardHolderName"]!,
+                                        creditCardMap.creditCard[index]["cvvCode"]!,
+                                        true
+                                    ),
                                     height: myApplication.hightClc(200, context),
                                   ),
                                 ),
@@ -253,22 +212,35 @@ credit(index,bool scure){
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
+
                       onTap: (){
+
                         showModalBottomSheet(
+
                           shape:RoundedRectangleBorder(
+
                             borderRadius: BorderRadius.circular(20),
+
                           ),
                             context: context,
+
                             builder: (BuildContext context){
                               return Container(
+
                                 color: Theme.of(context).scaffoldBackgroundColor,
+
                                 height: myApplication.hightClc(352, context),
+
                                 child: Column(
                                   children: [
+
                                     SizedBox(height: myApplication.hightClc(20, context),),
+
                                     Text("choose card",style: TextStyle(fontSize: myApplication.widthClc(18, context),
                                     fontWeight: FontWeight.w600),),
+
                                     SizedBox(height: myApplication.hightClc(10, context),),
+
                                     SizedBox(
                                       height: myApplication.hightClc(250, context),
                                       child: creditCardMap.creditCard.isEmpty
@@ -278,15 +250,18 @@ credit(index,bool scure){
                                           fontWeight: FontWeight.w600,
                                         ),),
                                       )
+
                                           : ListView.builder(
                                           shrinkWrap: true,
                                           itemCount: creditCardMap.creditCard.length,
                                           itemBuilder: (context,index){
                                             return GestureDetector(
+
                                               onTap: (){
                                                 Navigator.pop(context);
                                                 myApplication.navigateTo(addMonyAmount(index: index), context);
                                               },
+
                                               child: Container(
                                                 height: myApplication.hightClc(81, context),
                                                 margin: EdgeInsets.all(myApplication.widthClc(17, context),),
@@ -295,7 +270,7 @@ credit(index,bool scure){
                                                   color: Theme.of(context).scaffoldBackgroundColor,
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: Colors.grey.withOpacity(0.1),
+                                                      color: myColors.shadow,
                                                       blurRadius: 10,
                                                       offset: const Offset(1, 1.5),
                                                       spreadRadius: 10,
@@ -313,7 +288,7 @@ credit(index,bool scure){
                                                       ),
                                                     ),
                                                     Text(
-                                                      "${creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4)} **** **** ${creditCardMap.creditCard[index]["cardNumber"]!.substring(14,19)}",
+                                                      "${creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4)} **** **** ${creditCardMap.creditCard[index]["cardNumber"]!.substring(12,16)}",
                                                       style: TextStyle(
                                                         fontSize: myApplication.widthClc(16, context),
                                                         fontWeight: FontWeight.w600,
@@ -339,7 +314,7 @@ credit(index,bool scure){
                           borderRadius: BorderRadius.circular(75),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.1),
+                              color: myColors.shadow,
                               blurRadius: 10,
                               offset: const Offset(1, 1.5),
                               spreadRadius: 10,
@@ -394,7 +369,7 @@ credit(index,bool scure){
                                                   color: Theme.of(context).scaffoldBackgroundColor,
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      color: Colors.grey.withOpacity(0.1),
+                                                      color: myColors.shadow,
                                                       blurRadius: 10,
                                                       offset: const Offset(1, 1.5),
                                                       spreadRadius: 10,
@@ -404,6 +379,7 @@ credit(index,bool scure){
                                                 child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
+
                                                     Text(
                                                       creditCardMap.creditCard[index]["cardHolderName"]!,
                                                       style: TextStyle(
@@ -411,9 +387,9 @@ credit(index,bool scure){
                                                         fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
+
                                                     Text(
-                                                      "${creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4)} **** **** ${creditCardMap.creditCard[index]["cardNumber"]!.substring(14,19)}",
-                                                      style: TextStyle(
+                                                      "${creditCardMap.creditCard[index]["cardNumber"]!.substring(0,4)} **** **** ${creditCardMap.creditCard[index]["cardNumber"]!.substring(12,16)}",                                                      style: TextStyle(
                                                         fontSize: myApplication.widthClc(16, context),
                                                         fontWeight: FontWeight.w600,
                                                       ),
@@ -438,7 +414,7 @@ credit(index,bool scure){
                           borderRadius: BorderRadius.circular(75),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.1),
+                              color: myColors.shadow,
                               blurRadius: 10,
                               offset: const Offset(1, 1.5),
                               spreadRadius: 10,
@@ -461,7 +437,7 @@ credit(index,bool scure){
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
+                        color: myColors.shadow,
                         blurRadius: 10,
                         offset: const Offset(1, 1.5),
                         spreadRadius: 10,
@@ -513,7 +489,9 @@ credit(index,bool scure){
                           ],
                         ),
                         Divider(color: Theme.of(context).textTheme.bodyMedium!.color,),
+
                         SizedBox(height: myApplication.hightClc(14, context),),
+
                         Row(
                           children: [
                             Text("Limit per transaction",style: TextStyle(fontSize: myApplication.widthClc(14, context),
@@ -526,49 +504,70 @@ credit(index,bool scure){
 
                           ],
                         ),
+
                         SizedBox(height: myApplication.hightClc(22, context),),
+
                         Row(
                           children: [
+
                             Text("Cash withdrawal limit",style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w400,color: Colors.grey
-                            ),),
+                            ),
+                        ),
                             const Spacer(),
+
                             Text("EGP : 500",style: TextStyle(fontSize: myApplication.widthClc(14, context),
                                 fontWeight: FontWeight.w600
-                            )),
+                            )
 
+                          ),
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
+
                 SizedBox(height: myApplication.widthClc(18, context),),
+
                 SizedBox(
+
                   width: double.infinity,
                   child: Column(
+
                     crossAxisAlignment: CrossAxisAlignment.end,
+
                     children: [
+
                       GestureDetector(
+
                         onTap:(){
-                          myApplication.navigateTo( creditCardFill(), context);
+                          myApplication.navigateTo( const creditCardFill(), context);
                         },
+
                         child: SizedBox(
+
                           height: myApplication.hightClc(58, context),
                           width: myApplication.widthClc(58, context),
+
                           child: Stack(
                             children: [
+
                               Image.asset("assets/bottomNavFloat/bottomNavBg.png",  height: myApplication.hightClc(58, context),
                                 width: myApplication.widthClc(58, context),),
+
                               const Center(child: Icon(Icons.add))
+
                             ],
                           ),
                         ),
                       ),
+
                       Text("Add Card",style: TextStyle(fontWeight: FontWeight.w600,
                           fontSize: myApplication.widthClc(14, context),
                           color: myColors.blu
-                      ),),
+                      ),
+                     ),
                     ],
                   ),
                 ),

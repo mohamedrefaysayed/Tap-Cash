@@ -23,48 +23,67 @@ class home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body: Container(
+
         margin: const EdgeInsets.symmetric(vertical: 40),
+
         child: ListView(
+
           children: [
+
             //photo and hi
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
+
               child: Row(
+
                 children: [
+
                   ClipOval(
                       child: FittedBox(
                     fit: BoxFit.cover,
                     child: Image.asset(
                       "assets/profilePhoto.jpg",
-                      height: 45,
-                      width: 45,
+                      height: myApplication.hightClc(45, context),
+                      width: myApplication.widthClc(45, context),
                     ),
-                  )),
+                  )
+                ),
+
                   SizedBox(
                     width: myApplication.widthClc(15, context),
                   ),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+
                           const Text(
                             "Welcome Back",
                             style: TextStyle(fontSize: 18),
                           ),
+
                           SizedBox(
                             width: myApplication.widthClc(10, context),
                           ),
+
                           Image.asset(
                             "assets/Icons/hi.png",
-                            height: 20,
-                            width: 20,
+                            height: myApplication.hightClc(20, context),
+                            width: myApplication.widthClc(20, context),
                           ),
+
                         ],
                       ),
+
                       const Text(
                         "Mohamed Refay",
                         style: TextStyle(
@@ -72,75 +91,94 @@ class home extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: myColors.blu),
                       ),
+
                     ],
                   ),
+
                   const Spacer(),
+
                   GestureDetector(
+
                     onTap: (){
                       myApplication.navigateTo(const notifications(), context);
                     },
+
                     child: false ? Image.asset(
                       "assets/Icons/Bell_Icon.png",
                       height: 30,
                       width: 30,
                     ) : Image.asset(
                       "assets/Icons/bell_red.png",
-                      height: 30,
-                      width: 30,
+                      height: myApplication.hightClc(30, context),
+                      width: myApplication.widthClc(30, context),
                     ),
                   )
                 ],
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(23, context),
             ),
 
             //balance and cash back
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
+
               decoration: BoxDecoration(
                 boxShadow: [
+
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
               ),
-              height: 132,
-              width: 396,
+              height: myApplication.hightClc(132, context),
+              width: myApplication.widthClc(396, context),
+
               child: Stack(
+
                 children: [
+
                   Image.asset(
                     "assets/home/balance_bg.png",
-                    height: 132,
-                    width: 396,
+                    height: myApplication.hightClc(132, context),
+                    width: myApplication.widthClc(396, context),
                   ),
-                  const Positioned(
-                      left: 48,
-                      top: 18,
+
+                   Positioned(
+                      left: myApplication.widthClc(48, context),
+                      top: myApplication.hightClc(18, context),
                       child: Text(
                         "Wallet Balance",
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
                             fontWeight: FontWeight.w400),
-                      )),
-                  const Positioned(
-                      left: 48,
-                      top: 49,
+                      )
+                  ),
+
+                   Positioned(
+                      left: myApplication.widthClc(48, context),
+                      top: myApplication.hightClc(49, context),
                       child: Text(
                         "EGP: 625",
                         style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.w600),
-                      )),
+                      )
+                  ),
+
                   Positioned(
-                      left: 48,
-                      top: 80,
+
+                      left: myApplication.widthClc(48, context),
+                      top: myApplication.hightClc(80, context),
+
                       child: GestureDetector(
                         onTap: (){
                           myApplication.navigateTo(cashBack(), context);
@@ -179,27 +217,37 @@ class home extends StatelessWidget {
 
             //add & send & smart card
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              height: 121,
-              width: 396,
+
+              height: myApplication.hightClc(121, context),
+              width: myApplication.widthClc(396, context),
+
               decoration: BoxDecoration(
+
                 borderRadius: BorderRadius.circular(20),
+
                 color: Theme.of(context).scaffoldBackgroundColor,
+
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
                 ],
               ),
+
               child: Row(
+
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                 children: [
                   //ADD
                   GestureDetector(
                     onTap: () {
+
                       showModalBottomSheet(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -214,29 +262,38 @@ class home extends StatelessWidget {
                                     topRight: Radius.circular(20),
                                     topLeft: Radius.circular(20)),
                               ),
+
                               width: double.infinity,
-                              height: 450,
+                              height: myApplication.hightClc(450, context),
+
                               child: Column(
                                 children: [
+
                                   Container(
-                                      margin: const EdgeInsets.only(
-                                        left: 40,
-                                        right: 40,
-                                        top: 30,
-                                        bottom: 10,
+
+                                      margin:  EdgeInsets.only(
+                                        left: myApplication.widthClc(40, context),
+                                        right: myApplication.widthClc(40, context),
+                                        top: myApplication.hightClc(30, context),
+                                        bottom: myApplication.hightClc(10, context),
                                       ),
+
                                       child: const Text(
                                         "Select how to add money to your tap cash acount",
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600),
-                                      )),
+                                      )
+                                  ),
+
                                   GestureDetector(
+
                                     onTap: () {
                                       Navigator.pop(context);
                                       myApplication.navigateTo(
                                            creditCardFill(), context);
                                     },
+
                                     child: const bottomSheetWidget(
                                         icon: Icon(
                                           FontAwesomeIcons.creditCard,
@@ -244,12 +301,15 @@ class home extends StatelessWidget {
                                         ),
                                         text: "Add Card"),
                                   ),
+
                                   GestureDetector(
+
                                     onTap: () {
                                       Navigator.pop(context);
                                       myApplication.push_up(
                                           context, requestAmount());
                                     },
+
                                     child: const bottomSheetWidget(
                                         icon: Icon(
                                           Icons.people,
@@ -257,28 +317,38 @@ class home extends StatelessWidget {
                                           size: 30,
                                         ),
                                         text: "Request from tap cash friends"),
+
                                   ),
+
                                   GestureDetector(
+
                                     onTap: () {
                                       Navigator.pop(context);
                                     },
+
                                     child: bottomSheetWidget(
+
                                         icon: Image.asset(
                                           "assets/bottomSheeet/fawry.png",
-                                          height: 40,
-                                          width: 40,
+                                          height: myApplication.hightClc(40, context),
+                                          width: myApplication.widthClc(40, context),
                                         ),
+
                                         text: "Add cash through fawry"),
                                   ),
+
                                   GestureDetector(
+
                                     onTap: () {
                                       Navigator.pop(context);
                                     },
+
                                     child: bottomSheetWidget(
+
                                         icon: Image.asset(
                                           "assets/bottomSheeet/instapay.png",
-                                          height: 40,
-                                          width: 40,
+                                          height: myApplication.hightClc(40, context),
+                                          width: myApplication.widthClc(40, context),
                                         ),
                                         text: "Receive from instapay   "),
                                   ),
@@ -290,9 +360,10 @@ class home extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
                         Container(
-                          height: 63,
-                          width: 63,
+                          height: myApplication.hightClc(63, context),
+                          width: myApplication.widthClc(63, context),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: myColors.softblu,
@@ -303,9 +374,11 @@ class home extends StatelessWidget {
                             color: myColors.blu,
                           ),
                         ),
+
                         SizedBox(
                           height: myApplication.hightClc(10, context),
                         ),
+
                         const Text(
                           "Add",
                           style: TextStyle(
@@ -313,19 +386,24 @@ class home extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
+
                       ],
                     ),
                   ),
 
                   //Send
                   GestureDetector(
+
                     onTap: () {
+
                       showModalBottomSheet(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
+
                           context: context,
                           builder: (BuildContext context) {
+
                             return Container(
                               decoration: BoxDecoration(
                                 color:
@@ -334,16 +412,19 @@ class home extends StatelessWidget {
                                     topRight: Radius.circular(20),
                                     topLeft: Radius.circular(20)),
                               ),
+
                               width: double.infinity,
-                              height: 450,
+                              height: myApplication.hightClc(450, context),
+
                               child: Column(
                                 children: [
+
                                   Container(
-                                      margin: const EdgeInsets.only(
-                                        left: 40,
-                                        right: 40,
-                                        top: 30,
-                                        bottom: 10,
+                                      margin:  EdgeInsets.only(
+                                        left: myApplication.widthClc(40, context),
+                                        right: myApplication.widthClc(40, context),
+                                        top: myApplication.hightClc(30, context),
+                                        bottom: myApplication.hightClc(10, context),
                                       ),
                                       child: const Text(
                                         "Select how to send money from your tap cash acount",
@@ -370,8 +451,8 @@ class home extends StatelessWidget {
                                     child: bottomSheetWidget(
                                         icon: Image.asset(
                                           "assets/bottomSheeet/orangCash.png",
-                                          height: 40,
-                                          width: 40,
+                                          height: myApplication.hightClc(40, context),
+                                          width: myApplication.widthClc(40, context),
                                         ),
                                         text: "Orange Cash "),
                                   ),
@@ -380,8 +461,8 @@ class home extends StatelessWidget {
                                     child: bottomSheetWidget(
                                         icon: Image.asset(
                                           "assets/bottomSheeet/etslatCash.png",
-                                          height: 40,
-                                          width: 40,
+                                          height: myApplication.hightClc(40, context),
+                                          width: myApplication.widthClc(40, context),
                                         ),
                                         text: "Etisalat Cash"),
                                   ),
@@ -390,8 +471,8 @@ class home extends StatelessWidget {
                                     child: bottomSheetWidget(
                                         icon: Image.asset(
                                           "assets/bottomSheeet/vodafonCash.png",
-                                          height: 40,
-                                          width: 40,
+                                          height: myApplication.hightClc(40, context),
+                                          width: myApplication.widthClc(40, context),
                                         ),
                                         text: "Vodafon cash"),
                                   ),
@@ -404,23 +485,30 @@ class home extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          height: 63,
-                          width: 63,
+
+                          height: myApplication.hightClc(63, context),
+                          width: myApplication.widthClc(63, context),
+
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: myColors.softblu,
                           ),
+
                           child: Transform.rotate(
                               angle: -30 * math.pi / 180,
                               child: const Icon(
                                 Icons.send_rounded,
                                 size: 30,
                                 color: myColors.blu,
-                              )),
+                              )
+                          ),
+
                         ),
+
                         SizedBox(
                           height: myApplication.hightClc(10, context),
                         ),
+
                         const Text(
                           "Send",
                           style: TextStyle(
@@ -428,21 +516,25 @@ class home extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
+
                       ],
                     ),
                   ),
 
                   //smart card
                   GestureDetector(
+
                     onTap: () {
                       myApplication.navigateTo(exportsCard(), context);
                     },
+
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
                         Container(
-                          height: 63,
-                          width: 63,
+                          height: myApplication.hightClc(63, context),
+                          width: myApplication.widthClc(63, context),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: myColors.softblu,
@@ -487,7 +579,7 @@ class home extends StatelessWidget {
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
+                      color: myColors.shadow,
                       blurRadius: 10,
                       offset: const Offset(1, 1.5),
                       spreadRadius: 10,
@@ -546,7 +638,7 @@ class home extends StatelessWidget {
                 color: Theme.of(context).scaffoldBackgroundColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
@@ -733,7 +825,7 @@ class home extends StatelessWidget {
                 color: Theme.of(context).scaffoldBackgroundColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
@@ -809,7 +901,7 @@ class home extends StatelessWidget {
                             color: Theme.of(context).scaffoldBackgroundColor,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
+                                color: myColors.shadow,
                                 blurRadius: 10,
                                 offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
@@ -852,7 +944,7 @@ class home extends StatelessWidget {
                             color: Theme.of(context).scaffoldBackgroundColor,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
+                                color: myColors.shadow,
                                 blurRadius: 10,
                                 offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
@@ -906,7 +998,7 @@ class home extends StatelessWidget {
                         color: Theme.of(context).scaffoldBackgroundColor,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
+                            color: myColors.shadow,
                             blurRadius: 10,
                             offset: const Offset(1, 1.5),
                             spreadRadius: 10,
@@ -934,7 +1026,7 @@ class home extends StatelessWidget {
                         color: Theme.of(context).scaffoldBackgroundColor,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
+                            color: myColors.shadow,
                             blurRadius: 10,
                             offset: const Offset(1, 1.5),
                             spreadRadius: 10,
@@ -962,7 +1054,7 @@ class home extends StatelessWidget {
                         color: Theme.of(context).scaffoldBackgroundColor,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
+                            color: myColors.shadow,
                             blurRadius: 10,
                             offset: const Offset(1, 1.5),
                             spreadRadius: 10,

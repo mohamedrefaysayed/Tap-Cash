@@ -46,7 +46,7 @@ class exportsCard extends StatelessWidget {
                     color: Theme.of(context).scaffoldBackgroundColor,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
+                        color: myColors.shadow,
                         blurRadius: 10,
                         offset: const Offset(1, 1.5),
                         spreadRadius: 10,
@@ -94,7 +94,7 @@ class exportsCard extends StatelessWidget {
                                         height: myApplication.hightClc(48, context),
                                         width: myApplication.widthClc(278, context),
                                         decoration: BoxDecoration(
-                                          color: Theme.of(context).scaffoldBackgroundColor,
+                                          color: myColors.softblu,
                                           borderRadius: BorderRadius.circular(75),
                                         ),
                                         child: Center(
@@ -132,7 +132,7 @@ class exportsCard extends StatelessWidget {
                       color: Theme.of(context).scaffoldBackgroundColor,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.1),
+                          color: myColors.shadow,
                           blurRadius: 10,
                           offset: const Offset(1, 1.5),
                           spreadRadius: 10,

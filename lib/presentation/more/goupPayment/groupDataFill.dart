@@ -77,7 +77,7 @@ class groupDataFill extends StatelessWidget {
                         borderRadius: BorderRadius.circular(75),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
+                            color: myColors.shadow,
                             blurRadius: 10,
                             offset: const Offset(1, 1.5),
                             spreadRadius: 10,

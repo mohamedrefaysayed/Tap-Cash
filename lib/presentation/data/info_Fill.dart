@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
@@ -15,90 +17,133 @@ class infoFill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
+
       onTap: () => myApplication.keyboardFocus(context),
+
       child: Scaffold(
+
         appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+
         body: Container(
+
           margin: const EdgeInsets.all(20),
+
           child: ListView(
+
             children: [
+
               const Text(
                 "Fill Your Profile",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
+
               SizedBox(
                 height: myApplication.hightClc(24, context),
               ),
+
               const Text("You Can Change It Later", style: TextStyle(fontSize: 14)),
+
               SizedBox(
                 height: myApplication.hightClc(42, context),
               ),
+
               Stack(
+
                 children: [
+
                   Center(
+
                     child: Container(
-                      height: 130,
-                      width: 130,
+
+                      height: myApplication.hightClc(130, context),
+                      width: myApplication.widthClc(130, context),
+
                       decoration: BoxDecoration(
                         color: Colors.grey.withOpacity(0.5),
                         shape: BoxShape.circle,
                       ),
+
                       child: BlocBuilder<InfoCubit, InfoState>(
                         builder: (context, state) {
                           return Container(
                             child: InfoCubit.image == null
-                                ? const Icon(
+                                ?  Icon(
                                     Icons.person,
                                     color: Colors.grey,
-                                    size: 100,
+                                    size: myApplication.widthClc(100, context),
                                   )
+
                                 : ClipOval(
                                     child: FittedBox(
                                     fit: BoxFit.cover,
                                     child: Image.file(InfoCubit.image!),
                                   )),
+
                           );
+
                         },
                       ),
                     ),
                   ),
                   Positioned(
-                      left: 200,
-                      top: 90,
+
+                      left: myApplication.widthClc(200, context),
+                      top: myApplication.hightClc(90, context),
+
                       child: GestureDetector(
+
                         onTap: () => myApplication.imageDialog(context),
+
                         child: Container(
-                          width: 35,
-                          height: 35,
+
+                          width: myApplication.widthClc(35, context),
+                          height: myApplication.hightClc(35, context),
+
                           decoration: BoxDecoration(
+
                               boxShadow: [
+
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
+                                  color: myColors.shadow,
                                   blurRadius: 10,
                                   offset: const Offset(1, 1.5),
                                   spreadRadius: 10,
                                 )
+
                               ],
+
                               color: Theme.of(context).dialogBackgroundColor,
-                              shape: BoxShape.circle),
+
+                              shape: BoxShape.circle
+                          ),
+
                           child: const Icon(
                             Icons.edit,
                             color: myColors.blu,
                             size: 20,
                           ),
+
                         ),
                       )),
                 ],
               ),
+
               SizedBox(
                 height: myApplication.hightClc(83, context),
               ),
+
               Form(
+
                 key: formkey,
+
                 child: Column(
+
                   children: [
+
                     TextFormField(
+
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Enter Your Full Name';
@@ -108,18 +153,26 @@ class infoFill extends StatelessWidget {
                           return null;
                         }
                       },
+
                       keyboardType: TextInputType.name,
+
                       style: Theme.of(context).textTheme.bodySmall,
+
                       onChanged: (val) {
                         InfoCubit.fullName = val;
                       },
+
                       decoration: InputDecoration(
+
                         enabledBorder: OutlineInputBorder(
+
                           borderRadius: BorderRadius.circular(75),
+
                           borderSide: BorderSide(
                             color: myColors.blu.withOpacity(0.3),
                             width: 2,
                           ),
+
                         ),
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -128,10 +181,13 @@ class infoFill extends StatelessWidget {
                         labelText: "Full Name",
                       ),
                     ),
+
                     SizedBox(
                       height: myApplication.hightClc(25, context),
                     ),
+
                     TextFormField(
+
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Enter Your Nickname';
@@ -141,11 +197,15 @@ class infoFill extends StatelessWidget {
                           return null;
                         }
                       },
+
                       keyboardType: TextInputType.name,
+
                       style: Theme.of(context).textTheme.bodySmall,
+
                       onChanged: (val) {
                         InfoCubit.nickName = val;
                       },
+
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(75),
@@ -160,26 +220,38 @@ class infoFill extends StatelessWidget {
                             borderRadius: BorderRadius.circular(75)),
                         labelText: "Nickname",
                       ),
+
                     ),
                   ],
                 ),
               ),
+
               SizedBox(
                 height: myApplication.hightClc(150, context),
               ),
+
               BlocConsumer<InfoCubit, InfoState>(
                 listener: (context,state){
+
                   if(state is InfoSuccess){
-                    showTopSnackBar(Overlay.of(context), mySnackBar.success(message: "Saved Successfully"));
-                    myApplication.navigateTo(creatPIN(), context);
+
+                    showTopSnackBar(Overlay.of(context), const mySnackBar.success(message: "Saved Successfully"));
+
+                    myApplication.navigateTo(const creatPIN(), context);
+
                   }
                 },
+
                 builder: (context, state) {
+
                   if(state is InfoLoading){
+
                     return const Center(
                       child: CircularProgressIndicator(color: myColors.blu,),
                     );
+
                   }else{
+
                     return confirmButton(
                         ontap: () {
                           if (formkey.currentState!.validate()) {
@@ -187,12 +259,15 @@ class infoFill extends StatelessWidget {
                           }
                         },
                         text: "Continue");
+
                   }
                 },
               ),
+
               SizedBox(
                 height: myApplication.hightClc(63, context),
               ),
+
             ],
           ),
         ),

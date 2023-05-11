@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
+import 'package:tap_cash/helper/constants/myColors.dart';
 
 class moreWiget extends StatelessWidget {
   const moreWiget({Key? key, required this.text, required this.color, required this.ontap}) : super(key: key);
@@ -23,7 +24,7 @@ class moreWiget extends StatelessWidget {
               color: Theme.of(context).scaffoldBackgroundColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: myColors.shadow,
                   blurRadius: 10,
                   offset: const Offset(1, 1.5),
                   spreadRadius: 10,

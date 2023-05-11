@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, use_build_context_synchronously, invalid_use_of_protected_member, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/add&send/add_send_cubit.dart';
@@ -7,6 +9,7 @@ import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
 import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 
+// ignore: camel_case_types
 class requestAmount extends StatelessWidget {
   requestAmount({Key? key}) : super(key: key);
 
@@ -95,8 +98,12 @@ class requestAmount extends StatelessWidget {
                           width: 2,
                         ),
                       ),
+
                       contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      EdgeInsets.symmetric(
+                          horizontal: myApplication.widthClc(30, context),
+                          vertical: myApplication.hightClc(15, context)
+                      ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(75)),
                       labelText: "Friend ID",
@@ -121,7 +128,7 @@ class requestAmount extends StatelessWidget {
                             color: Theme.of(context).scaffoldBackgroundColor,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
+                                color: myColors.shadow,
                                 blurRadius: 10,
                                 offset: const Offset(1, 1.5),
                                 spreadRadius: 10,

@@ -4,15 +4,72 @@ import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_credit_card/credit_card_brand.dart';
+import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:flutter_credit_card/custom_card_type_icon.dart';
+import 'package:flutter_credit_card/glassmorphism_config.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tap_cash/business_logic/info/info_cubit.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
+import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';
 import 'package:tap_cash/helper/widgets/snackBar/my_SnackBar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 DateTime? currentBackPressTime;
 
 class myApplication {
+
+
+
+  static creditCard(cardNumber,expiryDate,cardHolderName,cvvCode,scure){
+
+    bool useGlassMorphism = false;
+    bool isCvvFocused = false;
+    UnderlineInputBorder? border = UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
+    return myCreditCardWidget(
+
+      textStyle: TextStyle(
+        color: Colors.white,
+        fontFamily: 'halter',
+        fontSize: 12,
+        package: 'flutter_credit_card',
+      ),
+
+      glassmorphismConfig:
+      useGlassMorphism ? Glassmorphism.defaultConfig() : null,
+      cardNumber: cardNumber,
+      expiryDate: expiryDate,
+      cardHolderName: cardHolderName,
+      cvvCode: cvvCode,
+      bankName: 'Tap Cash',
+      frontCardBorder: !useGlassMorphism
+          ? Border.all(color: Colors.grey)
+          : null,
+      backCardBorder: !useGlassMorphism
+          ? Border.all(color: Colors.grey)
+          : null,
+      showBackView: isCvvFocused,
+      obscureCardNumber: scure,
+      obscureCardCvv: scure,
+      isHolderNameVisible: true,
+      cardBgColor: myColors.blu,
+      backgroundImage: "assets/card/Card_pg.png",
+      isSwipeGestureEnabled: true,
+      onCreditCardWidgetChange:
+          (CreditCardBrand creditCardBrand) {},
+      customCardTypeIcons: <CustomCardTypeIcon>[
+        CustomCardTypeIcon(
+          cardType: CardType.mastercard,
+          cardImage: Image.asset(
+            'assets/card/mastercard.png',
+            height: 48,
+            width: 48,
+          ),
+        ),
+      ],
+    );
+  }
+
   static Widget backIcon(BuildContext context, Function fun) {
     return IconButton(
         onPressed: () {
@@ -37,7 +94,6 @@ class myApplication {
           FadeTransition(opacity: a, child: c),
     ),
   );
-
 
   static double hightClc(int myHeight, BuildContext context) {
     return MediaQuery.of(context).size.height * myHeight / 856.7272727272727;
@@ -207,7 +263,7 @@ class myApplication {
                 color: Theme.of(context).scaffoldBackgroundColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
@@ -335,7 +391,7 @@ class myApplication {
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
+                      color: myColors.shadow,
                       blurRadius: 10,
                       offset: const Offset(1, 1.5),
                       spreadRadius: 10,
@@ -363,7 +419,7 @@ class myApplication {
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
+                      color: myColors.shadow,
                       blurRadius: 10,
                       offset: const Offset(1, 1.5),
                       spreadRadius: 10,

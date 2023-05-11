@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/sign_In/sign_in_cubit.dart';
@@ -16,32 +18,45 @@ class signIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
+
       onTap: () => myApplication.keyboardFocus(context),
+
       child: Scaffold(
+
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+
           body: SingleChildScrollView(
+
             scrollDirection: Axis.vertical,
+
             child: Container(
+
               margin: const EdgeInsets.all(20),
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   Text(
                     "Login To Your",
                     style: TextStyle(
                         fontSize: myApplication.widthClc(24, context),
                         fontWeight: FontWeight.bold),
                   ),
+
                   Text(
                     "Account",
                     style: TextStyle(
                         fontSize: myApplication.widthClc(24, context),
                         fontWeight: FontWeight.bold),
                   ),
+
                   SizedBox(
                     height: myApplication.hightClc(220, context),
                   ),
+
                   Form(
                     key: formkey,
                     child: Column(
@@ -50,7 +65,7 @@ class signIn extends StatelessWidget {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter Your Email';
-                            } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+                            } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
                               return 'Enter Valid Email';
                             } else {
                               return null;
@@ -130,9 +145,11 @@ class signIn extends StatelessWidget {
                       ],
                     ),
                   ),
+
                   SizedBox(
                     height: myApplication.hightClc(25, context),
                   ),
+
                   BlocBuilder<SignInCubit, SignInState>(
                     builder: (context, state) {
                       return GestureDetector(
@@ -141,12 +158,15 @@ class signIn extends StatelessWidget {
                         },
                         child: Row(
                           children: [
+
                             SizedBox(
                               width: myApplication.widthClc(15, context),
                             ),
+
                             Container(
-                              height: 25,
-                              width: 25,
+
+                              height: myApplication.hightClc(25, context),
+                              width: myApplication.widthClc(25, context),
                               decoration: BoxDecoration(
                                 color: SignInCubit.remember
                                     ? myColors.blu
@@ -169,21 +189,27 @@ class signIn extends StatelessWidget {
                                       ),
                               ),
                             ),
+
                             SizedBox(
                               width: myApplication.widthClc(10, context),
                             ),
+
                             const Text("Remember Me",
                                 style:
                                     TextStyle(fontSize: 12, color: myColors.blu)),
+
                           ],
                         ),
                       );
                     },
                   ),
+
                   SizedBox(
                     height: myApplication.hightClc(90, context),
                   ),
+
                   BlocConsumer<SignInCubit, SignInState>(
+
                     listener: (context, state) {
                       if (state is SignInSuccess) {
                         showTopSnackBar(Overlay.of(context),
@@ -193,13 +219,14 @@ class signIn extends StatelessWidget {
                         showTopSnackBar(Overlay.of(context),
                              mySnackBar.error(message: state.errormessage));                    }
                     },
+
                     builder: (context, state) {
                       return BlocBuilder<SignInCubit, SignInState>(
                         builder: (context, state) {
                           if (state is SignInLoading) {
-                            return const SizedBox(
-                              height: 48,
-                              child: Center(child: CircularProgressIndicator()),
+                            return  SizedBox(
+                              height: myApplication.hightClc(48, context),
+                              child: const Center(child: CircularProgressIndicator()),
                             );
                           } else {
                             return confirmButton(
@@ -215,21 +242,27 @@ class signIn extends StatelessWidget {
                       );
                     },
                   ),
+
                   SizedBox(
                     height: myApplication.hightClc(32, context),
                   ),
+
                   Center(
                     child: TextButton(
                         onPressed: () => myApplication.navigateTo(
                             emailFill(
+
                               title: Text(
                                 "Forget Password",
                                 style: TextStyle(
                                     fontSize: myApplication.widthClc(24, context),
                                     fontWeight: FontWeight.bold),
-                              ), reset: true,
+                              ),
+
+                              reset: true,
                             ),
                             context),
+
                         child: Text(
                           "Forget The Password ?",
                           style: TextStyle(
