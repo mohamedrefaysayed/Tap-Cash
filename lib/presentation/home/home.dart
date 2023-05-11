@@ -36,8 +36,8 @@ class home extends StatelessWidget {
                   ClipOval(
                       child: FittedBox(
                     fit: BoxFit.cover,
-                    child: Image.network(
-                      "https://yt3.googleusercontent.com/ytc/AGIKgqNARqe1ySQ4HhxtFBmgL0MXOg-b-dps6N90hgO7=s900-c-k-c0x00ffffff-no-rj",
+                    child: Image.asset(
+                      "assets/profilePhoto.jpg",
                       height: 45,
                       width: 45,
                     ),

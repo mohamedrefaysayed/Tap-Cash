@@ -10,26 +10,41 @@ import 'package:tap_cash/presentation/main_Screen/mainScreen.dart';
 class requestAmount extends StatelessWidget {
   requestAmount({Key? key}) : super(key: key);
 
+
+  //formKey (Make Valdation)
   final formkey = GlobalKey<FormState>();
 
+  //NID for Friend To Request Money
   String friendID = "";
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => myApplication.keyboardFocus(context),
+
       child: WillPopScope(
+
         onWillPop: () {
           return Future.value(true);
         },
+
         child: Scaffold(
+
           resizeToAvoidBottomInset: false,
+
+          //ApBar
           appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+
+          //Body
           body: Container(
+
             margin: const EdgeInsets.all(20),
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+                //ScreenTitle
                 Text(
                   "Enter Your Friend ID Number",
                   style: TextStyle(
@@ -47,9 +62,13 @@ class requestAmount extends StatelessWidget {
                   height: myApplication.hightClc(170, context),
                 ),
 
+                // Id Text Field
                 Form(
+
                   key: formkey,
+
                   child: TextFormField(
+
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter your Friend ID Number';
@@ -59,11 +78,15 @@ class requestAmount extends StatelessWidget {
                         return null;
                       }
                     },
+
                     keyboardType: TextInputType.visiblePassword,
+
                     style: Theme.of(context).textTheme.bodySmall,
+
                     onChanged: (val) {
                       friendID = val;
                     },
+
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(75),
@@ -78,11 +101,15 @@ class requestAmount extends StatelessWidget {
                           borderRadius: BorderRadius.circular(75)),
                       labelText: "Friend ID",
                     ),
+
                   ),
                 ),
+
                 SizedBox(
                   height: myApplication.hightClc(50, context),
                 ),
+
+                //Slider To Select Amount
                 BlocBuilder<AddSendCubit, AddSendState>(
                   builder: (context, state) {
                     return Column(
@@ -127,16 +154,24 @@ class requestAmount extends StatelessWidget {
                     );
                   },
                 ),
+
+                //Confrimation Button
                 Expanded(
                   child: Column(
                     children: [
+
                       const Spacer(),
+
                       confirmButton(
+
                           ontap: () async{
                             if (formkey.currentState!.validate()) {
                               await LocalAuthCubit.authenticate(context);
                               if(LocalAuthCubit.authenticated){
-                                myApplication.doneDialog(context,"Amount requested successfully",(_) => myApplication.navigateTo(const mainScreen(), context));
+                                myApplication.doneDialog(
+                                    context,
+                                    "Amount requested successfully",
+                                        (_) => myApplication.navigateTo(const mainScreen(), context));
                               }
                             }
                           },

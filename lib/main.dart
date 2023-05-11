@@ -71,7 +71,7 @@ class Tap_Cash extends StatelessWidget {
           darkTheme: Mythems.darktheme,
           debugShowCheckedModeBanner: false,
           title: 'Tap Cash',
-          home: kidHome(),
+          home: splashLogo(),
         ),
       ),
     );
