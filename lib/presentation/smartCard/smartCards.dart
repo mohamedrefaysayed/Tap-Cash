@@ -1,14 +1,13 @@
+// ignore_for_file: file_names, camel_case_types, invalid_use_of_visible_for_testing_member, must_be_immutable, invalid_use_of_protected_member, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/business_logic/smartCards/smart_cards_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
 import 'package:tap_cash/helper/data_Maps/smartCard.dart';
 import 'package:tap_cash/helper/widgets/confirm_Button.dart';
-import 'package:tap_cash/helper/widgets/credit_Card/myCreditCard.dart';
 import 'package:tap_cash/presentation/smartCard/amountSit.dart';
 
 class smartCards extends StatelessWidget {
@@ -21,49 +20,6 @@ class smartCards extends StatelessWidget {
 
   bool useBackgroundImage = false;
 
-
-  credit(index){
-    return myCreditCardWidget(
-      textStyle: const TextStyle(
-        color: Colors.white,
-        fontFamily: 'halter',
-        fontSize: 12,
-        package: 'flutter_credit_card',
-      ),
-      glassmorphismConfig:
-      useGlassMorphism ? Glassmorphism.defaultConfig() : null,
-      cardNumber: smartCard.creditCards[index]["cardNumber"]!,
-      expiryDate: smartCard.creditCards[index]["expiryDate"]!,
-      cardHolderName: smartCard.creditCards[index]["cardHolderName"]!,
-      cvvCode: smartCard.creditCards[index]["cvvCode"]!,
-      bankName: 'Tap Cash',
-      frontCardBorder: !useGlassMorphism
-          ? Border.all(color: Colors.grey)
-          : null,
-      backCardBorder: !useGlassMorphism
-          ? Border.all(color: Colors.grey)
-          : null,
-      showBackView: isCvvFocused,
-      obscureCardNumber: false,
-      obscureCardCvv: false,
-      isHolderNameVisible: true,
-      cardBgColor: myColors.blu,
-      backgroundImage: "assets/card/Card_pg.png",
-      isSwipeGestureEnabled: true,
-      onCreditCardWidgetChange:
-          (CreditCardBrand creditCardBrand) {},
-      customCardTypeIcons: <CustomCardTypeIcon>[
-        CustomCardTypeIcon(
-          cardType: CardType.mastercard,
-          cardImage: Image.asset(
-            'assets/card/mastercard.png',
-            height: 48,
-            width: 48,
-          ),
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +82,15 @@ class smartCards extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Center(
-                                    child: credit(index),
+
+                                    child: myApplication.creditCard(
+                                        smartCard.creditCards[index]["cardNumber"],
+                                        smartCard.creditCards[index]["expiryDate"],
+                                        smartCard.creditCards[index]["cardHolderName"],
+                                        smartCard.creditCards[index]["cvvCode"],
+                                        false
+                                    ),
+
                                   ),
                                   SizedBox(height: myApplication.hightClc(30, context),),
                                 ],

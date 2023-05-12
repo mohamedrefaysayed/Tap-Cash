@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
@@ -15,7 +17,7 @@ class _splashLogoState extends State<splashLogo> {
 
   @override
   void initState() {
-    Timer(Duration(seconds: 2), () {myApplication.push_fade(context,splash());});
+    Timer(const Duration(seconds: 2), () {myApplication.push_fade(context,const splash());});
     super.initState();
   }
 
@@ -25,9 +27,9 @@ class _splashLogoState extends State<splashLogo> {
     return  Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
-          child: Container(
-            height: 260,
-            width: 260,
+          child: SizedBox(
+            height: myApplication.hightClc(260, context),
+            width: myApplication.widthClc(260, context),
             child: ClipOval(
                 child: Center(
                   child: Transform.scale(

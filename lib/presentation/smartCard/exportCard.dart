@@ -1,3 +1,7 @@
+// ignore_for_file: camel_case_types, duplicate_ignore, file_names, must_be_immutable, use_build_context_synchronously
+
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tap_cash/business_logic/local_Auth/local_auth_cubit.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
@@ -39,8 +43,10 @@ class exportsCard extends StatelessWidget {
                 ),
 
                 Container(
+
                   height: myApplication.hightClc(207, context),
                   width: myApplication.widthClc(396, context),
+
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Theme.of(context).scaffoldBackgroundColor,

@@ -1,7 +1,7 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'dart:async';
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tap_cash/data/chach_helper.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
@@ -29,9 +29,9 @@ class _splashState extends State<splash> with TickerProviderStateMixin{
   void initState(){
 
     Controller = AnimationController(
-        vsync: this,duration: Duration(milliseconds: 500));
+        vsync: this,duration: const Duration(milliseconds: 500));
     SplashAnimation = Tween<Offset>(
-        begin: Offset(0.0,0.6),
+        begin: const Offset(0.0,0.6),
         end: Offset.zero
     ).animate(CurvedAnimation(parent: Controller!, curve: Curves.linear));
     Controller!.forward();
@@ -42,8 +42,8 @@ class _splashState extends State<splash> with TickerProviderStateMixin{
       ? {myApplication.navigateToRemove(context, onBoard()),CahchHelper.saveData(key: "firtTime", value: false)}
       : {
         isLogin
-        ? myApplication.navigateToRemove(context, mainScreen())
-        : myApplication.navigateToRemove(context, signUp())
+        ? myApplication.navigateToRemove(context, const mainScreen())
+        : myApplication.navigateToRemove(context, const signUp())
       };
 
     });
@@ -56,12 +56,13 @@ class _splashState extends State<splash> with TickerProviderStateMixin{
     Controller!.dispose();
     super.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myColors.blu,
         body: SlideTransition(
           position: SplashAnimation!,
-          child:Container(
+          child:SizedBox(
               width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

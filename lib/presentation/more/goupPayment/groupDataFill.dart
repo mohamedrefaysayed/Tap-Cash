@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, file_names, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, non_constant_identifier_names, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/business_logic/groupPayment/group_payment_cubit.dart';
@@ -15,13 +17,19 @@ class groupDataFill extends StatelessWidget {
 
   final formkey = GlobalKey<FormState>();
 
+  String groupName = "";
+  String IdNumbers = "";
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => myApplication.keyboardFocus(context),
       child: Scaffold(
+
         appBar: AppBar(leading: myApplication.backIcon(context, () {})),
+
         body: Container(
+
           margin: const EdgeInsets.all(20),
           child: ListView(
             children: [
@@ -36,6 +44,7 @@ class groupDataFill extends StatelessWidget {
                 key: formkey,
                 child: Column(
                   children: [
+
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -49,7 +58,7 @@ class groupDataFill extends StatelessWidget {
                       keyboardType: TextInputType.name,
                       style: Theme.of(context).textTheme.bodySmall,
                       onChanged: (val) {
-                        InfoCubit.fullName = val;
+                        groupName = val;
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
@@ -92,7 +101,6 @@ class groupDataFill extends StatelessWidget {
                             onTap: () {
                               if (GroupPaymentCubit.counter > 2) {
                                 GroupPaymentCubit.counter--;
-                                print(GroupPaymentCubit.counter);
                                 BlocProvider.of<GroupPaymentCubit>(context)
                                     .emit(GroupPaymentCounter());
                               }
@@ -127,7 +135,6 @@ class groupDataFill extends StatelessWidget {
                             onTap: () {
                               if (GroupPaymentCubit.counter < 10) {
                                 GroupPaymentCubit.counter++;
-                                print(GroupPaymentCubit.counter);
                                 BlocProvider.of<GroupPaymentCubit>(context)
                                     .emit(GroupPaymentCounter());
                               }
@@ -151,14 +158,14 @@ class groupDataFill extends StatelessWidget {
                     ),
                     BlocBuilder<GroupPaymentCubit, GroupPaymentState>(
                       builder: (context, state) {
-                        return Container(
+                        return SizedBox(
                           height: myApplication.hightClc(300, context),
                           child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: GroupPaymentCubit.counter,
+                              itemCount: GroupPaymentCubit.counter-1,
                               itemBuilder: (context, index) {
                                 return Container(
-                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                  margin: const EdgeInsets.symmetric(vertical: 10),
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -198,15 +205,17 @@ class groupDataFill extends StatelessWidget {
                   ],
                 ),
               ),
+
               SizedBox(
                 height: myApplication.hightClc(50, context),
               ),
+
               BlocConsumer<InfoCubit, InfoState>(
                 listener: (context, state) {
                   if (state is InfoSuccess) {
                     showTopSnackBar(Overlay.of(context),
-                        mySnackBar.success(message: "Saved Successfully"));
-                    myApplication.navigateTo(creatPIN(), context);
+                        const mySnackBar.success(message: "Saved Successfully"));
+                    myApplication.navigateTo(const creatPIN(), context);
                   }
                 },
                 builder: (context, state) {
@@ -219,10 +228,18 @@ class groupDataFill extends StatelessWidget {
                   } else {
                     return confirmButton(
                         ontap: () {
+
+                          // groupPayment.group.add({
+                          //   "membersNumber": GroupPaymentCubit.counter,
+                          //   "groupName":groupName,
+                          //   "membersNames": "ahmed Hussen \n\n mohamed Saad \n\n yassmeen Ghazy",
+                          //   "groupIds":IdNumbers,
+                          // });
+
                           if (formkey.currentState!.validate()) {
                             myApplication.doneDialog(context,
                                 "Created Successflully", (_){
-                                  myApplication.navigateToRemove(context,mainScreen());
+                                  myApplication.navigateToRemove(context,const mainScreen());
                                 });
                           }
                         },

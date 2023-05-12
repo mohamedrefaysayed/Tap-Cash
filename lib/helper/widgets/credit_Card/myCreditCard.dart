@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, camel_case_types, library_private_types_in_public_api
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -451,15 +453,6 @@ class _myCreditCardWidgetState extends State<myCreditCardWidget>
   /// Builds a back container containing cvv
   ///
   Widget _buildBackContainer() {
-    final TextStyle defaultTextStyle =
-    Theme.of(context).textTheme.titleLarge!.merge(
-      const TextStyle(
-        color: Colors.black,
-        fontFamily: 'halter',
-        fontSize: 16,
-        package: 'flutter_credit_card',
-      ),
-    );
 
     final String cvv = widget.obscureCardCvv
         ? widget.cvvCode.replaceAll(RegExp(r'\d'), '*')

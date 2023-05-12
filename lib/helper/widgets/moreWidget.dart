@@ -17,9 +17,9 @@ class moreWiget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 20),
 
         child: Container(
-            height: myApplication.hightClc(81, context),
+            height: myApplication.hightClc(65, context),
             width: double.infinity,
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 5),
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               boxShadow: [

@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
@@ -28,7 +30,7 @@ class transactionsScreen extends StatelessWidget {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: myApplication.widthClc(20, context)),
                       child: Text(
                         "Transactions",
                         style: TextStyle(
@@ -42,7 +44,7 @@ class transactionsScreen extends StatelessWidget {
                         myApplication.navigateToReplace(context,const kidsTransactionsScreen());
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(horizontal: myApplication.widthClc(20, context)),
                         child: Text(
                           "Kids",
                           style: TextStyle(
@@ -57,7 +59,7 @@ class transactionsScreen extends StatelessWidget {
                   height: myApplication.hightClc(30, context),
                 ),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  margin: EdgeInsets.symmetric(horizontal: myApplication.widthClc(10, context)),
                   height: myApplication.hightClc(700, context),
                   width: double.infinity,
                   child: ListView.builder(

@@ -1,3 +1,5 @@
+// ignore_for_file: dead_code, camel_case_types
+
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
@@ -19,7 +21,7 @@ import 'package:tap_cash/presentation/transactions&notification/transactions.dar
 import 'package:url_launcher/url_launcher_string.dart';
 
 class home extends StatelessWidget {
-  home({Key? key}) : super(key: key);
+  const home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +46,17 @@ class home extends StatelessWidget {
                 children: [
 
                   ClipOval(
+
                       child: FittedBox(
+
                     fit: BoxFit.cover,
+
                     child: Image.asset(
+
                       "assets/profilePhoto.jpg",
                       height: myApplication.hightClc(45, context),
                       width: myApplication.widthClc(45, context),
+
                     ),
                   )
                 ),
@@ -137,6 +144,7 @@ class home extends StatelessWidget {
                   )
                 ],
               ),
+
               height: myApplication.hightClc(132, context),
               width: myApplication.widthClc(396, context),
 
@@ -153,7 +161,7 @@ class home extends StatelessWidget {
                    Positioned(
                       left: myApplication.widthClc(48, context),
                       top: myApplication.hightClc(18, context),
-                      child: Text(
+                      child: const Text(
                         "Wallet Balance",
                         style: TextStyle(
                             fontSize: 14,
@@ -165,7 +173,7 @@ class home extends StatelessWidget {
                    Positioned(
                       left: myApplication.widthClc(48, context),
                       top: myApplication.hightClc(49, context),
-                      child: Text(
+                      child: const Text(
                         "EGP: 625",
                         style: TextStyle(
                             fontSize: 18,
@@ -180,20 +188,32 @@ class home extends StatelessWidget {
                       top: myApplication.hightClc(80, context),
 
                       child: GestureDetector(
+
                         onTap: (){
                           myApplication.navigateTo(cashBack(), context);
                         },
+
                         child: Container(
+
                           width: myApplication.widthClc(186, context),
                           height: myApplication.hightClc(28, context),
+
                           decoration: BoxDecoration(
+
                             color:Colors.white,
+
                             borderRadius: BorderRadius.circular(75),
+
                           ),
+
                           child: Center(
+
                             child: Row(
+
                               mainAxisAlignment: MainAxisAlignment.center,
+
                               children: [
+
                                 const Text(
                                   "Cash Back EGP: 100",
                                   style: TextStyle(
@@ -201,8 +221,11 @@ class home extends StatelessWidget {
                                       color: myColors.blu,
                                       fontWeight: FontWeight.w500),
                                 ),
+
                                 SizedBox(width: myApplication.widthClc(10, context),),
+
                                 const Icon(Icons.arrow_right_alt_outlined,color: myColors.blu,),
+
                               ],
                             ),
                           ),
@@ -211,9 +234,11 @@ class home extends StatelessWidget {
                 ],
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(23, context),
             ),
+
 
             //add & send & smart card
             Container(
@@ -230,12 +255,14 @@ class home extends StatelessWidget {
                 color: Theme.of(context).scaffoldBackgroundColor,
 
                 boxShadow: [
+
                   BoxShadow(
                     color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
-                  )
+                  ),
+
                 ],
               ),
 
@@ -249,33 +276,43 @@ class home extends StatelessWidget {
                     onTap: () {
 
                       showModalBottomSheet(
+
                           shape: RoundedRectangleBorder(
+
                             borderRadius: BorderRadius.circular(20),
+
                           ),
                           context: context,
                           builder: (BuildContext context) {
                             return Container(
+
                               decoration: BoxDecoration(
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
+
+                                color: Theme.of(context).scaffoldBackgroundColor,
+
                                 borderRadius: const BorderRadius.only(
+
                                     topRight: Radius.circular(20),
-                                    topLeft: Radius.circular(20)),
+                                    topLeft: Radius.circular(20)
+                                ),
                               ),
 
                               width: double.infinity,
                               height: myApplication.hightClc(450, context),
 
                               child: Column(
+
                                 children: [
 
                                   Container(
 
                                       margin:  EdgeInsets.only(
+
                                         left: myApplication.widthClc(40, context),
                                         right: myApplication.widthClc(40, context),
                                         top: myApplication.hightClc(30, context),
                                         bottom: myApplication.hightClc(10, context),
+
                                       ),
 
                                       child: const Text(
@@ -291,7 +328,7 @@ class home extends StatelessWidget {
                                     onTap: () {
                                       Navigator.pop(context);
                                       myApplication.navigateTo(
-                                           creditCardFill(), context);
+                                           const creditCardFill(), context);
                                     },
 
                                     child: const bottomSheetWidget(
@@ -357,22 +394,32 @@ class home extends StatelessWidget {
                             );
                           });
                     },
+
                     child: Column(
+
                       mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
 
                         Container(
+
                           height: myApplication.hightClc(63, context),
                           width: myApplication.widthClc(63, context),
+
                           decoration: const BoxDecoration(
+
                             shape: BoxShape.circle,
+
                             color: myColors.softblu,
+
                           ),
+
                           child: const Icon(
                             Icons.add,
                             size: 35,
                             color: myColors.blu,
                           ),
+
                         ),
 
                         SizedBox(
@@ -420,24 +467,30 @@ class home extends StatelessWidget {
                                 children: [
 
                                   Container(
+
                                       margin:  EdgeInsets.only(
                                         left: myApplication.widthClc(40, context),
                                         right: myApplication.widthClc(40, context),
                                         top: myApplication.hightClc(30, context),
                                         bottom: myApplication.hightClc(10, context),
                                       ),
+
                                       child: const Text(
                                         "Select how to send money from your tap cash acount",
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600),
-                                      )),
+                                      )
+                                  ),
+
                                   GestureDetector(
+
                                     onTap: () {
                                       Navigator.pop(context);
                                       myApplication.navigateTo(
                                           sendAmount(), context);
                                     },
+
                                     child: const bottomSheetWidget(
                                         icon: Icon(
                                           Icons.people,
@@ -446,19 +499,28 @@ class home extends StatelessWidget {
                                         ),
                                         text: "Send to tap cash friends"),
                                   ),
+
                                   GestureDetector(
+
                                     onTap: () {},
+
                                     child: bottomSheetWidget(
+
                                         icon: Image.asset(
+
                                           "assets/bottomSheeet/orangCash.png",
                                           height: myApplication.hightClc(40, context),
                                           width: myApplication.widthClc(40, context),
                                         ),
                                         text: "Orange Cash "),
                                   ),
+
                                   GestureDetector(
+
                                     onTap: () {},
+
                                     child: bottomSheetWidget(
+
                                         icon: Image.asset(
                                           "assets/bottomSheeet/etslatCash.png",
                                           height: myApplication.hightClc(40, context),
@@ -466,13 +528,19 @@ class home extends StatelessWidget {
                                         ),
                                         text: "Etisalat Cash"),
                                   ),
+
                                   GestureDetector(
+
                                     onTap: () {},
+
                                     child: bottomSheetWidget(
+
                                         icon: Image.asset(
+
                                           "assets/bottomSheeet/vodafonCash.png",
                                           height: myApplication.hightClc(40, context),
                                           width: myApplication.widthClc(40, context),
+
                                         ),
                                         text: "Vodafon cash"),
                                   ),
@@ -482,8 +550,11 @@ class home extends StatelessWidget {
                           });
                     },
                     child: Column(
+
                       mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
+
                         Container(
 
                           height: myApplication.hightClc(63, context),
@@ -533,11 +604,16 @@ class home extends StatelessWidget {
                       children: [
 
                         Container(
+
                           height: myApplication.hightClc(63, context),
                           width: myApplication.widthClc(63, context),
+
                           decoration: const BoxDecoration(
+
                             shape: BoxShape.circle,
+
                             color: myColors.softblu,
+
                           ),
                           child: const Icon(
                             Icons.credit_card,
@@ -545,9 +621,11 @@ class home extends StatelessWidget {
                             color: myColors.blu,
                           ),
                         ),
+
                         SizedBox(
                           height: myApplication.hightClc(10, context),
                         ),
+
                         const Text(
                           "Smart Card",
                           style: TextStyle(
@@ -555,28 +633,39 @@ class home extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
+
                       ],
                     ),
                   ),
                 ],
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(23, context),
             ),
 
+
             //cash back
             GestureDetector(
+
               onTap: (){
                 myApplication.navigateTo(cashBack(), context);
               },
+
               child: Container(
+
                 margin: const EdgeInsets.symmetric(horizontal: 20),
-                height: 101,
-                width: 396,
+
+                height: myApplication.hightClc(101, context),
+                width: myApplication.widthClc(396, context),
+
                 decoration: BoxDecoration(
+
                   borderRadius: BorderRadius.circular(20),
+
                   color: Theme.of(context).scaffoldBackgroundColor,
+
                   boxShadow: [
                     BoxShadow(
                       color: myColors.shadow,
@@ -585,224 +674,333 @@ class home extends StatelessWidget {
                       spreadRadius: 10,
                     )
                   ],
+
                 ),
                 child: Row(
+
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                   children: [
+
                     Container(
-                      height: 63,
-                      width: 70,
+
+                      height: myApplication.hightClc(63, context),
+                      width: myApplication.widthClc(70, context),
+
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.green.shade200,
                       ),
+
                       child: const Icon(
                         Icons.card_giftcard_rounded,
                         size: 40,
                         color: Colors.white,
                       ),
+
                     ),
+
                     Column(
+
                       mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
+
                         const Text(
                           "You Get Cash Back!",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
+
                         SizedBox(
                           height: myApplication.hightClc(14, context),
                         ),
+
                         const Text(
                           "You Get 50 EGP Cash Back From Payment",
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.w400),
                         ),
+
                       ],
                     ),
                   ],
                 ),
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(23, context),
             ),
 
+
             //services
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              height: 153,
-              width: 396,
+
+              height: myApplication.hightClc(153, context),
+              width: myApplication.widthClc(396, context),
+
               decoration: BoxDecoration(
+
                 borderRadius: BorderRadius.circular(20),
+
                 color: Theme.of(context).scaffoldBackgroundColor,
+
                 boxShadow: [
+
                   BoxShadow(
                     color: myColors.shadow,
                     blurRadius: 10,
                     offset: const Offset(1, 1.5),
                     spreadRadius: 10,
                   )
+
                 ],
               ),
+
               child: Column(
+
                 children: [
+
                   Padding(
+
                     padding: const EdgeInsets.symmetric(horizontal: 13),
+
                     child: Row(
+
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                       children: [
+
                         const Text(
                           "Services",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
+
                         TextButton(
+
                             onPressed: () {},
+
                             child: const Text(
                               "See All",
                               style: TextStyle(
                                   color: myColors.blu,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400),
-                            ))
+                            )
+                        )
                       ],
                     ),
                   ),
+
                   SizedBox(
                     height: myApplication.hightClc(10, context),
                   ),
+
                   Row(
+
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                     children: [
+
                       GestureDetector(
+
                         onTap: () {
                           myApplication.navigateTo(const InternetProvider(), context);
                         },
+
                         child: Column(
+
                           mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
+
                             Hero(
+
                               tag: "internet",
+
                               child: ClipRect(
                                 child: Column(
+
                                   mainAxisAlignment: MainAxisAlignment.center,
+
                                   children: [
                                     Container(
+
                                       height: myApplication.hightClc(56, context),
                                       width: myApplication.widthClc(56, context),
+
                                       decoration: BoxDecoration(
+
                                         shape: BoxShape.circle,
+
                                         color: Colors.orange.shade100,
+
                                       ),
+
                                       child: Icon(
                                         Icons.wifi,
                                         size: myApplication.widthClc(30, context),
                                         color: Colors.orange,
                                       ),
+
                                     ),
+
                                     SizedBox(
                                       height: myApplication.hightClc(10, context),
                                     ),
+
                                   ],
                                 ),
                               ),
                             ),
+
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
+
                             const Text(
                               "Internet",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
+
                           ],
                         ),
                       ),
+
                       GestureDetector(
+
                         onTap: () {},
+
                         child: Column(
+
                           mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
+
                             Container(
-                              height: 56,
-                              width: 56,
+                              height: myApplication.hightClc(56, context),
+                              width: myApplication.widthClc(56, context),
+
                               decoration: BoxDecoration(
+
                                 shape: BoxShape.circle,
+
                                 color: Colors.green.shade100,
+
                               ),
+
                               child: const Icon(
                                 Icons.shopping_bag_outlined,
                                 size: 30,
                                 color: Colors.green,
                               ),
+
                             ),
+
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
+
                             const Text(
                               "Shopping",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
+
                           ],
                         ),
                       ),
+
                       GestureDetector(
+
                         onTap: () {},
+
                         child: Column(
+
                           mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
+
                             Container(
-                              height: 56,
-                              width: 56,
+
+                              height: myApplication.hightClc(56, context),
+                              width: myApplication.widthClc(56, context),
+
                               decoration: BoxDecoration(
+
                                 shape: BoxShape.circle,
+
                                 color: Colors.orange.shade100,
+
                               ),
+
                               child: const Icon(
                                 Icons.electric_bolt,
                                 size: 30,
                                 color: Colors.orange,
                               ),
+
                             ),
+
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
+
                             const Text(
                               "Electricity",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
+
                           ],
                         ),
                       ),
+
                       GestureDetector(
+
                         onTap: () {},
+
                         child: Column(
+
                           mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
+
                             Container(
-                              height: 56,
-                              width: 56,
+                              height: myApplication.hightClc(56, context),
+                              width: myApplication.widthClc(56, context),
+
                               decoration: BoxDecoration(
+
                                 shape: BoxShape.circle,
+
                                 color: Colors.blue.shade100,
+
                               ),
+
                               child: const Icon(
                                 Icons.water_drop,
                                 size: 30,
                                 color: Colors.blue,
                               ),
+
                             ),
+
                             SizedBox(
                               height: myApplication.hightClc(10, context),
                             ),
+
                             const Text(
                               "Water",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
+
                           ],
                         ),
                       ),
@@ -811,18 +1009,26 @@ class home extends StatelessWidget {
                 ],
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(23, context),
             ),
 
+
             //transactions
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              height: 346,
-              width: 396,
+
+              height: myApplication.hightClc(346, context),
+              width: myApplication.widthClc(396, context),
+
               decoration: BoxDecoration(
+
                 borderRadius: BorderRadius.circular(20),
+
                 color: Theme.of(context).scaffoldBackgroundColor,
+
                 boxShadow: [
                   BoxShadow(
                     color: myColors.shadow,
@@ -831,19 +1037,29 @@ class home extends StatelessWidget {
                     spreadRadius: 10,
                   )
                 ],
+
               ),
+
               child: Column(
+
                 children: [
+
                   Padding(
+
                     padding: const EdgeInsets.symmetric(horizontal: 13),
+
                     child: Row(
+
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                       children: [
+
                         const Text(
                           "Transactions",
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
+
                         TextButton(
                             onPressed: () {
                               myApplication.navigateTo(const transactionsScreen(), context);
@@ -854,18 +1070,26 @@ class home extends StatelessWidget {
                                   color: myColors.blu,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400),
-                            ))
+                            ),
+                        ),
                       ],
                     ),
                   ),
+
                   SizedBox(
                     height: myApplication.hightClc(10, context),
                   ),
+
                   ListView.builder(
+
                       physics: const NeverScrollableScrollPhysics(),
+
                       shrinkWrap: true,
+
                       itemCount: 5,
+
                       itemBuilder: (context, index) {
+
                         return transactionWidget(
                           color: Transactions.transaction[index]["color"],
                           name: Transactions.transaction[index]["name"],
@@ -874,128 +1098,186 @@ class home extends StatelessWidget {
                           date: Transactions.transaction[index]["date"],
                           amount: Transactions.transaction[index]["amount"],
                         );
-                      })
+
+                      }
+                   ),
                 ],
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(23, context),
             ),
 
             //donation & purchase
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
+
               child: Row(
+
                 children: [
+
                   GestureDetector(
+
                     onTap: () {
                       myApplication.navigateTo(const donations(), context);
                     },
+
                     child: Column(
+
                       children: [
+
                         Container(
-                          height: 60,
-                          width: 68,
+
+                          height: myApplication.hightClc(60, context),
+                          width: myApplication.widthClc(68, context),
                           decoration: BoxDecoration(
+
                             borderRadius: BorderRadius.circular(20),
+
                             color: Theme.of(context).scaffoldBackgroundColor,
+
                             boxShadow: [
+
                               BoxShadow(
                                 color: myColors.shadow,
                                 blurRadius: 10,
                                 offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
+
                             ],
                           ),
+
                           child: Hero(
+
                             tag: "donation",
+
                             child: Padding(
                               padding: const EdgeInsets.all(15),
                               child: Image.asset("assets/home/donation.png"),
                             ),
+
                           ),
                         ),
+
                         SizedBox(
                           height: myApplication.hightClc(16, context),
                         ),
+
                         const Text(
                           "Donations",
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w400),
                         )
+
                       ],
                     ),
                   ),
+
                   SizedBox(
                     width: myApplication.widthClc(30, context),
                   ),
+
                   GestureDetector(
+
                     onTap: () {
                       myApplication.navigateTo(onlinePayment(), context);
                     },
+
                     child: Column(
                       children: [
+
                         Container(
-                          height: 60,
-                          width: 68,
+
+                          height: myApplication.hightClc(60, context),
+                          width: myApplication.widthClc(68, context),
+
                           decoration: BoxDecoration(
+
                             borderRadius: BorderRadius.circular(20),
+
                             color: Theme.of(context).scaffoldBackgroundColor,
+
                             boxShadow: [
+
                               BoxShadow(
                                 color: myColors.shadow,
                                 blurRadius: 10,
                                 offset: const Offset(1, 1.5),
                                 spreadRadius: 10,
                               )
+
                             ],
                           ),
+
                           child: const Hero(
+
                             tag: "shopping",
+
                             child: Padding(
+
                               padding: EdgeInsets.all(15),
+
                               child: Icon(
                                 Icons.monetization_on_outlined,
                                 color: myColors.blu,
                                 size: 30,
                               ),
+
                             ),
                           ),
                         ),
+
                         SizedBox(
                           height: myApplication.hightClc(16, context),
                         ),
+
                         const Text(
                           "Online Payment",
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w400),
                         )
+
                       ],
                     ),
                   ),
                 ],
               ),
             ),
+
             SizedBox(
               height: myApplication.hightClc(40, context),
             ),
 
+
             //Online Shops
             Container(
+
               margin: const EdgeInsets.symmetric(horizontal: 20),
+
               child: Row(
+
                 children: [
+
+
                   GestureDetector(
                     onTap: () async{
                       await launchUrlString("https://www.amazon.com/",mode: LaunchMode.externalApplication);
                     },
+
                     child: Container(
-                      height: 60,
-                      width: 68,
+
+                      height: myApplication.hightClc(60, context),
+                      width: myApplication.widthClc(68, context),
+
                       decoration: BoxDecoration(
+
                         borderRadius: BorderRadius.circular(20),
+
                         color: Theme.of(context).scaffoldBackgroundColor,
+
                         boxShadow: [
                           BoxShadow(
                             color: myColors.shadow,
@@ -1004,26 +1286,38 @@ class home extends StatelessWidget {
                             spreadRadius: 10,
                           )
                         ],
+
                       ),
+
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: Image.asset("assets/images/amazon.png",),
                       ),
+
                     ),
                   ),
+
                   SizedBox(
                     width: myApplication.widthClc(30, context),
                   ),
+
                   GestureDetector(
+
                     onTap: () async{
                       await launchUrlString("https://www.amazon.com/",mode: LaunchMode.externalApplication);
                     },
+
                     child: Container(
-                      height: 60,
-                      width: 68,
+
+                      height: myApplication.hightClc(60, context),
+                      width: myApplication.widthClc(68, context),
+
                       decoration: BoxDecoration(
+
                         borderRadius: BorderRadius.circular(20),
+
                         color: Theme.of(context).scaffoldBackgroundColor,
+
                         boxShadow: [
                           BoxShadow(
                             color: myColors.shadow,
@@ -1032,26 +1326,38 @@ class home extends StatelessWidget {
                             spreadRadius: 10,
                           )
                         ],
+
                       ),
+
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: Image.asset("assets/images/souq.png"),
                       ),
+
                     ),
                   ),
+
                   SizedBox(
                     width: myApplication.widthClc(30, context),
                   ),
+
                   GestureDetector(
+
                     onTap: () async{
                       await launchUrlString("https://www.noon.com/egypt-en/",mode: LaunchMode.externalApplication);
                     },
+
                     child: Container(
-                      height: 60,
-                      width: 68,
+
+                      height: myApplication.hightClc(60, context),
+                      width: myApplication.widthClc(68, context),
+
                       decoration: BoxDecoration(
+
                         borderRadius: BorderRadius.circular(20),
+
                         color: Theme.of(context).scaffoldBackgroundColor,
+
                         boxShadow: [
                           BoxShadow(
                             color: myColors.shadow,
@@ -1060,11 +1366,14 @@ class home extends StatelessWidget {
                             spreadRadius: 10,
                           )
                         ],
+
                       ),
+
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: Image.asset("assets/images/noon.png"),
                       ),
+
                     ),
                   ),
                 ],

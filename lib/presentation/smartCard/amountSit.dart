@@ -1,3 +1,7 @@
+// ignore_for_file: camel_case_types, duplicate_ignore, file_names, must_be_immutable, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, use_build_context_synchronously
+
+// ignore_for_file: camel_case_types
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -104,7 +108,9 @@ class amountSit extends StatelessWidget {
                             ),
                           ),
                         ),
+
                         SizedBox(height: myApplication.hightClc(30, context),),
+
                         Slider(
                             divisions: 150,
                             thumbColor: myColors.softblu,
@@ -120,6 +126,7 @@ class amountSit extends StatelessWidget {
                     );
                   },
                 ),
+
                 Expanded(
                   child: Column(
                     children: [
@@ -134,7 +141,7 @@ class amountSit extends StatelessWidget {
                                     builder: (BuildContext context){
                                       return Container(
                                         width: double.infinity,
-                                        height: 300,
+                                        height: myApplication.hightClc(300, context),
                                         margin: EdgeInsets.all(myApplication.widthClc(17, context)),
                                         child: Column(
                                           children: [
@@ -168,7 +175,7 @@ class amountSit extends StatelessWidget {
                                               ),
                                               onTap: (){
                                                 AwesomeDialog(
-                                                  width: 400,
+                                                  width: myApplication.widthClc(400, context),
                                                   transitionAnimationDuration: const Duration(seconds: 1),
                                                   animType: AnimType.bottomSlide,
                                                    dialogType: DialogType.noHeader,
@@ -203,8 +210,8 @@ class amountSit extends StatelessWidget {
                                                             size: myApplication.widthClc(60, context),
                                                           ),
                                                         ),
-                                                        const SizedBox(
-                                                          height: 20,
+                                                         SizedBox(
+                                                          height: myApplication.hightClc(20, context),
                                                         ),
                                                         Container(
                                                           width: double.infinity,
@@ -230,16 +237,16 @@ class amountSit extends StatelessWidget {
                                                             ),
                                                           ),
                                                         ),
-                                                        const SizedBox(
-                                                          height: 20,
+                                                         SizedBox(
+                                                          height: myApplication.hightClc(20, context),
                                                         ),
                                                         Text("this card valid for 24 hours",
                                                           style: TextStyle(
                                                             fontSize: myApplication.widthClc(14, context),
                                                             fontWeight: FontWeight.w400,
                                                           ),),
-                                                        const SizedBox(
-                                                          height: 20,
+                                                         SizedBox(
+                                                          height: myApplication.hightClc(20, context),
                                                         ),
                                                         GestureDetector(
                                                           onTap: ()async{
@@ -265,8 +272,8 @@ class amountSit extends StatelessWidget {
                                                             ),
                                                           ),
                                                         ),
-                                                        const SizedBox(
-                                                          height: 10,
+                                                         SizedBox(
+                                                          height: myApplication.hightClc(10, context),
                                                         ),
 
 

@@ -1,16 +1,11 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
-import 'package:tap_cash/helper/widgets/bottomSheetWidget.dart';
-import 'package:tap_cash/presentation/bIlls/payInternetBill.dart';
 
-class privacyPolicy extends StatefulWidget {
+class privacyPolicy extends StatelessWidget {
   const privacyPolicy({Key? key}) : super(key: key);
 
-  @override
-  State<privacyPolicy> createState() => _privacyPolicyState();
-}
-
-class _privacyPolicyState extends State<privacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -34,7 +29,7 @@ class _privacyPolicyState extends State<privacyPolicy> {
                 ),
                 SizedBox(height: myApplication.hightClc(30, context),),
 
-                Container(
+                SizedBox(
                   height: myApplication.hightClc(645, context),
                   width: double.infinity,
                   child: ListView(

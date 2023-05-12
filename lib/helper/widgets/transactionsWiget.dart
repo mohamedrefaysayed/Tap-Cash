@@ -40,10 +40,12 @@ class notificationsWidget extends StatelessWidget {
             ClipOval(
                 child: FittedBox(
                   fit: BoxFit.cover,
-                  child: Image.network(
-                    "https://yt3.googleusercontent.com/ytc/AGIKgqNARqe1ySQ4HhxtFBmgL0MXOg-b-dps6N90hgO7=s900-c-k-c0x00ffffff-no-rj",
-                    height: 45,
-                    width: 45,
+                  child: Image.asset(
+
+                    "assets/profilePhoto.jpg",
+                    height: myApplication.hightClc(45, context),
+                    width: myApplication.widthClc(45, context),
+
                   ),
                 )),
             SizedBox(width: myApplication.widthClc(14, context),),

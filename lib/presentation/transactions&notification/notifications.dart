@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/widgets/transactionsWiget.dart';
@@ -23,7 +25,7 @@ class notifications extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: myApplication.widthClc(20, context)),
                   child: Text(
                     "Notifactions",
                     style: TextStyle(

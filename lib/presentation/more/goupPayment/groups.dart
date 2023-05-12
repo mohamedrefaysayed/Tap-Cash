@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
@@ -36,15 +38,19 @@ class groups extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: myApplication.hightClc(150, context),),
-                      Text("There are no groups yet",style: TextStyle(fontSize: myApplication.widthClc(24, context),fontWeight: FontWeight.w700),),
-                      Spacer(),
+                      Text("There are no groups yet",
+                        style: TextStyle(fontSize: myApplication.widthClc(24, context),
+                            fontWeight: FontWeight.w700),),
+
+                      const Spacer(),
+
                       confirmButton(ontap: (){}, text: "Create Group"),
                       SizedBox(height: myApplication.hightClc(30, context),),
 
                     ],
                   ),
                 )
-                : Container(
+                : SizedBox(
                   height: myApplication.hightClc(600, context),
                   child: ListView.builder(
                     itemCount: groupPayment.group.length,
@@ -69,7 +75,9 @@ class groups extends StatelessWidget {
                             ],
 
                           ),
-                          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: myApplication.widthClc(20, context),vertical: myApplication.hightClc(10, context)
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -84,7 +92,7 @@ class groups extends StatelessWidget {
                       }
                   ),
                 ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Align(

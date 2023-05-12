@@ -1,3 +1,7 @@
+// ignore_for_file: camel_case_types, duplicate_ignore, file_names, must_be_immutable
+
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tap_cash/helper/MyApplication.dart';
 import 'package:tap_cash/helper/constants/myColors.dart';
@@ -95,7 +99,9 @@ class cashBack extends StatelessWidget {
                         ],
                       ),
                       child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 21,vertical: 15),
+                        margin:  EdgeInsets.symmetric(
+                            horizontal: myApplication.widthClc(21, context),vertical: myApplication.hightClc(15, context)
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -140,7 +146,9 @@ class cashBack extends StatelessWidget {
                         ],
                       ),
                       child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 21,vertical: 15),
+                        margin:  EdgeInsets.symmetric(
+                            horizontal: myApplication.widthClc(21, context),vertical: myApplication.hightClc(15, context)
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

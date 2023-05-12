@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tap_cash/business_logic/QR/qr_cubit.dart';
@@ -30,54 +32,77 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
 
     _tabController = TabController(length: 5,vsync: this);
+
     return  WillPopScope(
+
       onWillPop: () => myApplication.onWillPop(context),
+
       child: Scaffold(
+
         body: TabBarView(
+
           physics: const NeverScrollableScrollPhysics(),
+
           controller: _tabController,
+
           children: [
-            home(),
+            const home(),
             dashBoardMain(),
-             SizedBox(),
-             walletMain(),
-             moreMain(),          ],
+             const SizedBox(),
+             const walletMain(),
+             const moreMain(),          ],
         ),
+
         extendBody: true,
 
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
         floatingActionButton: GestureDetector(
+
           onTap: ()async{
                 QrCubit.QrCodeData = await scanner.scan().whenComplete(() {
                   myApplication.navigateTo(showQrCode(), context);
                 });
 
           },
+
           child: SizedBox(
-            height: 70,
-            width: 70,
+
+            height: myApplication.hightClc(70, context),
+            width: myApplication.widthClc(70, context),
+
             child: Stack(
               children: [
-                Image.asset("assets/bottomNavFloat/bottomNavBg.png",height: 70,width: 70,),
+
+                Image.asset("assets/bottomNavFloat/bottomNavBg.png",
+                  height: myApplication.hightClc(70, context),
+                  width: myApplication.widthClc(70, context),
+                ),
+
                 Center(child: Image.asset("assets/bottomNavFloat/scan.png",height: 23,width: 23,)),
+
               ],
             ),
           ),
         ),
+
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
               boxShadow: [
+
                 BoxShadow(
                   color: myColors.shadow,
                   blurRadius: 10,
                   offset: const Offset(1, 1.5),
                   spreadRadius: 3,
                 )
+
               ]
           ),
 
           child: BottomAppBar(
-            height: 80,
+
+            height: myApplication.hightClc(80, context),
             notchMargin: 5,
             shape: const StreamlinedNotchClipper(),
             elevation: 10,
@@ -91,6 +116,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                 unselectedLabelColor: Colors.grey,
                 controller: _tabController,
                 tabs: [
+
                   Tab(
                   icon: Stack(
                     children: const [
@@ -103,9 +129,10 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                     ],
                   ),
                   ),
+
                   Tab(
                     icon: SizedBox(
-                      width: 80,
+                      height: myApplication.hightClc(80, context),
                       child: Stack(
                         children: const [
                           Align(
@@ -118,7 +145,9 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                       ),
                     ),
                   ),
+
                   SizedBox(width: myApplication.widthClc(20, context),),
+
                   Tab(
                     icon: Stack(
                       children: const [
@@ -131,6 +160,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                       ],
                     ),
                   ),
+
                   Tab(
                     icon: Stack(
                       children: const [
@@ -143,6 +173,7 @@ class _mainScreenState extends State<mainScreen> with TickerProviderStateMixin{
                       ],
                     ),
                   ),
+
                 ],
               ),
 

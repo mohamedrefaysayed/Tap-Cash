@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +31,7 @@ void main() {
   CahchHelper.init();
 
 
-  runApp( Tap_Cash());
+  runApp( const Tap_Cash());
 }
 
 class Tap_Cash extends StatelessWidget {
@@ -60,7 +62,7 @@ class Tap_Cash extends StatelessWidget {
 
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value:  SystemUiOverlayStyle(
+        value:  const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent, //top status bar
           systemNavigationBarColor: myColors.blk, // navigation bar color, the one Im looking for
           statusBarIconBrightness: Brightness.dark, // status bar icons' color
@@ -73,7 +75,7 @@ class Tap_Cash extends StatelessWidget {
           darkTheme: Mythems.darktheme,
           debugShowCheckedModeBanner: false,
           title: 'Tap Cash',
-          home: splashLogo(),
+          home: const splashLogo(),
         ),
       ),
     );
